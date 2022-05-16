@@ -1,5 +1,6 @@
 import React from "react";
 import PropTypes from "prop-types";
+import Label from "../label";
 import "./styles.scss";
 
 TextInput.propTypes = {
@@ -23,9 +24,7 @@ function TextInput({ name, label, placeholder = "Type here...", ...rest }) {
 
   return (
     <div className="text-input">
-      <label className="text-input__label" htmlFor={inputId}>
-        {label}
-      </label>
+      <Label labelText={label} inputId={inputId} />
       <input
         type="text"
         className="text-input__field"

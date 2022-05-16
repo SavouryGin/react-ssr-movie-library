@@ -5,7 +5,7 @@ function App() {
   return (
     <div className="app">
       <TextInput
-        name="search-films"
+        name="search-movies"
         label="Find you movie"
         placeholder="What do you want to watch?"
       />
