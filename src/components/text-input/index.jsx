@@ -24,12 +24,15 @@ class TextInput extends React.Component {
   }
 
   render() {
-    const { label, name, placeholder, ...rest } = this.props;
+    const { label, name, placeholder, className, ...rest } = this.props;
     const autocompleteValue = rest.isAutocomplete ? "on" : "off";
     const inputId = `text-input-${name}`;
+    const containerClassName = className
+      ? `text-input ${className}`
+      : "text-input";
 
     return (
-      <div className="text-input">
+      <div className={containerClassName}>
         <Label labelText={label} inputId={inputId} />
         <input
           type="text"
@@ -55,6 +58,7 @@ class TextInput extends React.Component {
 TextInput.propTypes = {
   name: PropTypes.string.isRequired,
   label: PropTypes.string.isRequired,
+  className: PropTypes.string,
   placeholder: PropTypes.string,
   defaultValue: PropTypes.string,
   onChange: PropTypes.func,

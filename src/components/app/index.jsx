@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import TextInput from "../text-input";
 import SearchForm from "../search-form";
+import SearchDisplay from "../search-display";
 import "./styles.scss";
 
 // Stateful functional component
@@ -25,6 +26,7 @@ const App = () => {
         initialValues={{ searchMovies: "" }}
         passValues={takeValues}
       />
+      <SearchDisplay searchQueries={searchQueries} />
     </div>
   );
 };

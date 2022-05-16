@@ -3,6 +3,8 @@ import PropTypes from "prop-types";
 import FormContext from "../form-context";
 import Button from "../button";
 
+import "./styles.scss";
+
 // Class component extending React.PureComponent
 class SearchForm extends React.PureComponent {
   constructor(props) {

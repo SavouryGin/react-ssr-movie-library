@@ -1,15 +1,17 @@
 import React from "react";
+import PropTypes from "prop-types";
 
 import "./styles.scss";
 
 // Stateless functional component
-const Button = ({ type, text, onClick, ...rest }) => {
+const Button = ({ type, text, onClick, className, ...rest }) => {
   const buttonText = text || "Button";
   const buttonType = type || "button";
+  const buttonClassName = className ? `button ${className}` : "button";
 
   return (
     <button
-      className="button"
+      className={buttonClassName}
       type={buttonType}
       onClick={onClick}
       title={rest.title}
@@ -18,6 +20,14 @@ const Button = ({ type, text, onClick, ...rest }) => {
       {buttonText}
     </button>
   );
+};
+
+Button.propTypes = {
+  type: PropTypes.string,
+  text: PropTypes.string,
+  title: PropTypes.string,
+  isDisabled: PropTypes.bool,
+  onClick: PropTypes.func,
 };
 
 export default Button;
