@@ -1,7 +1,10 @@
 import React from "react";
-import FormContext from "../context";
+import PropTypes from "prop-types";
+import FormContext from "../form-context";
+import Button from "../button";
 
-class SearchForm extends React.Component {
+// Class component extending React.PureComponent
+class SearchForm extends React.PureComponent {
   constructor(props) {
     super(props);
     this.state = { formValues: props.initialValues };
@@ -28,7 +31,6 @@ class SearchForm extends React.Component {
     return (
       <form
         className="search-form"
-        aria-label="form"
         action={this.props.action || "/"}
         onSubmit={this.onSubmit}
       >
@@ -38,12 +40,24 @@ class SearchForm extends React.Component {
             onChangeFormInput: this.onChangeFormInput,
           }}
         >
-          {this.props.inputs}
+          {this.props.formChildren}
         </FormContext.Provider>
-        <button type="submit">Search</button>
+        <Button
+          type="submit"
+          text="Search"
+          isDisabled={this.props.isSubmitDisabled}
+        />
       </form>
     );
   }
 }
+
+SearchForm.propTypes = {
+  initialValues: PropTypes.object.isRequired,
+  formChildren: PropTypes.element.isRequired,
+  passValues: PropTypes.func,
+  action: PropTypes.string,
+  isSubmitDisabled: PropTypes.bool,
+};
 
 export default SearchForm;

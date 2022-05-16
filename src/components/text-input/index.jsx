@@ -1,20 +1,25 @@
 import React from "react";
 import PropTypes from "prop-types";
 import Label from "../label";
-import FormContext from "../context";
+import FormContext from "../form-context";
 import "./styles.scss";
 
+// Class component extending standard React.Component
 class TextInput extends React.Component {
   static contextType = FormContext;
 
   constructor(props) {
     super(props);
     this.onChange = this.onChange.bind(this);
+    this.state = {
+      value: props.defaultValue || "",
+    };
   }
 
   onChange(e) {
-    if (this.props.onChange) this.props.onChange();
+    this.setState({ value: e.target.value });
     const { onChangeFormInput } = this.context;
+    if (this.props.onChange) this.props.onChange();
     if (onChangeFormInput) onChangeFormInput(e);
   }
 
@@ -32,6 +37,7 @@ class TextInput extends React.Component {
           id={inputId}
           name={name}
           placeholder={placeholder}
+          value={this.state.value}
           onChange={this.onChange}
           onBlur={rest.onBlur}
           onFocus={rest.onFocus}
@@ -50,6 +56,7 @@ TextInput.propTypes = {
   name: PropTypes.string.isRequired,
   label: PropTypes.string.isRequired,
   placeholder: PropTypes.string,
+  defaultValue: PropTypes.string,
   onChange: PropTypes.func,
   onChangeFormInput: PropTypes.func,
   onBlur: PropTypes.func,

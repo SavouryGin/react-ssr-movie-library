@@ -1,8 +1,12 @@
+import React, { useState } from "react";
 import TextInput from "../text-input";
 import SearchForm from "../search-form";
 import "./styles.scss";
 
-function App() {
+// Stateful functional component
+const App = () => {
+  const [searchQueries, setSearchQueries] = useState([]);
+
   const input = (
     <TextInput
       name="searchMovies"
@@ -11,17 +15,18 @@ function App() {
     />
   );
 
-  const takeValues = (values) => console.log(values);
+  const takeValues = (values) =>
+    setSearchQueries([...searchQueries, values.searchMovies]);
 
   return (
     <div className="app">
       <SearchForm
-        inputs={input}
+        formChildren={input}
         initialValues={{ searchMovies: "" }}
         passValues={takeValues}
       />
     </div>
   );
-}
+};
 
 export default App;
