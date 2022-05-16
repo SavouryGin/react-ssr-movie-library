@@ -1,0 +1,64 @@
+import React from "react";
+import PropTypes from "prop-types";
+import Label from "../label";
+import FormContext from "../context";
+import "./styles.scss";
+
+class TextInput extends React.Component {
+  static contextType = FormContext;
+
+  constructor(props) {
+    super(props);
+    this.onChange = this.onChange.bind(this);
+  }
+
+  onChange(e) {
+    if (this.props.onChange) this.props.onChange();
+    const { onChangeFormInput } = this.context;
+    if (onChangeFormInput) onChangeFormInput(e);
+  }
+
+  render() {
+    const { label, name, placeholder, ...rest } = this.props;
+    const autocompleteValue = rest.isAutocomplete ? "on" : "off";
+    const inputId = `text-input-${name}`;
+
+    return (
+      <div className="text-input">
+        <Label labelText={label} inputId={inputId} />
+        <input
+          type="text"
+          className="text-input__field"
+          id={inputId}
+          name={name}
+          placeholder={placeholder}
+          onChange={this.onChange}
+          onBlur={rest.onBlur}
+          onFocus={rest.onFocus}
+          disabled={rest.isDisabled}
+          readOnly={rest.isReadOnly}
+          maxLength={rest.maxLength}
+          minLength={rest.minLength}
+          autoComplete={autocompleteValue}
+        />
+      </div>
+    );
+  }
+}
+
+TextInput.propTypes = {
+  name: PropTypes.string.isRequired,
+  label: PropTypes.string.isRequired,
+  placeholder: PropTypes.string,
+  onChange: PropTypes.func,
+  onChangeFormInput: PropTypes.func,
+  onBlur: PropTypes.func,
+  onFocus: PropTypes.func,
+  isDisabled: PropTypes.bool,
+  isReadOnly: PropTypes.bool,
+  isAutocomplete: PropTypes.bool,
+  maxLength: PropTypes.number,
+  minLength: PropTypes.number,
+};
+
+export default TextInput;
