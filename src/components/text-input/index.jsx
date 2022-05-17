@@ -10,18 +10,25 @@ class TextInput extends React.Component {
 
   constructor(props) {
     super(props);
-    this.onChange = this.onChange.bind(this);
     this.state = {
       value: props.defaultValue || "",
     };
   }
 
-  onChange(e) {
-    this.setState({ value: e.target.value });
+  onChangeInput = (e) => {
     const { onChangeFormInput } = this.context;
-    if (this.props.onChange) this.props.onChange();
-    if (onChangeFormInput) onChangeFormInput(e);
-  }
+    const { onChange } = this.props;
+    const { value } = e.target;
+
+    this.setState({ value });
+
+    if (onChange) {
+      onChange();
+    }
+    if (onChangeFormInput) {
+      onChangeFormInput(e);
+    }
+  };
 
   render() {
     const { label, name, placeholder, className, ...rest } = this.props;
@@ -41,7 +48,7 @@ class TextInput extends React.Component {
           name={name}
           placeholder={placeholder}
           value={this.state.value}
-          onChange={this.onChange}
+          onChange={this.onChangeInput}
           onBlur={rest.onBlur}
           onFocus={rest.onFocus}
           disabled={rest.isDisabled}

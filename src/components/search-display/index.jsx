@@ -1,6 +1,5 @@
 import React from "react";
 import PropTypes from "prop-types";
-
 import "./styles.scss";
 
 // Stateless functional component
@@ -11,9 +10,9 @@ const SearchDisplay = ({ searchQueries = [] }) => {
 
   return (
     <div className="search-display">
-      {items.length > 0 && (
+      {items.length ? (
         <h2 className="search-display__header">Search History</h2>
-      )}
+      ) : null}
       <ul className="search-display__list">{items}</ul>
     </div>
   );

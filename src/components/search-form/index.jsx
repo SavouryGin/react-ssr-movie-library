@@ -2,7 +2,6 @@ import React from "react";
 import PropTypes from "prop-types";
 import FormContext from "../form-context";
 import Button from "../button";
-
 import "./styles.scss";
 
 // Class component extending React.PureComponent
@@ -10,30 +9,31 @@ class SearchForm extends React.PureComponent {
   constructor(props) {
     super(props);
     this.state = { formValues: props.initialValues };
-    this.onSubmit = this.onSubmit.bind(this);
-    this.onChangeFormInput = this.onChangeFormInput.bind(this);
   }
 
-  onSubmit(e) {
+  onSubmit = (e) => {
     e.preventDefault();
     this.props.passValues(this.state.formValues);
-  }
+  };
 
-  onChangeFormInput(e) {
+  onChangeFormInput = (e) => {
     const isCheckbox =
       e.target instanceof HTMLInputElement && e.target.type === "checkbox";
     const name = e.target.name;
     const value = isCheckbox ? e.target.checked : e.target.value;
+
     this.setState((prevState) => ({
       formValues: { ...prevState.formValues, [name]: value },
     }));
-  }
+  };
 
   render() {
+    const { action, isSubmitDisabled, formChildren } = this.props;
+
     return (
       <form
         className="search-form"
-        action={this.props.action || "/"}
+        action={action || "/"}
         onSubmit={this.onSubmit}
       >
         <FormContext.Provider
@@ -42,13 +42,9 @@ class SearchForm extends React.PureComponent {
             onChangeFormInput: this.onChangeFormInput,
           }}
         >
-          {this.props.formChildren}
+          {formChildren}
         </FormContext.Provider>
-        <Button
-          type="submit"
-          text="Search"
-          isDisabled={this.props.isSubmitDisabled}
-        />
+        <Button type="submit" text="Search" isDisabled={isSubmitDisabled} />
       </form>
     );
   }
