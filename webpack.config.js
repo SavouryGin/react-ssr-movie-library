@@ -9,7 +9,7 @@ const config = {
   entry: './src/index.tsx',
   output: {
     path: path.join(__dirname, 'dist'),
-    filename: 'index-bundle.js',
+    filename: 'index.js',
   },
   resolve: {
     extensions: ['.js', '.jsx', '.ts', '.tsx'],
@@ -21,16 +21,14 @@ const config = {
   module: {
     rules: [
       {
-        test: /\.tsx?$/,
-        use: 'babel-loader',
-        exclude: /node_modules/,
+        test: /\.js$/,
+        exclude: ['/node_modules/'],
+        use: ['babel-loader'],
       },
       {
-        test: /\.ts$/,
-        exclude: /node_modules/,
-        use: {
-          loader: 'babel-loader',
-        },
+        test: /\.ts(x?)$/,
+        exclude: ['/node_modules/'],
+        use: ['babel-loader', 'ts-loader'],
       },
       {
         test: /\.s[ac]ss$/i,
@@ -49,7 +47,6 @@ const config = {
       filename: 'index.html',
       inject: 'body',
     }),
-
     new CopyWebpackPlugin({
       patterns: [{ from: path.resolve(__dirname, './src/assets/icons/favicon.ico') }],
     }),
@@ -58,7 +55,24 @@ const config = {
 
 if (isProd) {
   config.optimization = {
-    minimizer: [new TerserWebpackPlugin()],
+    minimize: true,
+    minimizer: [
+      new TerserWebpackPlugin({
+        parallel: true, // Enable multi-process parallel running
+        extractComments: 'all', // Enable extracting comments to a different file
+        terserOptions: {
+          toplevel: true, // https://github.com/terser/terser#minify-options
+          keep_classnames: false,
+          output: {
+            comments: false, // remove comments from files
+          },
+          mangle: {
+            safari10: true, // for preventing Safari 10/11 bugs in loop scoping and await
+          },
+          compress: { pure_funcs: ['console.info', 'console.debug', 'console.warn'] }, // remove this functions when their return values are not used
+        },
+      }),
+    ],
   };
 } else {
   config.devServer = {
