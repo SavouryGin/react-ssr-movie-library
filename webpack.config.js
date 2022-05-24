@@ -2,6 +2,7 @@ const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const CopyWebpackPlugin = require('copy-webpack-plugin');
 const TerserWebpackPlugin = require('terser-webpack-plugin');
+const ProgressPlugin = require('progress-webpack-plugin');
 const isProd = process.env.NODE_ENV === 'production';
 
 const config = {
@@ -9,7 +10,7 @@ const config = {
   entry: './src/index.tsx',
   output: {
     path: path.join(__dirname, 'dist'),
-    filename: 'index.js',
+    filename: '[name].[contenthash].js',
   },
   resolve: {
     extensions: ['.js', '.jsx', '.ts', '.tsx'],
@@ -50,6 +51,7 @@ const config = {
     new CopyWebpackPlugin({
       patterns: [{ from: path.resolve(__dirname, './src/assets/icons/favicon.ico') }],
     }),
+    new ProgressPlugin(true),
   ],
 };
 
