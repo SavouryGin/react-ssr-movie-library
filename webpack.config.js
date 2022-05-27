@@ -18,6 +18,7 @@ const config = {
       components: path.resolve(__dirname, './src/components'),
       styles: path.resolve(__dirname, './src/styles'),
       assets: path.resolve(__dirname, './src/assets'),
+      pages: path.resolve(__dirname, './src/pages'),
       __mocks__: path.resolve(__dirname, './src/__mocks__'),
     },
   },

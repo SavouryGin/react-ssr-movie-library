@@ -1,7 +1,7 @@
 import React from 'react';
 
 const App = (): React.ReactElement => {
-  return <h1 className='test-header'>ReactJS GMP</h1>;
+  return <div>ReactJS GMP</div>;
 };
 
 export default App;
