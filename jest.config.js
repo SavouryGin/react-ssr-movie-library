@@ -3,6 +3,8 @@ module.exports = {
   moduleFileExtensions: ['ts', 'tsx', 'js', 'jsx', 'json', 'node'],
   moduleNameMapper: {
     '^components(.*)$': '<rootDir>/src/components$1',
+    '^styles(.*)$': '<rootDir>/src/styles$1',
+    '^assets(.*)$': '<rootDir>/src/assets$1',
     '^__mocks__(.*)$': '<rootDir>/src/__mocks__$1',
     '\\.(css|scss)$': '<rootDir>/src/__mocks__/style-mock.js',
   },

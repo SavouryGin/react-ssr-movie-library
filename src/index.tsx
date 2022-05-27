@@ -1,6 +1,7 @@
-import React from 'react';
 import App from 'components/app';
+import React from 'react';
 import { createRoot } from 'react-dom/client';
+import 'styles/reset.scss';
 
 // React 18 new root API
 const rootContainer = document.getElementById('root');
