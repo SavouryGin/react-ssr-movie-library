@@ -8,11 +8,11 @@ import './styles.scss';
 const Layout = () => {
   return (
     <div className='layout'>
-      <Header />
+      <Header className='layout__header' />
       <main className='layout__main'>
         <Outlet />
       </main>
-      <Footer />
+      <Footer className='layout__footer' />
     </div>
   );
 };

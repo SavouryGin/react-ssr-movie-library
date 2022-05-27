@@ -1,5 +1,6 @@
 import AppRouter from 'components/app-router';
 import React from 'react';
+import 'styles/reset.scss';
 
 const App = () => {
   // TODO: wrap up with <Provider store={store}>

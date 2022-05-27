@@ -19,6 +19,7 @@ const config = {
       styles: path.resolve(__dirname, './src/styles'),
       assets: path.resolve(__dirname, './src/assets'),
       pages: path.resolve(__dirname, './src/pages'),
+      types: path.resolve(__dirname, './src/types'),
       __mocks__: path.resolve(__dirname, './src/__mocks__'),
     },
   },

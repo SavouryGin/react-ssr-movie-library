@@ -1,0 +1,33 @@
+@import 'styles/colors.scss';
+@import 'styles/sizes.scss';
+
+.layout {
+  color: $font-color;
+
+  // Grid template
+  display: grid;
+  height: 100%;
+  grid-gap: 0;
+  grid-template-columns: 1fr 10fr 1fr;
+  grid-template-rows: $header-height auto $footer-height;
+  grid-template-areas:
+    'page-header page-header page-header'
+    '. page-content .'
+    'page-footer page-footer page-footer';
+
+  // Grid areas
+  &__header {
+    grid-area: page-header;
+    background-color: red;
+  }
+
+  &__main {
+    grid-area: page-content;
+    padding: $horizontal-padding $vertical-padding;
+    background-color: yellow;
+  }
+
+  &__footer {
+    grid-area: page-footer;
+  }
+}

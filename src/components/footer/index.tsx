@@ -1,8 +1,20 @@
 import React from 'react';
+import classNames from 'classnames';
+import { ComponentProps } from 'types/basic';
 import './styles.scss';
 
-const Footer = () => {
-  return <footer className='footer'>Footer</footer>;
+type FooterProps = ComponentProps;
+
+const Footer = ({ className }: FooterProps) => {
+  const footerClass = classNames({ footer: true, [`${className}`]: !!className });
+
+  return (
+    <footer className={footerClass}>
+      <span className='footer__text'>
+        <strong>netflix</strong>roulette
+      </span>
+    </footer>
+  );
 };
 
 export default Footer;
