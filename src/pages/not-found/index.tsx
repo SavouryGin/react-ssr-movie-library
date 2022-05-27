@@ -1,12 +1,16 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 
 import './styles.scss';
 
 const NotFoundPage = () => {
   return (
-    <div className='not-found-page' data-testid='not-found-page'>
-      <h2 className='not-found-page__header'>404 Page not found</h2>
-    </div>
+    <article className='not-found-page'>
+      <h2>404 Error</h2>
+      <p>
+        Sorry, your page was not found. <Link to='/'>Go Home</Link>
+      </p>
+    </article>
   );
 };
 
