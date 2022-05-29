@@ -1,0 +1,35 @@
+@import 'styles/colors.scss';
+@import 'styles/sizes.scss';
+
+.tab-list {
+  &__tabs {
+    display: flex;
+    flex-wrap: wrap;
+    padding-top: $horizontal-padding;
+    gap: $vertical-padding;
+    border-bottom: $border-height solid $foreground-color;
+  }
+
+  &__tab {
+    cursor: pointer;
+    position: relative;
+    display: inline-flex;
+    align-items: center;
+    padding-bottom: $horizontal-padding;
+    font-weight: normal;
+    text-transform: uppercase;
+
+    &:hover {
+      top: $border-height;
+    }
+
+    &_active {
+      border-bottom: $border-height solid $accent-color;
+      top: $border-height;
+    }
+  }
+
+  &__content {
+    padding: $vertical-padding 0;
+  }
+}
