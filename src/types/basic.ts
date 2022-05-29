@@ -1,4 +1,4 @@
-export type ComponentProps = {
+export type CommonProps = {
   className?: string;
   id?: string;
 };

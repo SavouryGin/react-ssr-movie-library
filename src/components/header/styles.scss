@@ -1,0 +1,12 @@
+@import 'styles/sizes.scss';
+
+.header {
+  display: grid;
+  grid-template-columns: 1fr 10fr 1fr;
+  grid-template-areas: '. header-content .';
+
+  &__content {
+    grid-area: header-content;
+    padding: $horizontal-padding $vertical-padding;
+  }
+}

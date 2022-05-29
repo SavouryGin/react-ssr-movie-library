@@ -1,9 +1,9 @@
 import React from 'react';
 import classNames from 'classnames';
-import { ComponentProps } from 'types/basic';
+import { CommonProps } from 'types/basic';
 import './styles.scss';
 
-type FooterProps = ComponentProps;
+type FooterProps = CommonProps;
 
 const Footer = ({ className }: FooterProps) => {
   const footerClass = classNames({ footer: true, [`${className}`]: !!className });

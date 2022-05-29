@@ -1,7 +1,6 @@
 @import 'styles/colors.scss';
 
 .footer {
-  background-color: $background-color;
   display: grid;
   grid-template-areas: '. footer-text .';
   grid-template-columns: 1fr 10fr 1fr;
