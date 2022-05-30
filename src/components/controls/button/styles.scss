@@ -12,14 +12,14 @@
   text-transform: uppercase;
   color: $font-color;
   background-color: $accent-color;
+  opacity: 0.8;
+
+  &:hover {
+    opacity: 1;
+  }
 
   &__secondary {
     color: $accent-color;
     background-color: $foreground-color;
-    opacity: 0.8;
-
-    &:hover {
-      opacity: 1;
-    }
   }
 }

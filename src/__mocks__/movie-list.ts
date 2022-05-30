@@ -15,7 +15,7 @@ export const movieList: MovieItem[] = [
   },
   {
     title: 'Kill Bill: Vol 2',
-    genres: ['Comedy', 'Crime', 'Action'],
+    genres: ['Crime', 'Action'],
     year: 1994,
     imagePath: 'assets/images/Bitmap-3.jpg',
   },
@@ -33,7 +33,7 @@ export const movieList: MovieItem[] = [
   },
   {
     title: 'Reservoir dogs',
-    genres: ['Crime', 'Comedy'],
+    genres: ['Crime'],
     year: 1994,
     imagePath: 'assets/images/Bitmap-6.jpg',
   },

@@ -66,7 +66,7 @@ const Home = () => {
         <Form
           onSubmit={onSubmit}
           passValues={takeValues}
-          inputs={<TextInput name='movie' className='home-page__search-input' />}
+          inputs={<TextInput name='movie' className='home-page__search-input' placeholder='What do you want to watch?' />}
           initialValues={searchFormInitialValue}
           className='home-page__search'
           submitButtonText='Search'
