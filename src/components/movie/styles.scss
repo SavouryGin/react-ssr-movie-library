@@ -1,0 +1,38 @@
+@import 'styles/sizes.scss';
+@import 'styles/colors.scss';
+
+.movie {
+  width: $movie-card-width;
+  max-width: $movie-card-width;
+  display: grid;
+  grid-row-gap: $horizontal-padding;
+  grid-template-columns: 10fr 2fr;
+  grid-template-rows: auto auto auto;
+  grid-template-areas:
+    'movie-image movie-image'
+    'movie-title movie-year'
+    'movie-genres movie-genres';
+
+  &__image {
+    grid-area: movie-image;
+  }
+
+  &__title {
+    grid-area: movie-title;
+  }
+
+  &__year {
+    grid-area: movie-year;
+    justify-self: center;
+    border: 1px solid $foreground-color;
+    padding: 0 $vertical-padding;
+    font-size: 0.8rem;
+    border-radius: 4px;
+  }
+
+  &__genres {
+    grid-area: movie-genres;
+    font-size: 0.8rem;
+    opacity: 0.8;
+  }
+}
