@@ -1,0 +1,15 @@
+@import 'styles/colors.scss';
+@import 'styles/sizes.scss';
+
+.text-input {
+  opacity: 0.8;
+
+  &__field {
+    height: 100%;
+    width: 100%;
+    background-color: $background-color;
+    color: $font-color;
+    border: none;
+    border-radius: $border-radius;
+  }
+}

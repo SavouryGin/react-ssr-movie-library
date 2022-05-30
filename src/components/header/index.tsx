@@ -4,11 +4,9 @@ import classNames from 'classnames';
 import { CommonProps } from 'types/basic';
 import './styles.scss';
 
-type HeaderProps = CommonProps & {
-  content?: React.ReactElement;
-};
+type HeaderProps = CommonProps;
 
-const Header = ({ className, content }: HeaderProps) => {
+const Header = ({ className }: HeaderProps) => {
   const headerClass = classNames('header', { [`${className}`]: !!className });
 
   return (
@@ -19,7 +17,6 @@ const Header = ({ className, content }: HeaderProps) => {
         </span>
         <Button text='+ Add movie' title='Add movie' view='secondary' />
       </div>
-      <div className='header__content'>{content}</div>
     </header>
   );
 };

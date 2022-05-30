@@ -2,4 +2,29 @@
 
 .home-page {
   padding: $horizontal-padding $vertical-padding;
+  position: relative;
+
+  &__form {
+    position: absolute;
+    top: -260px;
+    left: 0;
+    width: 100%;
+  }
+
+  &__heading {
+    padding: $horizontal-padding $vertical-padding;
+    text-transform: uppercase;
+    font-weight: lighter;
+    font-size: 2rem;
+  }
+
+  &__search {
+    padding: $horizontal-padding $vertical-padding;
+    display: flex;
+    gap: $vertical-padding;
+  }
+
+  &__search-input {
+    width: $search-input-length;
+  }
 }

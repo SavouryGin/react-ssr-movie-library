@@ -8,11 +8,13 @@
   height: fit-content;
   outline: none;
   padding: $horizontal-padding;
-  border-radius: 2px;
+  border-radius: $border-radius;
+  text-transform: uppercase;
+  color: $font-color;
+  background-color: $accent-color;
 
   &__secondary {
     color: $accent-color;
-    text-transform: uppercase;
     background-color: $foreground-color;
     opacity: 0.8;
 
