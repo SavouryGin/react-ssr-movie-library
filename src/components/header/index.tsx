@@ -1,3 +1,4 @@
+import Button from 'components/button';
 import React from 'react';
 import classNames from 'classnames';
 import { CommonProps } from 'types/basic';
@@ -10,7 +11,12 @@ const Header = ({ className }: HeaderProps) => {
 
   return (
     <header className={headerClass}>
-      <div className='header__content'>Header</div>
+      <div className='header__content'>
+        <span>
+          <strong>netflix</strong>roulette
+        </span>
+        <Button text='+ Add movie' title='Add movie' view='secondary' />
+      </div>
     </header>
   );
 };

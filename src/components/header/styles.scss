@@ -1,4 +1,5 @@
 @import 'styles/sizes.scss';
+@import 'styles/colors.scss';
 
 .header {
   display: grid;
@@ -7,6 +8,11 @@
 
   &__content {
     grid-area: header-content;
-    padding: $horizontal-padding $vertical-padding;
+    color: $accent-color;
+    padding: $vertical-padding;
+    height: 4rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
   }
 }
