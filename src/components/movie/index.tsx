@@ -1,15 +1,7 @@
 import Image from 'components/image';
 import React from 'react';
 import classNames from 'classnames';
-import { CommonProps } from 'types/basic';
-
-type MovieProps = CommonProps & {
-  title: string;
-  genres: string[];
-  year: number;
-  imagePath: string;
-  description?: string;
-};
+import { MovieProps } from 'types/movies';
 
 const Movie = ({ className, title, genres, year, imagePath }: MovieProps) => {
   const movieClass = classNames('movie', { [`${className}`]: !!className });

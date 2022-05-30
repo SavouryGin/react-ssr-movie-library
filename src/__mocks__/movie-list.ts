@@ -1,8 +1,10 @@
-export const movieList = [
+import { MovieItem } from 'types/movies';
+
+export const movieList: MovieItem[] = [
   {
     title: 'Pulp Fiction',
     genres: ['Action', 'Adventure'],
     year: 2004,
-    imagePath: '__mocks__/images/Bitmap-1.png',
+    imagePath: 'assets/images/Bitmap-1.jpg',
   },
 ];

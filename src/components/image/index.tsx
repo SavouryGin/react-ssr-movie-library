@@ -12,7 +12,7 @@ const Image = ({ className, path, altText }: ImageProps) => {
 
   return (
     <div className={imageClass}>
-      <img src={require(path)} className='mms_logo_img' alt={altText} role='img' />
+      <img src={path} className='mms_logo_img' alt={altText} role='img' />
     </div>
   );
 };

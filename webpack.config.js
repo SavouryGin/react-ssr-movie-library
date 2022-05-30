@@ -44,6 +44,17 @@ const config = {
         enforce: 'pre',
         use: ['source-map-loader'],
       },
+      {
+        test: /\.(jpe?g|gif|svg)$/i,
+        use: [
+          {
+            loader: 'url-loader',
+            options: {
+              limit: 10000,
+            },
+          },
+        ],
+      },
     ],
   },
   plugins: [
@@ -53,7 +64,14 @@ const config = {
       inject: 'body',
     }),
     new CopyWebpackPlugin({
-      patterns: [{ from: path.resolve(__dirname, './src/assets/icons/favicon.ico') }],
+      patterns: [
+        { from: path.resolve(__dirname, './src/assets/icons/favicon.ico') },
+        {
+          from: path.resolve(__dirname, './src/assets/images'),
+          to: path.resolve(__dirname, './dist/assets/images'),
+          toType: 'dir',
+        },
+      ],
     }),
     new ProgressPlugin(true),
   ],

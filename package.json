@@ -49,6 +49,7 @@
     "eslint-plugin-react": "^7.28.0",
     "eslint-plugin-sort-imports-es6-autofix": "^0.6.0",
     "eslint-plugin-unused-imports": "^2.0.0",
+    "file-loader": "^6.2.0",
     "guid-typescript": "^1.0.9",
     "html-webpack-plugin": "^5.5.0",
     "jest": "^27.5.1",
