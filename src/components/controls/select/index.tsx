@@ -1,7 +1,7 @@
 import React, { useContext, useState } from 'react';
 import classNames from 'classnames';
 import { CommonProps } from 'types/basic';
-import { FormContext } from 'components/form';
+import { FormContext } from 'components/controls/form';
 import { Guid } from 'guid-typescript';
 import { InputHandlersProps, SelectEntity } from 'types/controls';
 import './styles.scss';

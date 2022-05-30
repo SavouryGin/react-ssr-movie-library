@@ -1,4 +1,4 @@
-import Button from 'components/button';
+import Button from 'components/controls/button';
 import React, { useEffect, useState } from 'react';
 import classNames from 'classnames';
 import { CommonProps } from 'types/basic';

@@ -1,6 +1,6 @@
 import Movie from 'components/movie';
 import React from 'react';
-import Select from 'components/select';
+import Select from 'components/controls/select';
 import classNames from 'classnames';
 import { Guid } from 'guid-typescript';
 import { MoviePanelProps } from 'types/movies';

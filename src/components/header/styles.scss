@@ -4,15 +4,19 @@
 .header {
   display: grid;
   grid-template-columns: 1fr 10fr 1fr;
-  grid-template-areas: '. header-content .';
+  grid-template-rows: 4rem auto;
+  grid-template-areas: '. header-heading .' '. header-content .';
 
-  &__content {
-    grid-area: header-content;
+  &__heading {
+    grid-area: header-heading;
     color: $accent-color;
     padding: $vertical-padding;
-    height: 4rem;
     display: flex;
     justify-content: space-between;
     align-items: center;
+  }
+
+  &__content {
+    grid-area: header-content;
   }
 }
