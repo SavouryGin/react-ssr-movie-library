@@ -1,0 +1,21 @@
+@import './colors.scss';
+@import './sizes.scss';
+
+@mixin scrollbar-styles() {
+  // Chrome, Safari
+  &::-webkit-scrollbar {
+    width: $horizontal-padding;
+  }
+
+  &::-webkit-scrollbar-thumb {
+    background-color: $foreground-color;
+  }
+
+  &::-webkit-scrollbar-track {
+    background-color: $dark-background-color;
+  }
+
+  // Firefox
+  scrollbar-width: thin;
+  scrollbar-color: $foreground-color $dark-background-color;
+}

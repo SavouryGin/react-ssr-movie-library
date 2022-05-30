@@ -2,8 +2,6 @@
 @import 'styles/colors.scss';
 
 .movie {
-  width: $movie-card-width;
-  max-width: $movie-card-width;
   display: grid;
   grid-row-gap: $horizontal-padding;
   grid-template-columns: 10fr 2fr;
