@@ -6,7 +6,7 @@ import './styles.scss';
 type HeaderProps = CommonProps;
 
 const Header = ({ className }: HeaderProps) => {
-  const headerClass = classNames({ header: true, [`${className}`]: !!className });
+  const headerClass = classNames('header', { [`${className}`]: !!className });
 
   return (
     <header className={headerClass}>

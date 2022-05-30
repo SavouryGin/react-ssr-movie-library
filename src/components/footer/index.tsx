@@ -6,7 +6,7 @@ import './styles.scss';
 type FooterProps = CommonProps;
 
 const Footer = ({ className }: FooterProps) => {
-  const footerClass = classNames({ footer: true, [`${className}`]: !!className });
+  const footerClass = classNames('footer', { [`${className}`]: !!className });
 
   return (
     <footer className={footerClass}>
