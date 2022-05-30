@@ -10,6 +10,7 @@
     'movie-image movie-image'
     'movie-title movie-year'
     'movie-genres movie-genres';
+  align-items: center;
 
   &__image {
     grid-area: movie-image;
@@ -22,7 +23,7 @@
   &__year {
     grid-area: movie-year;
     justify-self: center;
-    border: 1px solid $foreground-color;
+    border: $border-height solid $foreground-color;
     padding: 0 $vertical-padding;
     font-size: 0.8rem;
     border-radius: 4px;

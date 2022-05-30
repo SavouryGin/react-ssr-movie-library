@@ -18,16 +18,17 @@ html,
 body,
 #root {
   height: 100%;
-  @include scrollbar-styles();
 }
 
 // Add accessible line-height
 // Improve text rendering
 // Set up basic font family
+// Implement custom scrollbar
 body {
   line-height: 1.5;
   -webkit-font-smoothing: antialiased;
   font-family: $Base-font;
+  @include scrollbar-styles();
 }
 
 // Improve media defaults
