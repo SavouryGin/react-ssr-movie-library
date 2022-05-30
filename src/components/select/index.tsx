@@ -48,6 +48,7 @@ const Select = ({ options, className, name, defaultOption, onChange, ...rest }: 
 
   return (
     <div className={selectClass}>
+      {rest.label && <label className='select__label'>{rest.label}</label>}
       <select
         name={name}
         id={id}
@@ -62,7 +63,6 @@ const Select = ({ options, className, name, defaultOption, onChange, ...rest }: 
       >
         {optionList}
       </select>
-      {/* <Label id={id} text={labelText} isRequired={rest.isRequired} isDarkMode={isDarkMode} className={'select__label'} /> */}
     </div>
   );
 };

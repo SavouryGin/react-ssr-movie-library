@@ -2,6 +2,8 @@
 @import 'styles/sizes.scss';
 
 .movie-panel {
+  position: relative;
+
   &__counter {
     padding-bottom: $vertical-padding;
   }
@@ -17,5 +19,11 @@
 
   &__item {
     list-style: none;
+  }
+
+  &__sort {
+    position: absolute;
+    top: -58px;
+    right: 0;
   }
 }

@@ -1,5 +1,6 @@
 import Movie from 'components/movie';
 import React from 'react';
+import Select from 'components/select';
 import classNames from 'classnames';
 import { Guid } from 'guid-typescript';
 import { MoviePanelProps } from 'types/movies';
@@ -7,6 +8,17 @@ import './styles.scss';
 
 const MoviePanel = ({ className, items }: MoviePanelProps) => {
   const panelClass = classNames('movie-panel', { [`${className}`]: !!className });
+
+  const sortOptions = [
+    {
+      option: 'Release date',
+      value: 'date',
+    },
+    {
+      option: 'Title',
+      value: 'title',
+    },
+  ];
 
   const movies = items.map((item) => {
     const id = Guid.create().toString();
@@ -20,6 +32,7 @@ const MoviePanel = ({ className, items }: MoviePanelProps) => {
 
   return (
     <div className={panelClass}>
+      <Select name='sortMovies' options={sortOptions} defaultOption={sortOptions[0]} label={'Sort by'} className={'movie-panel__sort'} />
       <p className='movie-panel__counter'>
         <strong>{`${movies.length}`}</strong> movies found
       </p>
