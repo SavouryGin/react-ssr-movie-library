@@ -1,21 +1,9 @@
 import React, { useContext, useState } from 'react';
 import classNames from 'classnames';
-import { CommonProps } from 'types/basic';
 import { FormContext } from 'components/controls/form';
 import { Guid } from 'guid-typescript';
-import { InputHandlersProps, SelectEntity } from 'types/controls';
+import { SelectProps } from 'types/controls';
 import './styles.scss';
-
-export type SelectProps = CommonProps &
-  InputHandlersProps & {
-    name: string;
-    options: SelectEntity[];
-    label?: string;
-    defaultOption?: SelectEntity;
-    isRequired?: boolean;
-    isDisabled?: boolean;
-    formId?: string;
-  };
 
 const Select = ({ options, className, name, defaultOption, onChange, ...rest }: SelectProps) => {
   const formContext = useContext(FormContext);

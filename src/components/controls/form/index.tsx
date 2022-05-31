@@ -1,18 +1,7 @@
 import Button from 'components/controls/button';
 import React, { useEffect, useState } from 'react';
 import classNames from 'classnames';
-import { CommonProps } from 'types/basic';
-import { FormContextProps, FormInput, FormValues } from 'types/controls';
-
-export type FormProps = CommonProps & {
-  onSubmit: (e: React.FormEvent<HTMLFormElement>) => void;
-  inputs: React.ReactElement;
-  initialValues: FormValues;
-  action?: string;
-  isSubmitDisabled?: boolean;
-  passValues?: (values: FormValues) => void;
-  submitButtonText?: string;
-};
+import { FormContextProps, FormInput, FormProps } from 'types/controls';
 
 export const FormContext = React.createContext({} as FormContextProps);
 

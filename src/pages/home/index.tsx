@@ -54,9 +54,8 @@ const Home = () => {
 
   const onSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
+    // TODO: perform search
     console.log(searchQuery);
-    // dispatch(propositionsActions.addPromise(formValue.premise));
-    // closePropositionsPopup(dispatch, 'isPremiseOpened');
   };
 
   return (

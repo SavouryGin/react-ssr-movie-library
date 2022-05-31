@@ -1,32 +1,13 @@
 import React, { useContext, useState } from 'react';
 import classNames from 'classnames';
-import { CommonProps } from 'types/basic';
 import { FormContext } from '../form';
-import { InputHandlersProps } from 'types/controls';
+import { TextInputProps } from 'types/controls';
 import './styles.scss';
-
-export type TextInputProps = CommonProps &
-  InputHandlersProps & {
-    name: string;
-    label?: string;
-    defaultValue?: string;
-    placeholder?: string;
-    isDisabled?: boolean;
-    isRequired?: boolean;
-    isReadOnly?: boolean;
-    isInvalid?: boolean;
-    isAutocomplete?: boolean;
-    maxLength?: number;
-    minLength?: number;
-    value?: string;
-  };
 
 function TextInput({ name, onChange, className, ...rest }: TextInputProps): React.ReactElement {
   const formContext = useContext(FormContext);
   const { onChangeInput } = formContext;
   const inputClass = classNames('text-input', { [`${className}`]: !!className });
-  const id = rest.id || `text_input_${name}`;
-  const placeholderText = rest.placeholder || 'Please type...';
   const [inputValue, setInputValue] = useState(rest.defaultValue || '');
 
   const onInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -45,12 +26,12 @@ function TextInput({ name, onChange, className, ...rest }: TextInputProps): Reac
       <input
         type='text'
         name={name}
-        id={id}
+        id={rest.id || `text_input_${name}`}
         value={inputValue}
         onChange={onInputChange}
         onBlur={rest.onBlur}
         onFocus={rest.onFocus}
-        placeholder={placeholderText}
+        placeholder={rest.placeholder || 'Please type...'}
         className='text-input__field'
         disabled={rest.isDisabled}
         readOnly={rest.isReadOnly}
