@@ -1,3 +1,4 @@
+import ErrorBoundary from 'components/error-boundary';
 import Movie from 'components/movie';
 import React from 'react';
 import Select from 'components/controls/select';
@@ -21,10 +22,8 @@ const MoviePanel = ({ className, items }: MoviePanelProps) => {
   ];
 
   const movies = items.map((item) => {
-    const id = Guid.create().toString();
-
     return (
-      <li key={id} className='movie-panel__item'>
+      <li key={Guid.create().toString()} className='movie-panel__item'>
         <Movie title={item.title} year={item.year} genres={item.genres} imagePath={item.imagePath} />
       </li>
     );
@@ -36,7 +35,9 @@ const MoviePanel = ({ className, items }: MoviePanelProps) => {
       <p className='movie-panel__counter'>
         <strong>{`${movies.length}`}</strong> movies found
       </p>
-      <ul className='movie-panel__list'>{movies}</ul>
+      <ErrorBoundary>
+        <ul className='movie-panel__list'>{movies}</ul>
+      </ErrorBoundary>
     </div>
   );
 };
