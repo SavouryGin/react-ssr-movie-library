@@ -13,10 +13,8 @@ const Select = ({ options, className, name, defaultOption, onChange, ...rest }: 
   const [selectedValue, setSelectedValue] = useState(defaultOption);
 
   const optionList = options.map((item) => {
-    const key = Guid.create().toString();
-
     return (
-      <option value={item.value} key={key}>
+      <option value={item.value} key={Guid.create().toString()}>
         {item.option}
       </option>
     );

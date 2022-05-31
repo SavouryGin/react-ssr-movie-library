@@ -9,13 +9,18 @@ type HeaderProps = CommonProps;
 const Header = ({ className }: HeaderProps) => {
   const headerClass = classNames('header', { [`${className}`]: !!className });
 
+  const onAddMovieClick = () => {
+    // TODO: Implement movie adding
+    console.log('Add movie');
+  };
+
   return (
     <header className={headerClass}>
       <div className='header__heading'>
         <span>
           <strong>netflix</strong>roulette
         </span>
-        <Button text='+ Add movie' title='Add movie' view='secondary' />
+        <Button text='+ Add movie' title='Add movie' view='secondary' onClick={onAddMovieClick} />
       </div>
     </header>
   );
