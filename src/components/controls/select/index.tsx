@@ -23,8 +23,7 @@ const Select = ({ options, className, name, defaultOption, onChange, ...rest }: 
   });
 
   const onSelectChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
-    const selectedOption = e.target.value;
-    const selected = options.filter((item) => item.value.toString() === selectedOption);
+    const selected = options.filter((item) => item.value.toString() === e.target.value);
     setSelectedValue(selected[0] || undefined);
     if (onChangeInput) {
       onChangeInput(e);
@@ -32,11 +31,18 @@ const Select = ({ options, className, name, defaultOption, onChange, ...rest }: 
     if (onChange) {
       onChange();
     }
+    if (rest.passOption) {
+      rest.passOption(selected[0]);
+    }
   };
 
   return (
     <div className={selectClass}>
-      {rest.label && <label className='select__label'>{rest.label}</label>}
+      {rest.label && (
+        <label className='select__label' htmlFor={id}>
+          {rest.label}
+        </label>
+      )}
       <select
         name={name}
         id={id}

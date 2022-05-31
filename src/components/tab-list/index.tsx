@@ -24,7 +24,7 @@ function TabList({ tabs, defaultTabId, ...rest }: TabListProps): React.ReactElem
       <div className='tab-list__tabs' role='tablist'>
         {titles}
       </div>
-      {<TabContent content={tabContent} tabId={activeTab} />}
+      <TabContent content={tabContent} tabId={activeTab} />
     </div>
   );
 }

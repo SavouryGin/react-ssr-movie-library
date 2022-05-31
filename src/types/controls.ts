@@ -49,6 +49,7 @@ export type SelectProps = CommonProps &
     isRequired?: boolean;
     isDisabled?: boolean;
     formId?: string;
+    passOption?: (option: SelectEntity) => void;
   };
 
 export type TextInputProps = CommonProps &
