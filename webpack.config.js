@@ -16,6 +16,10 @@ const config = {
     extensions: ['.js', '.jsx', '.ts', '.tsx'],
     alias: {
       components: path.resolve(__dirname, './src/components'),
+      styles: path.resolve(__dirname, './src/styles'),
+      assets: path.resolve(__dirname, './src/assets'),
+      pages: path.resolve(__dirname, './src/pages'),
+      types: path.resolve(__dirname, './src/types'),
       __mocks__: path.resolve(__dirname, './src/__mocks__'),
     },
   },
@@ -40,6 +44,17 @@ const config = {
         enforce: 'pre',
         use: ['source-map-loader'],
       },
+      {
+        test: /\.(jpe?g|gif|svg)$/i,
+        use: [
+          {
+            loader: 'url-loader',
+            options: {
+              limit: 10000,
+            },
+          },
+        ],
+      },
     ],
   },
   plugins: [
@@ -49,7 +64,14 @@ const config = {
       inject: 'body',
     }),
     new CopyWebpackPlugin({
-      patterns: [{ from: path.resolve(__dirname, './src/assets/icons/favicon.ico') }],
+      patterns: [
+        { from: path.resolve(__dirname, './src/assets/icons/favicon.ico') },
+        {
+          from: path.resolve(__dirname, './src/assets/images'),
+          to: path.resolve(__dirname, './dist/assets/images'),
+          toType: 'dir',
+        },
+      ],
     }),
     new ProgressPlugin(true),
   ],

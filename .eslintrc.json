@@ -19,7 +19,9 @@
   },
   "plugins": [
     "react",
-    "@typescript-eslint"
+    "@typescript-eslint",
+    "sort-imports-es6-autofix",
+    "unused-imports"
   ],
   "settings": {
     "import/resolver": {

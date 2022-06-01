@@ -1,0 +1,25 @@
+@import 'styles/colors.scss';
+@import 'styles/sizes.scss';
+
+.button {
+  cursor: pointer;
+  border: none;
+  width: fit-content;
+  height: fit-content;
+  outline: none;
+  padding: $horizontal-padding;
+  border-radius: $border-radius;
+  text-transform: uppercase;
+  color: $font-color;
+  background-color: $accent-color;
+  opacity: 0.8;
+
+  &:hover {
+    opacity: 1;
+  }
+
+  &__secondary {
+    color: $accent-color;
+    background-color: $foreground-color;
+  }
+}

@@ -1,5 +1,5 @@
+import App from 'pages/app';
 import React from 'react';
-import App from 'components/app';
 import { createRoot } from 'react-dom/client';
 
 // React 18 new root API
