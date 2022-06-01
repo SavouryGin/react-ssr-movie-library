@@ -1,4 +1,4 @@
-import AppRouter from 'components/app-router';
+import AppRouter from 'pages/app-router';
 import React from 'react';
 import 'styles/reset.scss';
 

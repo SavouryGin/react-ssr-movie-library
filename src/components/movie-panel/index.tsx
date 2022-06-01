@@ -6,22 +6,24 @@ import classNames from 'classnames';
 import { Guid } from 'guid-typescript';
 import { MovieItem, MoviePanelProps } from 'types/movies';
 import { SelectEntity } from 'types/controls';
+import { SortValue, sortOptions } from './constants';
 import { compareReleaseDates, compareTitles } from './helpers';
-import { sortOptions } from './constants';
 import './styles.scss';
 
 const MoviePanel = ({ className, items }: MoviePanelProps) => {
   const panelClass = classNames('movie-panel', { [`${className}`]: !!className });
-  const [sortOption, setSortOption] = useState(sortOptions[0]);
+  const [sortOption, setSortOption] = useState<SelectEntity>(sortOptions[0]);
   const [list, setList] = useState<MovieItem[]>([]);
-  const takeOption = (option: SelectEntity) => setSortOption(option);
+  const takeOption = (option: SelectEntity) => {
+    setSortOption(option);
+  };
 
   const sortMovies = () => {
-    if (sortOption.value === 'date') {
+    if (sortOption.value === SortValue.Date) {
       const byRelease = [...items].sort(compareReleaseDates);
       setList(byRelease);
     }
-    if (sortOption.value === 'title') {
+    if (sortOption.value === SortValue.Title) {
       const byTitle = [...items].sort(compareTitles);
       setList(byTitle);
     }

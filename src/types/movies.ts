@@ -2,7 +2,7 @@ import { CommonProps } from './basic';
 
 export type MovieItem = {
   title: string;
-  genres: genre[];
+  genres: Genre[];
   year: number;
   imagePath: string;
 };
@@ -16,4 +16,14 @@ export type MoviePanelProps = CommonProps & {
   items: MovieItem[];
 };
 
-type genre = 'Comedy' | 'Documentary' | 'Horror' | 'Crime' | 'Drama' | 'Biography' | 'Music' | 'Adventure' | 'Action';
+export enum Genre {
+  Comedy = 'Comedy',
+  Documentary = 'Documentary',
+  Horror = 'Horror',
+  Crime = 'Crime',
+  Drama = 'Drama',
+  Biography = 'Biography',
+  Music = 'Music',
+  Adventure = 'Adventure',
+  Action = 'Action',
+}

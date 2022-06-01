@@ -13,6 +13,7 @@ function TextInput({ name, onChange, className, ...rest }: TextInputProps): Reac
   const onInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const value = e.target.value || '';
     setInputValue(value);
+
     if (onChangeInput) {
       onChangeInput(e);
     }
