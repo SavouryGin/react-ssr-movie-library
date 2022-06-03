@@ -1,0 +1,10 @@
+@import 'styles/colors.scss';
+@import 'styles/sizes.scss';
+
+.tabs {
+  display: flex;
+  flex-wrap: wrap;
+  padding-top: $horizontal-padding;
+  gap: $vertical-padding;
+  border-bottom: $border-height solid $foreground-color;
+}

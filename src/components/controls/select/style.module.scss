@@ -1,0 +1,20 @@
+@import 'styles/sizes.scss';
+@import 'styles/colors.scss';
+
+.field {
+  outline: none;
+  border: none;
+  cursor: pointer;
+  padding: $horizontal-padding;
+  color: $font-color;
+  background-color: $dark-background-color;
+
+  &:focus-visible {
+    outline: none;
+  }
+}
+
+.label {
+  text-transform: uppercase;
+  opacity: 0.8;
+}

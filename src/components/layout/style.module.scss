@@ -15,20 +15,20 @@
     'page-header page-header page-header'
     '. page-content .'
     'page-footer page-footer page-footer';
+}
 
-  &__header {
-    grid-area: page-header;
-    background: url('../../assets/images/header_bg.png') repeat-x;
-    background-color: $dark-background-color;
-  }
+.header {
+  grid-area: page-header;
+  background: url('../../assets/images/header_bg.png') repeat-x;
+  background-color: $dark-background-color;
+}
 
-  &__main {
-    grid-area: page-content;
-    background-color: $dark-background-color;
-  }
+.main {
+  grid-area: page-content;
+  background-color: $dark-background-color;
+}
 
-  &__footer {
-    grid-area: page-footer;
-    background-color: $background-color;
-  }
+.footer {
+  grid-area: page-footer;
+  background-color: $background-color;
 }

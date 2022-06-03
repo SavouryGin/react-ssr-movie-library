@@ -1,13 +1,13 @@
 import Button from 'components/controls/button';
 import React from 'react';
 import classNames from 'classnames';
+import style from './style.module.scss';
 import { CommonProps } from 'types/basic';
-import './styles.scss';
 
 type HeaderProps = CommonProps;
 
 const Header = ({ className }: HeaderProps) => {
-  const headerClass = classNames('header', { [`${className}`]: !!className });
+  const headerClass = classNames(style.wrapper, { [`${className}`]: !!className });
 
   const onAddMovieClick = () => {
     // TODO: Implement movie adding
@@ -16,7 +16,7 @@ const Header = ({ className }: HeaderProps) => {
 
   return (
     <header className={headerClass}>
-      <div className='header__heading'>
+      <div className={style.content}>
         <span>
           <strong>netflix</strong>roulette
         </span>

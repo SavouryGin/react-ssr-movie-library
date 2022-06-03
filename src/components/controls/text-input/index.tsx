@@ -1,13 +1,13 @@
 import React, { useContext, useState } from 'react';
 import classNames from 'classnames';
+import style from './style.module.scss';
 import { FormContext } from '../form';
 import { TextInputProps } from 'types/controls';
-import './styles.scss';
 
 function TextInput({ name, onChange, className, ...rest }: TextInputProps): React.ReactElement {
   const formContext = useContext(FormContext);
   const { onChangeInput } = formContext;
-  const inputClass = classNames('text-input', { [`${className}`]: !!className });
+  const inputClass = classNames(style.input, { [`${className}`]: !!className });
   const [inputValue, setInputValue] = useState(rest.defaultValue || '');
 
   const onInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -33,7 +33,7 @@ function TextInput({ name, onChange, className, ...rest }: TextInputProps): Reac
         onBlur={rest.onBlur}
         onFocus={rest.onFocus}
         placeholder={rest.placeholder || 'Please type...'}
-        className='text-input__field'
+        className={style.field}
         disabled={rest.isDisabled}
         readOnly={rest.isReadOnly}
         maxLength={rest.maxLength}

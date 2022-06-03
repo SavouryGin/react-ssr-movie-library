@@ -1,16 +1,16 @@
 import React from 'react';
 import classNames from 'classnames';
+import style from './style.module.scss';
 import { CommonProps } from 'types/basic';
-import './styles.scss';
 
 type FooterProps = CommonProps;
 
 const Footer = ({ className }: FooterProps) => {
-  const footerClass = classNames('footer', { [`${className}`]: !!className });
+  const footerClass = classNames(style.wrapper, { [`${className}`]: !!className });
 
   return (
     <footer className={footerClass}>
-      <span className='footer__text'>
+      <span className={style.text}>
         <strong>netflix</strong>roulette
       </span>
     </footer>

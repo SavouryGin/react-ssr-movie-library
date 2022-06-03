@@ -3,15 +3,15 @@ import Movie from 'components/movie';
 import React, { useEffect, useState } from 'react';
 import Select from 'components/controls/select';
 import classNames from 'classnames';
+import style from './style.module.scss';
 import { Guid } from 'guid-typescript';
 import { MovieItem, MoviePanelProps } from 'types/movies';
 import { SelectEntity } from 'types/controls';
 import { SortValue, sortOptions } from './constants';
 import { compareReleaseDates, compareTitles } from './helpers';
-import './styles.scss';
 
 const MoviePanel = ({ className, items }: MoviePanelProps) => {
-  const panelClass = classNames('movie-panel', { [`${className}`]: !!className });
+  const panelClass = classNames(style.panel, { [`${className}`]: !!className });
   const [sortOption, setSortOption] = useState<SelectEntity>(sortOptions[0]);
   const [list, setList] = useState<MovieItem[]>([]);
   const takeOption = (option: SelectEntity) => {
@@ -40,7 +40,7 @@ const MoviePanel = ({ className, items }: MoviePanelProps) => {
 
   const movies = list.map((item) => {
     return (
-      <li key={Guid.create().toString()} className='movie-panel__item'>
+      <li key={Guid.create().toString()} className={style.item}>
         <Movie title={item.title} year={item.year} genres={item.genres} imagePath={item.imagePath} />
       </li>
     );
@@ -53,14 +53,14 @@ const MoviePanel = ({ className, items }: MoviePanelProps) => {
         options={sortOptions}
         defaultOption={sortOptions[0]}
         label='Sort by'
-        className='movie-panel__sort'
+        className={style.sort}
         passOption={takeOption}
       />
-      <p className='movie-panel__counter'>
+      <p className={style.counter}>
         <strong>{`${list.length}`}</strong> movies found
       </p>
       <ErrorBoundary>
-        <ul className='movie-panel__list'>{movies}</ul>
+        <ul className={style.list}>{movies}</ul>
       </ErrorBoundary>
     </div>
   );

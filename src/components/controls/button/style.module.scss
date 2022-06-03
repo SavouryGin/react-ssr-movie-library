@@ -17,9 +17,9 @@
   &:hover {
     opacity: 1;
   }
+}
 
-  &__secondary {
-    color: $accent-color;
-    background-color: $foreground-color;
-  }
+.secondary {
+  color: $accent-color;
+  background-color: $foreground-color;
 }

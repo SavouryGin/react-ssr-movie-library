@@ -3,11 +3,11 @@ import MoviePanel from 'components/movie-panel';
 import React, { useState } from 'react';
 import TabList from 'components/tab-list';
 import TextInput from 'components/controls/text-input';
+import style from './style.module.scss';
 import { FormValues } from 'types/controls';
 import { TabItem } from 'types/tabs';
 import { genreChecker } from './helpers';
 import { movieList } from '__mocks__/movie-list';
-import './styles.scss';
 
 const Home = () => {
   const searchFormInitialValue = { movie: '' };
@@ -62,15 +62,15 @@ const Home = () => {
   };
 
   return (
-    <article className='home-page'>
-      <div className='home-page__form'>
-        <h2 className='home-page__heading'>Find your movie</h2>
+    <article className={style.home}>
+      <div className={style.form}>
+        <h2 className={style.heading}>Find your movie</h2>
         <Form
           onSubmit={onSubmit}
           passValues={takeValues}
-          inputs={<TextInput name='movie' className='home-page__search-input' placeholder='What do you want to watch?' />}
+          inputs={<TextInput name='movie' className={style.input} placeholder='What do you want to watch?' />}
           initialValues={searchFormInitialValue}
-          className='home-page__search'
+          className={style.search}
           submitButtonText='Search'
         />
       </div>

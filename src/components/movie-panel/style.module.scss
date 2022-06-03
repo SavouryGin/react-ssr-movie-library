@@ -1,0 +1,29 @@
+@import 'styles/sizes.scss';
+@import 'styles/sizes.scss';
+
+.movie-panel {
+  position: relative;
+}
+
+.counter {
+  padding-bottom: $vertical-padding;
+}
+
+.list {
+  padding: 0;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, $movie-card-width);
+  justify-content: space-between;
+  grid-row-gap: $vertical-padding;
+  grid-column-gap: $horizontal-padding;
+}
+
+.item {
+  list-style: none;
+}
+
+.sort {
+  position: absolute;
+  top: -58px;
+  right: 0;
+}
