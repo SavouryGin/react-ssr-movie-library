@@ -1,13 +1,11 @@
 @import 'styles/colors.scss';
 @import 'styles/sizes.scss';
-@import 'styles/mixins.scss';
 
 .layout {
   color: $font-color;
   background-color: $dark-background-color;
-  @include scrollbar-styles();
   display: grid;
-  min-height: 100%;
+  min-height: 100vh;
   grid-gap: 0;
   grid-template-columns: 1fr 10fr 1fr;
   grid-template-rows: $header-height auto $footer-height;

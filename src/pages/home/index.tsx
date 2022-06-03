@@ -74,7 +74,7 @@ const Home = () => {
           submitButtonText='Search'
         />
       </div>
-      <TabList tabs={homeTabs} className='home-page__tabs' />
+      <TabList tabs={homeTabs} />
     </article>
   );
 };
