@@ -4,6 +4,7 @@ import React, { useState } from 'react';
 import classNames from 'classnames';
 import style from './style.module.scss';
 import { CommonProps } from 'types/basic';
+import { Icon } from 'enums/icon';
 
 type HeaderProps = CommonProps;
 
@@ -25,9 +26,9 @@ const Header = ({ className }: HeaderProps) => {
     <header className={headerClass}>
       <div className={style.content}>
         <span>
-          <strong>netflix</strong>roulette
+          <strong className={Icon.Calendar}>netflix</strong>roulette
         </span>
-        <Button text='+ Add movie' title='Add movie' view='secondary' onClick={onAddMovieClick} />
+        <Button text='Add movie' title='Add movie' view='secondary' onClick={onAddMovieClick} icon={Icon.Add} />
       </div>
       <ModalWindow isOpened={isAddMovieOpened} onClose={closeAddMovie} title={'Add movie'} content={<>Hello world</>} />
     </header>

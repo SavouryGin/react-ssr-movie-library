@@ -3,6 +3,7 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import classNames from 'classnames';
 import style from './style.module.scss';
+import { Icon } from 'enums/icon';
 import { ModalWindowProps } from 'types/basic';
 
 const ModalWindow = ({ isOpened, onClose, content, title, ...rest }: ModalWindowProps): React.ReactElement | null => {
@@ -17,7 +18,7 @@ const ModalWindow = ({ isOpened, onClose, content, title, ...rest }: ModalWindow
     <div className={modalClass} role='dialog' aria-modal='true'>
       <header className={style.header}>
         <h2 className={style.heading}>{title}</h2>
-        <Button onClick={closeWindow} text='X' />
+        <Button onClick={closeWindow} icon={Icon.Close} />
       </header>
       <div className={style.content} role='region' aria-labelledby='modal-window-heading'>
         {content}

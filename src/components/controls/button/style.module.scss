@@ -23,3 +23,12 @@
   color: $accent-color;
   background-color: $foreground-color;
 }
+
+.content {
+  display: flex;
+  align-items: center;
+
+  &::before {
+    padding: 0 $horizontal-padding;
+  }
+}

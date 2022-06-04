@@ -20,6 +20,7 @@ const config = {
       assets: path.resolve(__dirname, './src/assets'),
       pages: path.resolve(__dirname, './src/pages'),
       types: path.resolve(__dirname, './src/types'),
+      enums: path.resolve(__dirname, './src/enums'),
       __mocks__: path.resolve(__dirname, './src/__mocks__'),
     },
   },

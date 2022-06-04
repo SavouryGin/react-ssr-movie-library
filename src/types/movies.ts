@@ -1,4 +1,5 @@
 import { CommonProps } from './basic';
+import { Genre } from 'enums/genre';
 
 export type MovieItem = {
   title: string;
@@ -15,15 +16,3 @@ export type MovieProps = CommonProps &
 export type MoviePanelProps = CommonProps & {
   items: MovieItem[];
 };
-
-export enum Genre {
-  Comedy = 'Comedy',
-  Documentary = 'Documentary',
-  Horror = 'Horror',
-  Crime = 'Crime',
-  Drama = 'Drama',
-  Biography = 'Biography',
-  Music = 'Music',
-  Adventure = 'Adventure',
-  Action = 'Action',
-}

@@ -1,5 +1,6 @@
 import AppRouter from 'pages/app-router';
 import React from 'react';
+
 import 'styles/reset.scss';
 
 const App = () => {

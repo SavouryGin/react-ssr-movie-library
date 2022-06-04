@@ -1,4 +1,5 @@
-import { Genre, MovieItem } from 'types/movies';
+import { Genre } from 'enums/genre';
+import { MovieItem } from 'types/movies';
 
 export const genreChecker = {
   isDocumentary: (item: MovieItem): boolean => item.genres.includes(Genre.Biography) || item.genres.includes(Genre.Documentary),

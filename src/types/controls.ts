@@ -1,4 +1,5 @@
 import { CommonProps } from './basic';
+import { Icon } from 'enums/icon';
 
 export type InputHandlersProps = {
   onChange?: () => void;
@@ -38,6 +39,7 @@ export type ButtonProps = CommonProps & {
   isDisabled?: boolean;
   onClick?: () => void;
   view?: 'primary' | 'secondary';
+  icon?: Icon;
 };
 
 export type SelectProps = CommonProps &
