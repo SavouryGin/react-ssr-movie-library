@@ -14,19 +14,14 @@
   align-items: center;
 
   &:hover {
-    .menu {
+    .button {
       display: block;
-    }
-
-    .image {
-      opacity: 1;
     }
   }
 }
 
 .image {
   grid-area: movie-image;
-  opacity: 0.9;
 }
 
 .title {
@@ -48,7 +43,7 @@
   opacity: 0.8;
 }
 
-.menu {
+.button {
   position: absolute;
   display: none;
   top: 8px;

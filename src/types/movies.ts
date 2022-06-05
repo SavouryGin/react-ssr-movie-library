@@ -16,3 +16,7 @@ export type MovieProps = CommonProps &
 export type MoviePanelProps = CommonProps & {
   items: MovieItem[];
 };
+
+export type MovieMenuProps = CommonProps & {
+  onClose: () => void;
+};
