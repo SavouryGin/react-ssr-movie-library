@@ -1,5 +1,6 @@
 import Button from 'components/controls/button';
 import ModalWindow from 'components/modal-window';
+import MovieEdit from 'components/movie-edit';
 import React, { useState } from 'react';
 import classNames from 'classnames';
 import style from './style.module.scss';
@@ -30,7 +31,7 @@ const Header = ({ className }: HeaderProps) => {
         </span>
         <Button text='Add movie' title='Add movie' view='secondary' onClick={onAddMovieClick} icon={Icon.Add} />
       </div>
-      <ModalWindow isOpened={isAddMovieOpened} onClose={closeAddMovie} title={'Add movie'} content={<>Hello world</>} />
+      <ModalWindow isOpened={isAddMovieOpened} onClose={closeAddMovie} title={'Add movie'} content={<MovieEdit />} />
     </header>
   );
 };

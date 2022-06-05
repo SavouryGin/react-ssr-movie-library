@@ -20,3 +20,7 @@ export type MoviePanelProps = CommonProps & {
 export type MovieMenuProps = CommonProps & {
   onClose: () => void;
 };
+
+export type MovieEditProps = CommonProps & {
+  isEditMode?: boolean;
+};

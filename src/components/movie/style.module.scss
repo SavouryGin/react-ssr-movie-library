@@ -17,11 +17,15 @@
     .button {
       display: block;
     }
+    .image {
+      opacity: 1;
+    }
   }
 }
 
 .image {
   grid-area: movie-image;
+  opacity: 0.9;
 }
 
 .title {

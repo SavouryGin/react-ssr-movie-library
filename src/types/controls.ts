@@ -30,6 +30,7 @@ export type FormProps = CommonProps & {
   isSubmitDisabled?: boolean;
   passValues?: (values: FormValues) => void;
   submitButtonText?: string;
+  hasResetButton?: boolean;
 };
 
 export type ButtonProps = CommonProps & {
@@ -69,3 +70,8 @@ export type TextInputProps = CommonProps &
     minLength?: number;
     value?: string;
   };
+
+export type LabelProps = CommonProps & {
+  inputId: string;
+  labelText?: string;
+};

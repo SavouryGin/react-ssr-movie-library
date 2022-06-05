@@ -20,7 +20,7 @@ const Movie = ({ className, title, genres, year, imagePath }: MovieProps) => {
   };
 
   return (
-    <div className={movieClass}>
+    <div className={movieClass} onMouseLeave={closeMenu}>
       {isMenuOpened ? (
         <MovieMenu onClose={closeMenu} />
       ) : (
