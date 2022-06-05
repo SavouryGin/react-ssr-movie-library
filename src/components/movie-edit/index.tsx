@@ -1,4 +1,5 @@
 import Form from 'components/controls/form';
+import NumericInput from 'components/controls/numeric-input';
 import React, { useState } from 'react';
 import TextInput from 'components/controls/text-input';
 import classNames from 'classnames';
@@ -8,7 +9,7 @@ import { MovieEditProps } from 'types/movies';
 
 const MovieEdit = ({ className }: MovieEditProps) => {
   const movieEditClass = classNames(style.form, { [`${className}`]: !!className });
-  const movieInitialValues = { title: '', url: '', genre: '', date: '', rating: '', runtime: '', overview: '' };
+  const movieInitialValues = { title: '', url: '', genre: '', date: '', rating: 0, runtime: 0, overview: '' };
   const [movieValues, setMovieValues] = useState(movieInitialValues);
   const takeValues = (values: FormValues) => {
     setMovieValues(values as typeof movieInitialValues);
@@ -23,11 +24,11 @@ const MovieEdit = ({ className }: MovieEditProps) => {
   const inputs = (
     <fieldset className={style.fieldset}>
       <TextInput name='title' label='Title' className={style.title} />
-      <TextInput name='url' label='Movie url' className={style.url} />
+      <TextInput name='url' label='Movie url' className={style.url} placeholder='https://' />
       <TextInput name='genre' label='Genre' className={style.genre} />
       <TextInput name='date' label='Release date' className={style.date} />
-      <TextInput name='rating' label='Rating' className={style.rating} />
-      <TextInput name='runtime' label='Runtime' className={style.runtime} />
+      <NumericInput name='rating' label='Rating' className={style.rating} max={10} min={0} step={0.1} />
+      <NumericInput name='runtime' label='Runtime' className={style.runtime} placeholder='minutes' step={1} min={0} max={1000} />
       <TextInput name='overview' label='Overview' className={style.overview} />
     </fieldset>
   );

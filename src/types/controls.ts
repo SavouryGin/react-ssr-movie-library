@@ -71,6 +71,22 @@ export type TextInputProps = CommonProps &
     value?: string;
   };
 
+export type NumericInputProps = CommonProps &
+  InputHandlersProps & {
+    name: string;
+    label?: string;
+    max?: number;
+    min?: number;
+    step?: number;
+    placeholder?: string;
+    defaultValue?: string;
+    isDisabled?: boolean;
+    isRequired?: boolean;
+    isReadOnly?: boolean;
+    isInvalid?: boolean;
+    value?: string;
+  };
+
 export type LabelProps = CommonProps & {
   inputId: string;
   labelText?: string;

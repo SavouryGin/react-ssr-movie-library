@@ -1,0 +1,24 @@
+@import 'styles/colors.scss';
+@import 'styles/sizes.scss';
+
+.input {
+  opacity: 0.8;
+
+  &:hover {
+    opacity: 1;
+  }
+}
+
+.field {
+  height: 100%;
+  width: 100%;
+  background-color: $background-color;
+  color: $font-color;
+  text-indent: 0.6rem;
+  border: none;
+  border-radius: $border-radius;
+
+  &:focus-within {
+    outline: none;
+  }
+}

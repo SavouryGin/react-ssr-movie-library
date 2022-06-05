@@ -3,14 +3,14 @@ import React, { useContext, useState } from 'react';
 import classNames from 'classnames';
 import style from './style.module.scss';
 import { FormContext } from '../form';
-import { TextInputProps } from 'types/controls';
+import { NumericInputProps } from 'types/controls';
 
-const TextInput = ({ name, onChange, className, label, ...rest }: TextInputProps) => {
+const NumericInput = ({ name, onChange, className, label, ...rest }: NumericInputProps) => {
   const formContext = useContext(FormContext);
   const { onChangeInput } = formContext;
   const inputClass = classNames(style.input, { [`${className}`]: !!className });
   const [inputValue, setInputValue] = useState(rest.defaultValue || '');
-  const id = rest.id || `text_input_${name}`;
+  const id = rest.id || `numeric_input_${name}`;
 
   const onInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const value = e.target.value || '';
@@ -28,23 +28,23 @@ const TextInput = ({ name, onChange, className, label, ...rest }: TextInputProps
     <div className={inputClass}>
       {label && <Label inputId={id} labelText={label} />}
       <input
-        type='text'
+        type='number'
         name={name}
         id={id}
         value={inputValue}
         onChange={onInputChange}
         onBlur={rest.onBlur}
         onFocus={rest.onFocus}
-        placeholder={rest.placeholder || 'Please type...'}
         className={style.field}
+        max={rest.max}
+        min={rest.min}
+        step={rest.step}
+        placeholder={rest.placeholder}
         disabled={rest.isDisabled}
         readOnly={rest.isReadOnly}
-        maxLength={rest.maxLength}
-        minLength={rest.minLength}
-        autoComplete={rest.isAutocomplete ? 'on' : 'off'}
       />
     </div>
   );
 };
 
-export default TextInput;
+export default NumericInput;
