@@ -10,6 +10,7 @@ const Button = ({ type, text, onClick, className, icon, view = 'primary', ...res
   const buttonClass = classNames(style.button, {
     [`${className}`]: !!className,
     [style.secondary]: view === 'secondary',
+    [style.icon]: view === 'only icon',
   });
   const contentClass = classNames(style.content, icons[icon || '']);
 

@@ -38,7 +38,7 @@ export type ButtonProps = CommonProps & {
   title?: string;
   isDisabled?: boolean;
   onClick?: () => void;
-  view?: 'primary' | 'secondary';
+  view?: 'primary' | 'secondary' | 'only icon';
   icon?: Icon;
 };
 

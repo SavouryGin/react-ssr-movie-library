@@ -2,6 +2,7 @@
 @import 'styles/colors.scss';
 
 .movie {
+  position: relative;
   display: grid;
   grid-row-gap: $horizontal-padding;
   grid-template-columns: 10fr 2fr;
@@ -11,11 +12,21 @@
     'movie-title movie-year'
     'movie-genres movie-genres';
   align-items: center;
+
+  &:hover {
+    .menu {
+      display: block;
+    }
+
+    .image {
+      opacity: 1;
+    }
+  }
 }
 
 .image {
   grid-area: movie-image;
-  cursor: pointer;
+  opacity: 0.9;
 }
 
 .title {
@@ -35,4 +46,12 @@
   grid-area: movie-genres;
   font-size: 0.8rem;
   opacity: 0.8;
+}
+
+.menu {
+  position: absolute;
+  display: none;
+  top: 8px;
+  right: 8px;
+  padding: 1rem 0.6rem;
 }

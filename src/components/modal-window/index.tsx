@@ -18,7 +18,7 @@ const ModalWindow = ({ isOpened, onClose, content, title, ...rest }: ModalWindow
     <div className={modalClass} role='dialog' aria-modal='true'>
       <header className={style.header}>
         <h2 className={style.heading}>{title}</h2>
-        <Button onClick={closeWindow} icon={Icon.Close} />
+        <Button onClick={closeWindow} icon={Icon.Close} view='only icon' className={style.close} />
       </header>
       <div className={style.content} role='region' aria-labelledby='modal-window-heading'>
         {content}
