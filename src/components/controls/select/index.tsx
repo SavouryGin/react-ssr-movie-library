@@ -21,6 +21,7 @@ const Select = ({ options, className, name, defaultOption, onChange, ...rest }: 
 
   const onSelectChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
     const selected = options.filter((item) => item.value.toString() === e.target.value);
+    console.log(selected);
     setSelectedValue(selected[0]);
 
     if (onChangeInput) {

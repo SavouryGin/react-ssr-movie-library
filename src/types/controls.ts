@@ -87,6 +87,20 @@ export type NumericInputProps = CommonProps &
     value?: string;
   };
 
+type MultiSelectOption = {
+  value: any;
+  label: string;
+  key?: string;
+  disabled?: boolean;
+};
+
+export type MultiSelectProps = CommonProps & {
+  name: string;
+  options: MultiSelectOption[];
+  placeholder?: string;
+  label?: string;
+};
+
 export type LabelProps = CommonProps & {
   inputId: string;
   labelText?: string;

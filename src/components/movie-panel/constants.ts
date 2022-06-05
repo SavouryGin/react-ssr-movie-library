@@ -1,17 +1,13 @@
 import { SelectEntity } from 'types/controls';
-
-export enum SortValue {
-  Date,
-  Title,
-}
+import { SortingValues } from 'enums/sorting-values';
 
 export const sortOptions: SelectEntity[] = [
   {
     option: 'Release date',
-    value: SortValue.Date,
+    value: SortingValues.Date,
   },
   {
     option: 'Title',
-    value: SortValue.Title,
+    value: SortingValues.Title,
   },
 ];

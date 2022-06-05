@@ -1,0 +1,7 @@
+@import 'styles/colors.scss';
+@import 'styles/sizes.scss';
+@import 'styles/mixins.scss';
+
+.select {
+  @include multiselect-override-styles();
+}

@@ -1,5 +1,6 @@
 @import 'styles/colors.scss';
 @import 'styles/sizes.scss';
+@import 'styles/mixins.scss';
 
 .background {
   position: fixed;
@@ -36,7 +37,8 @@
 
 .content {
   grid-area: modal-content;
-  overflow: auto;
+  // overflow: hidden;
+  @include scrollbar-styles();
 }
 
 .header {
