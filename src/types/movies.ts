@@ -24,3 +24,13 @@ export type MovieMenuProps = CommonProps & {
 export type MovieEditProps = CommonProps & {
   isEditMode?: boolean;
 };
+
+export type MovieValues = {
+  title: string;
+  url: string;
+  genres: { label: string; value: Genre }[];
+  date: string;
+  rating: number;
+  runtime: number;
+  overview: string;
+};

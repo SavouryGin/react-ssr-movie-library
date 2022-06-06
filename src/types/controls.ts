@@ -20,6 +20,7 @@ export type FormInput = HTMLInputElement | HTMLSelectElement;
 export type FormContextProps = {
   formValues: FormValues;
   onChangeInput: (e: React.ChangeEvent<FormInput>) => void;
+  onChangeMultiSelect?: (name: string, options: MultiSelectOption[]) => void;
 };
 
 export type FormProps = CommonProps & {
@@ -87,7 +88,7 @@ export type NumericInputProps = CommonProps &
     value?: string;
   };
 
-type MultiSelectOption = {
+export type MultiSelectOption = {
   value: any;
   label: string;
   key?: string;

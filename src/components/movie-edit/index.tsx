@@ -7,11 +7,10 @@ import classNames from 'classnames';
 import style from './style.module.scss';
 import { FormValues } from 'types/controls';
 import { MovieEditProps } from 'types/movies';
-import { genreOptions } from './constants';
+import { genreOptions, movieInitialValues } from './constants';
 
 const MovieEdit = ({ className }: MovieEditProps) => {
   const movieEditClass = classNames(style.form, { [`${className}`]: !!className });
-  const movieInitialValues = { title: '', url: '', genres: [], date: '', rating: 0, runtime: 0, overview: '' };
   const [movieValues, setMovieValues] = useState(movieInitialValues);
   const takeValues = (values: FormValues) => {
     setMovieValues(values as typeof movieInitialValues);
@@ -19,7 +18,7 @@ const MovieEdit = ({ className }: MovieEditProps) => {
 
   const onSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    // TODO: perform search
+    // TODO: perform Add/Update movie
     console.log(movieValues);
   };
 

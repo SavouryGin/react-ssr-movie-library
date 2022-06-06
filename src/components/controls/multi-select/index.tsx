@@ -1,14 +1,23 @@
 import Label from '../label';
-import React, { useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import classNames from 'classnames';
 import style from './style.module.scss';
+import { FormContext } from '../form';
 import { MultiSelect } from 'react-multi-select-component';
-import { MultiSelectProps } from 'types/controls';
+import { MultiSelectOption, MultiSelectProps } from 'types/controls';
 
 const CustomMultiSelect = ({ className, label, name, options, ...rest }: MultiSelectProps) => {
   const selectClass = classNames(style.select, { [`${className}`]: !!className });
   const id = rest.id || `multi_select_input_${name}`;
-  const [selected, setSelected] = useState([]);
+  const formContext = useContext(FormContext);
+  const { onChangeMultiSelect } = formContext;
+  const [selected, setSelected] = useState<MultiSelectOption[]>([]);
+
+  useEffect(() => {
+    if (onChangeMultiSelect) {
+      onChangeMultiSelect(name, selected);
+    }
+  }, [selected]);
 
   return (
     <div className={selectClass}>

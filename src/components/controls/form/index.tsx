@@ -2,13 +2,14 @@ import Button from 'components/controls/button';
 import React, { useEffect, useState } from 'react';
 import classNames from 'classnames';
 import style from './style.module.scss';
-import { FormContextProps, FormInput, FormProps } from 'types/controls';
+import { FormContextProps, FormInput, FormProps, MultiSelectOption } from 'types/controls';
 
 export const FormContext = React.createContext({} as FormContextProps);
 
 const Form = ({ className, onSubmit, inputs, initialValues, passValues, ...rest }: FormProps) => {
   const formClass = classNames({ [`${className}`]: !!className });
   const [formValues, setFormValues] = useState(initialValues);
+  const [formKey, setFormKey] = useState(0);
 
   const onChangeInput = (e: React.ChangeEvent<FormInput>) => {
     const isCheckbox = e.target instanceof HTMLInputElement && e.target.type == 'checkbox';
@@ -20,10 +21,17 @@ const Form = ({ className, onSubmit, inputs, initialValues, passValues, ...rest 
     });
   };
 
-  const resetValues = (e: React.FormEvent<HTMLFormElement>) => {
+  const onChangeMultiSelect = (name: string, options: MultiSelectOption[]) => {
+    setFormValues({
+      ...formValues,
+      [name]: options,
+    });
+  };
+
+  const resetValues = () => {
     setFormValues({ ...initialValues });
-    const target = e.target as HTMLFormElement;
-    target.reset();
+    // Rerender form after reset
+    setFormKey(formKey + 1);
   };
 
   useEffect(() => {
@@ -33,11 +41,12 @@ const Form = ({ className, onSubmit, inputs, initialValues, passValues, ...rest 
   }, [formValues]);
 
   return (
-    <form className={formClass} aria-label='form' action={rest.action || '/'} onSubmit={onSubmit} onReset={resetValues}>
+    <form className={formClass} aria-label='form' action={rest.action || '/'} onSubmit={onSubmit} onReset={resetValues} key={formKey}>
       <FormContext.Provider
         value={{
           formValues,
           onChangeInput,
+          onChangeMultiSelect,
         }}
       >
         {inputs}
