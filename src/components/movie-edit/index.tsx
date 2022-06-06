@@ -8,31 +8,73 @@ import TextInput from 'components/controls/text-input';
 import classNames from 'classnames';
 import style from './style.module.scss';
 import { FormValues } from 'types/controls';
-import { MovieEditProps } from 'types/movies';
-import { genreOptions, movieInitialValues } from './constants';
+import { MovieEditProps, MovieItem } from 'types/movies';
+import { genreOptions, movieDefaultValues } from './constants';
 
-const MovieEdit = ({ className }: MovieEditProps) => {
+const MovieEdit = ({ className, isEditMode, ...rest }: MovieEditProps) => {
   const movieEditFormClass = classNames(style.form, { [`${className}`]: !!className });
-  const [movieValues, setMovieValues] = useState(movieInitialValues);
+  const initialValues = isEditMode && rest.movie ? rest.movie : movieDefaultValues;
+  const [movieValues, setMovieValues] = useState(initialValues);
   const takeValues = (values: FormValues) => {
-    setMovieValues(values as typeof movieInitialValues);
+    setMovieValues(values as MovieItem);
+  };
+
+  const addNewMovie = (movie: MovieItem) => {
+    // TODO: Implement adding movie API call
+    console.log(movie);
+  };
+
+  const updateMovie = (movie: MovieItem) => {
+    // TODO: Implement updating movie API call
+    console.log(movie);
   };
 
   const onSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    // TODO: perform Add/Update movie
-    console.log(movieValues);
+    isEditMode ? updateMovie(movieValues) : addNewMovie(movieValues);
   };
 
   const inputs = (
     <fieldset className={style.fieldset}>
-      <TextInput name='title' label='Title' className={style.title} maxLength={100} />
-      <TextInput name='url' label='Movie url' className={style.url} placeholder='https://' maxLength={1000} />
-      <CustomMultiSelect name='genres' label='Genres' className={style.genre} options={genreOptions} placeholder='Select genre' />
-      <DatePicker name='date' label='Release date' className={style.date} />
-      <NumericInput name='rating' label='Rating' className={style.rating} max={10} min={0} step={0.1} placeholder='From 0 to 10' />
-      <NumericInput name='runtime' label='Runtime' className={style.runtime} placeholder='minutes' step={1} min={0} max={1000} />
-      <TextArea name='overview' label='Overview' className={style.overview} maxLength={1000} />
+      <TextInput name='title' label='Title' className={style.title} maxLength={100} defaultValue={initialValues.title} />
+      <TextInput
+        name='url'
+        label='Movie url'
+        className={style.url}
+        placeholder='https://'
+        maxLength={1000}
+        defaultValue={initialValues.url}
+      />
+      <CustomMultiSelect
+        name='genres'
+        label='Genres'
+        className={style.genre}
+        options={genreOptions}
+        placeholder='Select genre'
+        defaultOptions={initialValues.genres}
+      />
+      <DatePicker name='date' label='Release date' className={style.date} defaultValue={initialValues.date} />
+      <NumericInput
+        name='rating'
+        label='Rating'
+        className={style.rating}
+        max={10}
+        min={0}
+        step={0.1}
+        placeholder='From 0 to 10'
+        defaultValue={initialValues.rating}
+      />
+      <NumericInput
+        name='runtime'
+        label='Runtime'
+        className={style.runtime}
+        placeholder='minutes'
+        step={1}
+        min={0}
+        max={1000}
+        defaultValue={initialValues.runtime}
+      />
+      <TextArea name='overview' label='Overview' className={style.overview} maxLength={1000} defaultValue={initialValues.overview} />
     </fieldset>
   );
 
@@ -41,7 +83,7 @@ const MovieEdit = ({ className }: MovieEditProps) => {
       onSubmit={onSubmit}
       passValues={takeValues}
       inputs={inputs}
-      initialValues={movieInitialValues}
+      initialValues={initialValues}
       submitButtonText='Submit'
       className={movieEditFormClass}
       hasResetButton

@@ -3,6 +3,7 @@ import { MovieItem } from 'types/movies';
 
 export const movieList: MovieItem[] = [
   {
+    id: 'test-movie-1',
     title: 'Pulp Fiction',
     genres: [
       { label: 'Crime', value: Genre.Crime },
@@ -16,6 +17,7 @@ export const movieList: MovieItem[] = [
     overview: '',
   },
   {
+    id: 'test-movie-2',
     title: 'Bohemian Rhapsody',
     genres: [
       { label: 'Music', value: Genre.Music },
@@ -30,6 +32,7 @@ export const movieList: MovieItem[] = [
     overview: '',
   },
   {
+    id: 'test-movie-2',
     title: 'Kill Bill: Vol 2',
     genres: [
       { label: 'Crime', value: Genre.Crime },
@@ -43,6 +46,7 @@ export const movieList: MovieItem[] = [
     overview: '',
   },
   {
+    id: 'test-movie-3',
     title: 'Avengers: War of Infinity',
     genres: [
       { label: 'Action', value: Genre.Action },
@@ -56,6 +60,7 @@ export const movieList: MovieItem[] = [
     overview: '',
   },
   {
+    id: 'test-movie-4',
     title: 'Inception',
     genres: [
       { label: 'Action', value: Genre.Action },
@@ -69,6 +74,7 @@ export const movieList: MovieItem[] = [
     overview: '',
   },
   {
+    id: 'test-movie-5',
     title: 'Reservoir dogs',
     genres: [{ label: 'Crime', value: Genre.Crime }],
     date: '1992-01-01',

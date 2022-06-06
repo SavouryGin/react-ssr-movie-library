@@ -1,0 +1,9 @@
+@import 'styles/sizes.scss';
+
+.confirm {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: $vertical-padding;
+  padding-top: $vertical-padding;
+}

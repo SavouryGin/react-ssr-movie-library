@@ -80,7 +80,7 @@ export type NumericInputProps = CommonProps &
     min?: number;
     step?: number;
     placeholder?: string;
-    defaultValue?: string;
+    defaultValue?: number;
     isDisabled?: boolean;
     isRequired?: boolean;
     isReadOnly?: boolean;
@@ -98,6 +98,7 @@ export type MultiSelectOption = {
 export type MultiSelectProps = CommonProps & {
   name: string;
   options: MultiSelectOption[];
+  defaultOptions?: MultiSelectOption[];
   placeholder?: string;
   label?: string;
 };

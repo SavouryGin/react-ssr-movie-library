@@ -14,9 +14,7 @@ const Header = ({ className }: HeaderProps) => {
   const [isAddMovieOpened, setIsAddMovieOpened] = useState(false);
 
   const onAddMovieClick = () => {
-    // TODO: Implement movie adding
     setIsAddMovieOpened(true);
-    console.log('Add movie');
   };
 
   const closeAddMovie = () => {

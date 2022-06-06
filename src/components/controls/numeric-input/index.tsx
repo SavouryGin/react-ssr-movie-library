@@ -9,11 +9,11 @@ const NumericInput = ({ name, onChange, className, label, ...rest }: NumericInpu
   const formContext = useContext(FormContext);
   const { onChangeInput } = formContext;
   const inputClass = classNames(style.input, { [`${className}`]: !!className });
-  const [inputValue, setInputValue] = useState(rest.defaultValue || '');
+  const [inputValue, setInputValue] = useState(rest.defaultValue || 0);
   const id = rest.id || `numeric_input_${name}`;
 
   const onInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const value = e.target.value || '';
+    const value = Number(e.target.value) || 0;
     setInputValue(value);
 
     if (onChangeInput) {

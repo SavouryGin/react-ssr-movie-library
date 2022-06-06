@@ -11,7 +11,7 @@ const CustomMultiSelect = ({ className, label, name, options, ...rest }: MultiSe
   const id = rest.id || `multi_select_input_${name}`;
   const formContext = useContext(FormContext);
   const { onChangeMultiSelect } = formContext;
-  const [selected, setSelected] = useState<MultiSelectOption[]>([]);
+  const [selected, setSelected] = useState<MultiSelectOption[]>(rest.defaultOptions || []);
 
   useEffect(() => {
     if (onChangeMultiSelect) {
