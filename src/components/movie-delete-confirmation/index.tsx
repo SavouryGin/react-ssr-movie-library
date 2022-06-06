@@ -4,7 +4,7 @@ import classNames from 'classnames';
 import style from './style.module.scss';
 import { MovieDeleteConfirmationProps } from 'types/movies';
 
-const DeleteConfirmation = ({ className, onConfirm }: MovieDeleteConfirmationProps) => {
+const MovieDeleteConfirmation = ({ className, onConfirm }: MovieDeleteConfirmationProps) => {
   const confirmClass = classNames(style.confirm, { [`${className}`]: !!className });
 
   return (
@@ -15,4 +15,4 @@ const DeleteConfirmation = ({ className, onConfirm }: MovieDeleteConfirmationPro
   );
 };
 
-export default DeleteConfirmation;
+export default MovieDeleteConfirmation;

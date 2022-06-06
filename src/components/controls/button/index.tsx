@@ -1,6 +1,6 @@
 import React from 'react';
 import classNames from 'classnames';
-import icons from 'styles/icons.module.scss';
+import icons from './icons.module.scss';
 import style from './style.module.scss';
 import { ButtonProps } from 'types/controls';
 

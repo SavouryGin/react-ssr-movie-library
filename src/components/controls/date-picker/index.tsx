@@ -39,7 +39,6 @@ const DatePicker = ({ name, onChange, className, label, ...rest }: DatePickerPro
         onFocus={rest.onFocus}
         min={rest.min || '1901-01-01'}
         max={rest.max || '2100-01-01'}
-        placeholder={rest.placeholder || 'Pick a date...'}
         className={style.field}
         disabled={rest.isDisabled}
         readOnly={rest.isReadOnly}
