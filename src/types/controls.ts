@@ -15,7 +15,7 @@ export type SelectEntity = {
 
 export type FormValues = { [key: string]: unknown };
 
-export type FormInput = HTMLInputElement | HTMLSelectElement;
+export type FormInput = HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement;
 
 export type FormContextProps = {
   formValues: FormValues;
@@ -106,3 +106,5 @@ export type LabelProps = CommonProps & {
   inputId: string;
   labelText?: string;
 };
+
+export type TextAreaProps = Omit<TextInputProps, 'type'>;

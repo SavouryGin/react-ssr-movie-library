@@ -20,6 +20,20 @@
   scrollbar-color: $foreground-color $dark-background-color;
 }
 
+@mixin form-input-common-styles() {
+  height: 100%;
+  width: 100%;
+  background-color: $background-color;
+  color: $font-color;
+  text-indent: 0.6rem;
+  border: none;
+  border-radius: $border-radius;
+
+  &:focus-within {
+    outline: none;
+  }
+}
+
 @mixin multiselect-override-styles() {
   & > div > div {
     background-color: $background-color !important;

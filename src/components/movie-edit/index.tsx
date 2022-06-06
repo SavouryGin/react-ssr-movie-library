@@ -2,6 +2,7 @@ import CustomMultiSelect from 'components/controls/multi-select';
 import Form from 'components/controls/form';
 import NumericInput from 'components/controls/numeric-input';
 import React, { useState } from 'react';
+import TextArea from 'components/controls/text-area';
 import TextInput from 'components/controls/text-input';
 import classNames from 'classnames';
 import style from './style.module.scss';
@@ -30,7 +31,7 @@ const MovieEdit = ({ className }: MovieEditProps) => {
       <TextInput name='date' label='Release date' className={style.date} />
       <NumericInput name='rating' label='Rating' className={style.rating} max={10} min={0} step={0.1} placeholder='From 0 to 10' />
       <NumericInput name='runtime' label='Runtime' className={style.runtime} placeholder='minutes' step={1} min={0} max={1000} />
-      <TextInput name='overview' label='Overview' className={style.overview} />
+      <TextArea name='overview' label='Overview' className={style.overview} />
     </fieldset>
   );
 

@@ -1,6 +1,6 @@
 @import 'styles/mixins.scss';
 
-.input {
+.area {
   opacity: 0.8;
 
   &:hover {
@@ -10,4 +10,5 @@
 
 .field {
   @include form-input-common-styles();
+  resize: none;
 }
