@@ -1,7 +1,7 @@
 import { Genre } from 'enums/genre';
-import { MovieValues } from 'types/movies';
+import { MovieItem } from 'types/movies';
 
-export const movieInitialValues: MovieValues = { title: '', url: '', genres: [], date: '', rating: 0, runtime: 0, overview: '' };
+export const movieInitialValues: MovieItem = { title: '', url: '', genres: [], date: '', rating: 0, runtime: 0, overview: '' };
 
 export const genreOptions = [
   {

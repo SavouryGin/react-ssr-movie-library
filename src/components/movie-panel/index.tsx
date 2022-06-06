@@ -42,7 +42,7 @@ const MoviePanel = ({ className, items }: MoviePanelProps) => {
   const movies = list.map((item) => {
     return (
       <li key={Guid.create().toString()} className={style.item}>
-        <Movie title={item.title} year={item.year} genres={item.genres} imagePath={item.imagePath} />
+        <Movie {...item} />
       </li>
     );
   });

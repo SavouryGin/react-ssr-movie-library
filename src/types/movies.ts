@@ -1,17 +1,7 @@
 import { CommonProps } from './basic';
 import { Genre } from 'enums/genre';
 
-export type MovieItem = {
-  title: string;
-  genres: Genre[];
-  year: number;
-  imagePath: string;
-};
-
-export type MovieProps = CommonProps &
-  MovieItem & {
-    description?: string;
-  };
+export type MovieProps = CommonProps & MovieItem;
 
 export type MoviePanelProps = CommonProps & {
   items: MovieItem[];
@@ -25,12 +15,15 @@ export type MovieEditProps = CommonProps & {
   isEditMode?: boolean;
 };
 
-export type MovieValues = {
+type GenreOption = { label: string; value: Genre };
+
+export type MovieItem = {
   title: string;
   url: string;
-  genres: { label: string; value: Genre }[];
+  genres: GenreOption[];
   date: string;
   rating: number;
   runtime: number;
   overview: string;
+  imagePath?: string;
 };
