@@ -107,4 +107,20 @@ export type LabelProps = CommonProps & {
   labelText?: string;
 };
 
-export type TextAreaProps = Omit<TextInputProps, 'type'>;
+export type TextAreaProps = TextInputProps;
+
+export type DatePickerProps = CommonProps &
+  InputHandlersProps & {
+    name: string;
+    label: string;
+    max?: string;
+    min?: string;
+    step?: number;
+    placeholder?: string;
+    defaultValue?: string;
+    isDisabled?: boolean;
+    isRequired?: boolean;
+    isReadOnly?: boolean;
+    isInvalid?: boolean;
+    value?: string;
+  };

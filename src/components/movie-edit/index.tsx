@@ -1,4 +1,5 @@
 import CustomMultiSelect from 'components/controls/multi-select';
+import DatePicker from 'components/controls/date-picker';
 import Form from 'components/controls/form';
 import NumericInput from 'components/controls/numeric-input';
 import React, { useState } from 'react';
@@ -11,7 +12,7 @@ import { MovieEditProps } from 'types/movies';
 import { genreOptions, movieInitialValues } from './constants';
 
 const MovieEdit = ({ className }: MovieEditProps) => {
-  const movieEditClass = classNames(style.form, { [`${className}`]: !!className });
+  const movieEditFormClass = classNames(style.form, { [`${className}`]: !!className });
   const [movieValues, setMovieValues] = useState(movieInitialValues);
   const takeValues = (values: FormValues) => {
     setMovieValues(values as typeof movieInitialValues);
@@ -25,13 +26,13 @@ const MovieEdit = ({ className }: MovieEditProps) => {
 
   const inputs = (
     <fieldset className={style.fieldset}>
-      <TextInput name='title' label='Title' className={style.title} />
-      <TextInput name='url' label='Movie url' className={style.url} placeholder='https://' />
+      <TextInput name='title' label='Title' className={style.title} maxLength={100} />
+      <TextInput name='url' label='Movie url' className={style.url} placeholder='https://' maxLength={1000} />
       <CustomMultiSelect name='genres' label='Genres' className={style.genre} options={genreOptions} placeholder='Select genre' />
-      <TextInput name='date' label='Release date' className={style.date} />
+      <DatePicker name='date' label='Release date' className={style.date} />
       <NumericInput name='rating' label='Rating' className={style.rating} max={10} min={0} step={0.1} placeholder='From 0 to 10' />
       <NumericInput name='runtime' label='Runtime' className={style.runtime} placeholder='minutes' step={1} min={0} max={1000} />
-      <TextArea name='overview' label='Overview' className={style.overview} />
+      <TextArea name='overview' label='Overview' className={style.overview} maxLength={1000} />
     </fieldset>
   );
 
@@ -42,7 +43,7 @@ const MovieEdit = ({ className }: MovieEditProps) => {
       inputs={inputs}
       initialValues={movieInitialValues}
       submitButtonText='Submit'
-      className={movieEditClass}
+      className={movieEditFormClass}
       hasResetButton
     />
   );

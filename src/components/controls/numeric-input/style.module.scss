@@ -10,4 +10,5 @@
 
 .field {
   @include form-input-common-styles();
+  @include disable-input-default-arrows();
 }

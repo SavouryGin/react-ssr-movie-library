@@ -1,0 +1,28 @@
+@import 'styles/mixins.scss';
+@import 'styles/colors.scss';
+
+.input {
+  opacity: 0.8;
+  position: relative;
+  &:hover {
+    opacity: 1;
+  }
+}
+
+.field {
+  @include form-input-common-styles();
+  text-indent: 0.3rem;
+  &[type='date']::-webkit-inner-spin-button,
+  &[type='date']::-webkit-calendar-picker-indicator {
+    opacity: 0;
+  }
+}
+
+.button {
+  color: $accent-color;
+  position: absolute;
+  top: 1.75rem;
+  right: 0;
+  background: transparent;
+  pointer-events: none;
+}
