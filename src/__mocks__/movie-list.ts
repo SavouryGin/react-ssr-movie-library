@@ -14,7 +14,8 @@ export const movieList: MovieItem[] = [
     url: '',
     rating: 8,
     runtime: 210,
-    overview: '',
+    overview:
+      'Pulp Fiction is a 1994 American black comedy crime film written and directed by Quentin Tarantino, who conceived it with Roger Avary.',
   },
   {
     id: 'test-movie-2',
@@ -29,7 +30,8 @@ export const movieList: MovieItem[] = [
     url: '',
     rating: 6.7,
     runtime: 140,
-    overview: '',
+    overview:
+      'Bohemian Rhapsody is a 2018 biographical musical drama film directed by Bryan Singer[a] from a screenplay by Anthony McCarten, and produced by Graham King and Queen manager Jim Beach. The film tells the story of the life of Freddie Mercury, the lead singer of the British rock band Queen, from the formation of the band in 1970 up to their 1985 Live Aid performance at the original Wembley Stadium.',
   },
   {
     id: 'test-movie-2',

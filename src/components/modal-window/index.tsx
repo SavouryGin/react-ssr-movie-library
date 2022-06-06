@@ -1,5 +1,5 @@
 import Button from 'components/controls/button';
-import React, { useEffect } from 'react';
+import React from 'react';
 import ReactDOM from 'react-dom';
 import classNames from 'classnames';
 import style from './style.module.scss';
@@ -8,16 +8,7 @@ import { ModalWindowProps } from 'types/basic';
 
 const ModalWindow = ({ isOpened, onClose, content, title, ...rest }: ModalWindowProps): React.ReactElement | null => {
   const targetElement = document.getElementById('modal');
-  const bodyElement = document.querySelector('body');
   const modalClass = classNames(style.window, { [`${rest.className}`]: !!rest.className });
-
-  useEffect(() => {
-    if (bodyElement) {
-      // Disable the maim scroll on open modal window
-      const overflow = isOpened ? 'hidden' : 'auto';
-      bodyElement.style.overflow = overflow;
-    }
-  }, [isOpened]);
 
   const closeWindow = () => {
     onClose();
