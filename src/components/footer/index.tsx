@@ -6,7 +6,7 @@ import { CommonProps } from 'types/basic';
 type FooterProps = CommonProps;
 
 const Footer = ({ className }: FooterProps) => {
-  const footerClass = classNames(style.wrapper, { [`${className}`]: !!className });
+  const footerClass = classNames(style.wrapper, { [className as string]: !!className });
 
   return (
     <footer className={footerClass}>

@@ -1,16 +1,17 @@
 import Label from '../label';
-import React, { useContext, useState } from 'react';
+import React, { useContext, useMemo, useState } from 'react';
 import classNames from 'classnames';
 import style from './style.module.scss';
 import { FormContext } from '../form';
 import { TextAreaProps } from 'types/controls';
 
 const TextArea = ({ className, name, label, onChange, ...rest }: TextAreaProps) => {
-  const areaClass = classNames(style.area, { [`${className}`]: !!className });
   const formContext = useContext(FormContext);
+  const [inputValue, setInputValue] = useState<string>(rest.defaultValue || '');
+
+  const areaClass = classNames(style.area, { [className as string]: !!className });
   const { onChangeInput } = formContext;
-  const [inputValue, setInputValue] = useState(rest.defaultValue || '');
-  const id = rest.id || `textarea_${name}`;
+  const id = useMemo(() => rest.id || `textarea_${name}`, [rest.id]);
 
   const onTextAreaChange = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
     const value = e.target.value || '';

@@ -1,15 +1,16 @@
-import React, { useContext, useState } from 'react';
+import React, { useContext, useMemo, useState } from 'react';
 import classNames from 'classnames';
 import style from './style.module.scss';
 import { FormContext } from 'components/controls/form';
-import { SelectProps } from 'types/controls';
+import { SelectEntity, SelectProps } from 'types/controls';
 
 const Select = ({ options, className, name, defaultOption, onChange, ...rest }: SelectProps) => {
+  const [selectedValue, setSelectedValue] = useState<SelectEntity | undefined>(defaultOption);
   const formContext = useContext(FormContext);
+
   const { onChangeInput } = formContext;
-  const id = rest.id || `select_${name}`;
-  const selectClass = classNames({ [`${className}`]: !!className });
-  const [selectedValue, setSelectedValue] = useState(defaultOption);
+  const id = useMemo(() => rest.id || `select_${name}`, [rest.id]);
+  const selectClass = classNames({ [className as string]: !!className });
 
   const optionList = options.map((item) => {
     return (

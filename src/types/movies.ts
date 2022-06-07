@@ -25,6 +25,13 @@ export type MovieMenuProps = CommonProps & {
   deleteMovie: () => void;
 };
 
+export type MovieBodyProps = {
+  title: string;
+  date: string;
+  genres: GenreOption[];
+  imagePath?: string;
+};
+
 export type MovieEditProps = CommonProps & {
   isEditMode?: boolean;
   movie?: MovieItem;

@@ -1,5 +1,5 @@
 import Label from '../label';
-import React, { useContext, useState } from 'react';
+import React, { useContext, useMemo, useState } from 'react';
 import classNames from 'classnames';
 import style from './style.module.scss';
 import { FormContext } from '../form';
@@ -7,10 +7,11 @@ import { NumericInputProps } from 'types/controls';
 
 const NumericInput = ({ name, onChange, className, label, ...rest }: NumericInputProps) => {
   const formContext = useContext(FormContext);
+  const [inputValue, setInputValue] = useState<number>(rest.defaultValue || 0);
+
   const { onChangeInput } = formContext;
-  const inputClass = classNames(style.input, { [`${className}`]: !!className });
-  const [inputValue, setInputValue] = useState(rest.defaultValue || 0);
-  const id = rest.id || `numeric_input_${name}`;
+  const inputClass = classNames(style.input, { [className as string]: !!className });
+  const id = useMemo(() => rest.id || `numeric_input_${name}`, [rest.id]);
 
   const onInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const value = Number(e.target.value) || 0;

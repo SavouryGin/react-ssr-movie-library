@@ -17,40 +17,13 @@
     .button {
       display: block;
     }
-    .image {
-      opacity: 1;
-    }
   }
-}
-
-.image {
-  grid-area: movie-image;
-  opacity: 0.9;
-}
-
-.title {
-  grid-area: movie-title;
-}
-
-.year {
-  grid-area: movie-year;
-  justify-self: center;
-  border: $border-height solid $foreground-color;
-  padding: 0 $vertical-padding;
-  font-size: 0.8rem;
-  border-radius: 4px;
-}
-
-.genres {
-  grid-area: movie-genres;
-  font-size: 0.8rem;
-  opacity: 0.8;
 }
 
 .button {
   position: absolute;
   display: none;
-  top: 8px;
-  right: 8px;
+  top: 0.5rem;
+  right: 0.5rem;
   padding: 1rem 0.6rem;
 }

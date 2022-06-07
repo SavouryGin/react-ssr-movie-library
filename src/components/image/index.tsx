@@ -8,7 +8,7 @@ type ImageProps = CommonProps & {
 };
 
 const Image = ({ className, path, altText }: ImageProps) => {
-  const imageClass = classNames({ [`${className}`]: !!className });
+  const imageClass = classNames({ [className as string]: !!className });
 
   return (
     <div className={imageClass}>

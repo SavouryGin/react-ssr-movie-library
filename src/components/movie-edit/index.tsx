@@ -9,13 +9,14 @@ import classNames from 'classnames';
 import style from './style.module.scss';
 import { FormValues } from 'types/controls';
 import { MovieEditProps, MovieItem } from 'types/movies';
-import { genreOptions, movieDefaultValues } from './constants';
+import { genreOptions, inputLimits, movieDefaultValues } from './constants';
 
 const MovieEdit = ({ className, isEditMode, ...rest }: MovieEditProps) => {
-  const movieEditFormClass = classNames(style.form, { [`${className}`]: !!className });
   const initialValues = isEditMode && rest.movie ? rest.movie : movieDefaultValues;
+  const movieEditFormClass = classNames(style.form, { [className as string]: !!className });
   const [movieValues, setMovieValues] = useState(initialValues);
-  const takeValues = (values: FormValues) => {
+
+  const getFormValuesOnChangeInputs = (values: FormValues) => {
     setMovieValues(values as MovieItem);
   };
 
@@ -42,7 +43,7 @@ const MovieEdit = ({ className, isEditMode, ...rest }: MovieEditProps) => {
         label='Movie url'
         className={style.url}
         placeholder='https://'
-        maxLength={1000}
+        maxLength={inputLimits.maxTextInputLength}
         defaultValue={initialValues.url}
       />
       <CustomMultiSelect
@@ -58,9 +59,9 @@ const MovieEdit = ({ className, isEditMode, ...rest }: MovieEditProps) => {
         name='rating'
         label='Rating'
         className={style.rating}
-        max={10}
-        min={0}
-        step={0.1}
+        max={inputLimits.maxRating}
+        min={inputLimits.minRating}
+        step={inputLimits.ratingStep}
         placeholder='From 0 to 10'
         defaultValue={initialValues.rating}
       />
@@ -69,19 +70,25 @@ const MovieEdit = ({ className, isEditMode, ...rest }: MovieEditProps) => {
         label='Runtime'
         className={style.runtime}
         placeholder='minutes'
-        step={1}
-        min={0}
-        max={1000}
+        min={inputLimits.minRuntime}
+        max={inputLimits.maxRuntime}
+        step={inputLimits.runtimeStep}
         defaultValue={initialValues.runtime}
       />
-      <TextArea name='overview' label='Overview' className={style.overview} maxLength={1000} defaultValue={initialValues.overview} />
+      <TextArea
+        name='overview'
+        label='Overview'
+        className={style.overview}
+        maxLength={inputLimits.maxTextInputLength}
+        defaultValue={initialValues.overview}
+      />
     </fieldset>
   );
 
   return (
     <Form
       onSubmit={onSubmit}
-      passValues={takeValues}
+      passValues={getFormValuesOnChangeInputs}
       inputs={inputs}
       initialValues={initialValues}
       submitButtonText='Submit'

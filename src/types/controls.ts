@@ -1,3 +1,4 @@
+import { ButtonView } from 'enums/button-view';
 import { CommonProps } from './basic';
 import { Icon } from 'enums/icon';
 
@@ -40,7 +41,7 @@ export type ButtonProps = CommonProps & {
   title?: string;
   isDisabled?: boolean;
   onClick?: () => void;
-  view?: 'primary' | 'secondary' | 'only icon';
+  view?: ButtonView;
   icon?: Icon;
 };
 

@@ -41,3 +41,14 @@ export const genreOptions = [
     value: Genre.Biography,
   },
 ];
+
+export const inputLimits = {
+  maxTextInputLength: 1000,
+  minTextInputLength: 0,
+  maxRating: 10,
+  minRating: 0,
+  maxRuntime: 1000,
+  minRuntime: 0,
+  ratingStep: 0.1,
+  runtimeStep: 1,
+};

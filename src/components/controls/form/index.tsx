@@ -2,13 +2,14 @@ import Button from 'components/controls/button';
 import React, { useEffect, useState } from 'react';
 import classNames from 'classnames';
 import style from './style.module.scss';
-import { FormContextProps, FormInput, FormProps, MultiSelectOption } from 'types/controls';
+import { ButtonView } from 'enums/button-view';
+import { FormContextProps, FormInput, FormProps, FormValues, MultiSelectOption } from 'types/controls';
 
 export const FormContext = React.createContext({} as FormContextProps);
 
 const Form = ({ className, onSubmit, inputs, initialValues, passValues, ...rest }: FormProps) => {
-  const formClass = classNames({ [`${className}`]: !!className });
-  const [formValues, setFormValues] = useState(initialValues);
+  const formClass = classNames({ [className as string]: !!className });
+  const [formValues, setFormValues] = useState<FormValues>(initialValues);
   const [formKey, setFormKey] = useState(0);
 
   const onChangeInput = (e: React.ChangeEvent<FormInput>) => {
@@ -52,7 +53,7 @@ const Form = ({ className, onSubmit, inputs, initialValues, passValues, ...rest 
         {inputs}
       </FormContext.Provider>
       <div className={style.buttons}>
-        {rest.hasResetButton && <Button text='Reset' view='secondary' type='reset' />}
+        {rest.hasResetButton && <Button text='Reset' view={ButtonView.Secondary} type='reset' />}
         <Button type='submit' isDisabled={!!rest.isSubmitDisabled} text={rest.submitButtonText} />
       </div>
     </form>

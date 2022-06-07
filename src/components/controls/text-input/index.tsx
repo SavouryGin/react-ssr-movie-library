@@ -1,5 +1,5 @@
 import Label from '../label';
-import React, { useContext, useState } from 'react';
+import React, { useContext, useMemo, useState } from 'react';
 import classNames from 'classnames';
 import style from './style.module.scss';
 import { FormContext } from '../form';
@@ -7,10 +7,11 @@ import { TextInputProps } from 'types/controls';
 
 const TextInput = ({ name, onChange, className, label, ...rest }: TextInputProps) => {
   const formContext = useContext(FormContext);
+  const [inputValue, setInputValue] = useState<string>(rest.defaultValue || '');
+
   const { onChangeInput } = formContext;
-  const inputClass = classNames(style.input, { [`${className}`]: !!className });
-  const [inputValue, setInputValue] = useState(rest.defaultValue || '');
-  const id = rest.id || `text_input_${name}`;
+  const inputClass = classNames(style.input, { [className as string]: !!className });
+  const id = useMemo(() => rest.id || `text_input_${name}`, [rest.id]);
 
   const onInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const value = e.target.value || '';
