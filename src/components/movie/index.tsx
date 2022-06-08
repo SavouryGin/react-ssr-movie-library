@@ -1,18 +1,87 @@
-import Image from 'components/image';
-import React from 'react';
+import Button from 'components/controls/button';
+import ModalWindow from 'components/modal-window';
+import MovieBody from 'components/movie-body';
+import MovieDeleteConfirmation from 'components/movie-delete-confirmation';
+import MovieEdit from 'components/movie-edit';
+import MovieMenu from 'components/movie-menu';
+import React, { useEffect, useRef, useState } from 'react';
 import classNames from 'classnames';
+import style from './style.module.scss';
+import { ButtonView } from 'enums/button-view';
+import { Icon } from 'enums/icon';
 import { MovieProps } from 'types/movies';
-import './styles.scss';
 
-const Movie = ({ className, title, genres, year, imagePath }: MovieProps) => {
-  const movieClass = classNames('movie', { [`${className}`]: !!className });
+const Movie = (props: MovieProps) => {
+  const { className, title, genres, date, ...rest } = props;
+
+  const editRef = useRef<HTMLDivElement>(null);
+  const deleteRef = useRef<HTMLDivElement>(null);
+  const [editElement, setEditElement] = useState<HTMLDivElement | null>(null);
+  const [deleteElement, setDeleteElement] = useState<HTMLDivElement | null>(null);
+  const [isMenuOpened, setIsMenuOpened] = useState<boolean>(false);
+  const [isEditMovieOpened, setIsEditMovieOpened] = useState<boolean>(false);
+  const [isDeleteConfirmationOpened, setIsDeleteConfirmationOpened] = useState<boolean>(false);
+
+  const movieClass = classNames(style.movie, { [`${className}`]: !!className });
+
+  useEffect(() => {
+    setEditElement(editRef.current);
+    setDeleteElement(deleteRef.current);
+  }, []);
+
+  const toggleMenu = () => {
+    setIsMenuOpened(!isMenuOpened);
+  };
+
+  const toggleEditForm = () => {
+    setIsEditMovieOpened(!isEditMovieOpened);
+    closeMenuOnLeave();
+  };
+
+  const toggleDeleteConfirmation = () => {
+    setIsDeleteConfirmationOpened(!isDeleteConfirmationOpened);
+    closeMenuOnLeave();
+  };
+
+  const closeMenuOnLeave = () => {
+    setIsMenuOpened(false);
+  };
+
+  const confirmMovieDeletion = () => {
+    // TODO: Implement delete movie API call
+    setIsDeleteConfirmationOpened(false);
+  };
 
   return (
-    <div className={movieClass}>
-      <Image path={imagePath} altText={`Banner for "${title}"`} className={'movie__image'} />
-      <p className='movie__title'>{title}</p>
-      <p className='movie__year'>{year}</p>
-      <p className='movie__genres'>{genres.join(', ')}</p>
+    <div className={movieClass} onMouseLeave={closeMenuOnLeave}>
+      {isMenuOpened ? (
+        <MovieMenu onClose={toggleMenu} editMovie={toggleEditForm} deleteMovie={toggleDeleteConfirmation} />
+      ) : (
+        <Button onClick={toggleMenu} icon={Icon.Menu} view={ButtonView.Icon} className={style.button} />
+      )}
+      <MovieBody title={title} date={date} genres={genres} imagePath={rest.imagePath} />
+      <div ref={editRef}>
+        {editElement && (
+          <ModalWindow
+            element={editElement}
+            isOpened={isEditMovieOpened}
+            onClose={toggleEditForm}
+            title={'Edit movie'}
+            content={<MovieEdit isEditMode movie={props} />}
+          />
+        )}
+      </div>
+      <div ref={deleteRef}>
+        {deleteElement && (
+          <ModalWindow
+            element={deleteElement}
+            isOpened={isDeleteConfirmationOpened}
+            onClose={toggleDeleteConfirmation}
+            title={'Delete movie'}
+            content={<MovieDeleteConfirmation onConfirm={confirmMovieDeletion} />}
+          />
+        )}
+      </div>
     </div>
   );
 };

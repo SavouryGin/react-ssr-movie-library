@@ -1,0 +1,32 @@
+@import 'styles/colors.scss';
+@import 'styles/sizes.scss';
+
+.layout {
+  color: $font-color;
+  background-color: $dark-background-color;
+  display: grid;
+  min-height: 100vh;
+  grid-gap: 0;
+  grid-template-columns: 1fr 10fr 1fr;
+  grid-template-rows: $header-height auto $footer-height;
+  grid-template-areas:
+    'page-header page-header page-header'
+    '. page-content .'
+    'page-footer page-footer page-footer';
+}
+
+.header {
+  grid-area: page-header;
+  background: url('../../assets/images/header_bg.png') repeat-x;
+  background-color: $dark-background-color;
+}
+
+.main {
+  grid-area: page-content;
+  background-color: $dark-background-color;
+}
+
+.footer {
+  grid-area: page-footer;
+  background-color: $background-color;
+}

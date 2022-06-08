@@ -1,13 +1,16 @@
 import Button from 'components/controls/button';
 import React, { useEffect, useState } from 'react';
 import classNames from 'classnames';
-import { FormContextProps, FormInput, FormProps } from 'types/controls';
+import style from './style.module.scss';
+import { ButtonView } from 'enums/button-view';
+import { FormContextProps, FormInput, FormProps, FormValues, MultiSelectOption } from 'types/controls';
 
 export const FormContext = React.createContext({} as FormContextProps);
 
 const Form = ({ className, onSubmit, inputs, initialValues, passValues, ...rest }: FormProps) => {
-  const formClass = classNames('form', { [`${className}`]: !!className });
-  const [formValues, setFormValues] = useState(initialValues);
+  const formClass = classNames({ [className as string]: !!className });
+  const [formValues, setFormValues] = useState<FormValues>(initialValues);
+  const [formKey, setFormKey] = useState<number>(0);
 
   const onChangeInput = (e: React.ChangeEvent<FormInput>) => {
     const isCheckbox = e.target instanceof HTMLInputElement && e.target.type == 'checkbox';
@@ -19,6 +22,19 @@ const Form = ({ className, onSubmit, inputs, initialValues, passValues, ...rest 
     });
   };
 
+  const onChangeMultiSelect = (name: string, options: MultiSelectOption[]) => {
+    setFormValues({
+      ...formValues,
+      [name]: options,
+    });
+  };
+
+  const resetValues = () => {
+    setFormValues({ ...initialValues });
+    // Rerender form after reset
+    setFormKey(formKey + 1);
+  };
+
   useEffect(() => {
     if (passValues) {
       passValues(formValues);
@@ -26,16 +42,20 @@ const Form = ({ className, onSubmit, inputs, initialValues, passValues, ...rest 
   }, [formValues]);
 
   return (
-    <form className={formClass} aria-label='form' action={rest.action || '/'} onSubmit={onSubmit}>
+    <form className={formClass} aria-label='form' action={rest.action || '/'} onSubmit={onSubmit} onReset={resetValues} key={formKey}>
       <FormContext.Provider
         value={{
           formValues,
           onChangeInput,
+          onChangeMultiSelect,
         }}
       >
         {inputs}
       </FormContext.Provider>
-      <Button type='submit' isDisabled={!!rest.isSubmitDisabled} text={rest.submitButtonText} />
+      <div className={style.buttons}>
+        {rest.hasResetButton && <Button text='Reset' view={ButtonView.Secondary} type='reset' />}
+        <Button type='submit' isDisabled={!!rest.isSubmitDisabled} text={rest.submitButtonText} />
+      </div>
     </form>
   );
 };

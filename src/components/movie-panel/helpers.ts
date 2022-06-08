@@ -11,4 +11,9 @@ export const compareTitles = (a: MovieItem, b: MovieItem): number => {
   return 0;
 };
 
-export const compareReleaseDates = (a: MovieItem, b: MovieItem): number => b.year - a.year;
+export const compareReleaseDates = (a: MovieItem, b: MovieItem): number => {
+  const bYear = new Date(b.date).getFullYear();
+  const aYear = new Date(a.date).getFullYear();
+
+  return bYear - aYear;
+};

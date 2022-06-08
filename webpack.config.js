@@ -20,6 +20,7 @@ const config = {
       assets: path.resolve(__dirname, './src/assets'),
       pages: path.resolve(__dirname, './src/pages'),
       types: path.resolve(__dirname, './src/types'),
+      enums: path.resolve(__dirname, './src/enums'),
       __mocks__: path.resolve(__dirname, './src/__mocks__'),
     },
   },
@@ -37,7 +38,18 @@ const config = {
       },
       {
         test: /\.s[ac]ss$/i,
-        use: ['style-loader', 'css-loader', 'sass-loader'],
+        use: [
+          'style-loader',
+          {
+            loader: 'css-loader',
+            options: {
+              modules: {
+                localIdentName: '[local]--[hash:base64:5]',
+              },
+            },
+          },
+          'sass-loader',
+        ],
       },
       {
         test: /\.js$/,

@@ -1,14 +1,14 @@
 @import 'styles/colors.scss';
 
-.footer {
+.wrapper {
   display: grid;
   grid-template-areas: '. footer-text .';
   grid-template-columns: 1fr 10fr 1fr;
   align-items: center;
   justify-items: center;
+}
 
-  &__text {
-    grid-area: footer-text;
-    color: $accent-color;
-  }
+.text {
+  grid-area: footer-text;
+  color: $accent-color;
 }

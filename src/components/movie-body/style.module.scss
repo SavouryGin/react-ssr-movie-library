@@ -1,0 +1,25 @@
+@import 'styles/sizes.scss';
+@import 'styles/colors.scss';
+
+.image {
+  grid-area: movie-image;
+}
+
+.title {
+  grid-area: movie-title;
+}
+
+.year {
+  grid-area: movie-year;
+  justify-self: center;
+  border: $border-height solid $foreground-color;
+  padding: 0 $vertical-padding;
+  font-size: 0.8rem;
+  border-radius: $border-radius;
+}
+
+.genres {
+  grid-area: movie-genres;
+  font-size: 0.8rem;
+  opacity: 0.8;
+}

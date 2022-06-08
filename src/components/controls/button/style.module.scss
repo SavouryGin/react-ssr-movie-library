@@ -17,9 +17,24 @@
   &:hover {
     opacity: 1;
   }
+}
 
-  &__secondary {
-    color: $accent-color;
-    background-color: $foreground-color;
+.content {
+  display: flex;
+  align-items: center;
+
+  &::before {
+    padding: 0 $horizontal-padding;
   }
+}
+
+.secondary {
+  color: $accent-color;
+  background-color: $foreground-color;
+}
+
+.icon {
+  background-color: $dark-background-color;
+  color: $font-color;
+  border-radius: 50%;
 }

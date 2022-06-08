@@ -1,0 +1,63 @@
+@import 'styles/sizes.scss';
+
+.form {
+  div.form-buttons {
+    display: flex;
+    justify-content: flex-end;
+    gap: $vertical-padding;
+  }
+}
+
+.fieldset {
+  border: none;
+  padding: 0;
+  display: grid;
+  gap: $vertical-padding;
+  grid-template-columns: 8fr 4fr;
+  grid-template-rows: 5fr 5fr 5fr 9fr;
+  grid-template-areas:
+    'title date'
+    'url rating'
+    'genre runtime'
+    'overview overview';
+}
+
+.title {
+  grid-area: title;
+}
+
+.url {
+  grid-area: url;
+}
+
+.genre {
+  grid-area: genre;
+}
+
+.date {
+  grid-area: date;
+}
+
+.rating {
+  grid-area: rating;
+}
+
+.runtime {
+  grid-area: runtime;
+}
+
+.overview {
+  grid-area: overview;
+  height: 5rem;
+}
+
+.title,
+.url,
+.genre,
+.date,
+.rating,
+.runtime {
+  input {
+    height: 2.4rem;
+  }
+}

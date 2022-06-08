@@ -1,0 +1,30 @@
+@import 'styles/sizes.scss';
+@import 'styles/colors.scss';
+
+.menu {
+  position: absolute;
+  top: 8px;
+  right: 8px;
+  background-color: $dark-background-color;
+  width: $movie-menu-width;
+  opacity: 0.8;
+  list-style: none;
+  padding: 1.8rem 0 $horizontal-padding 0;
+}
+
+.close {
+  position: absolute;
+  top: 6px;
+  right: 2px;
+  padding: 0;
+}
+
+.item {
+  padding: $horizontal-padding;
+  text-transform: uppercase;
+  cursor: pointer;
+
+  &:hover {
+    background-color: $accent-color;
+  }
+}

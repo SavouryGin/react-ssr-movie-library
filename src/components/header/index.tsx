@@ -1,26 +1,46 @@
 import Button from 'components/controls/button';
-import React from 'react';
+import ModalWindow from 'components/modal-window';
+import MovieEdit from 'components/movie-edit';
+import React, { useEffect, useRef, useState } from 'react';
 import classNames from 'classnames';
+import style from './style.module.scss';
+import { ButtonView } from 'enums/button-view';
 import { CommonProps } from 'types/basic';
-import './styles.scss';
+import { Icon } from 'enums/icon';
 
-type HeaderProps = CommonProps;
+interface HeaderProps extends CommonProps {}
 
 const Header = ({ className }: HeaderProps) => {
-  const headerClass = classNames('header', { [`${className}`]: !!className });
+  const [isAddMovieOpened, setIsAddMovieOpened] = useState<boolean>(false);
+  const modalRef = useRef<HTMLDivElement>(null);
+  const [element, setElement] = useState<HTMLDivElement | null>(null);
+
+  const headerClass = classNames(style.wrapper, { [className as string]: !!className });
+
+  useEffect(() => {
+    setElement(modalRef.current);
+  }, []);
 
   const onAddMovieClick = () => {
-    // TODO: Implement movie adding
-    console.log('Add movie');
+    setIsAddMovieOpened(true);
+  };
+
+  const closeAddMovie = () => {
+    setIsAddMovieOpened(false);
   };
 
   return (
     <header className={headerClass}>
-      <div className='header__heading'>
+      <div className={style.content}>
         <span>
-          <strong>netflix</strong>roulette
+          <strong className={Icon.Calendar}>netflix</strong>roulette
         </span>
-        <Button text='+ Add movie' title='Add movie' view='secondary' onClick={onAddMovieClick} />
+        <Button text='Add movie' title='Add movie' view={ButtonView.Secondary} onClick={onAddMovieClick} icon={Icon.Add} />
+      </div>
+      <div ref={modalRef}>
+        {element && (
+          <ModalWindow element={element} isOpened={isAddMovieOpened} onClose={closeAddMovie} title={'Add movie'} content={<MovieEdit />} />
+        )}
       </div>
     </header>
   );

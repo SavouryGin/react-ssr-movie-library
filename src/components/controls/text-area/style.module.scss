@@ -1,0 +1,17 @@
+@import 'styles/mixins.scss';
+@import 'styles/sizes.scss';
+
+.area {
+  opacity: 0.8;
+
+  &:hover {
+    opacity: 1;
+  }
+}
+
+.field {
+  @include form-input-common-styles();
+  @include scrollbar-styles();
+  padding: $horizontal-padding;
+  resize: none;
+}

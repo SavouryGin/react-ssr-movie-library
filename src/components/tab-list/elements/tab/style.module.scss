@@ -1,0 +1,21 @@
+@import 'styles/sizes.scss';
+@import 'styles/colors.scss';
+
+.tab {
+  cursor: pointer;
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  padding-bottom: $horizontal-padding;
+  font-weight: normal;
+  text-transform: uppercase;
+
+  &:hover {
+    top: $border-height;
+  }
+}
+
+.active {
+  border-bottom: $border-height solid $accent-color;
+  top: $border-height;
+}

@@ -19,3 +19,80 @@
   scrollbar-width: thin;
   scrollbar-color: $foreground-color $dark-background-color;
 }
+
+@mixin form-input-common-styles() {
+  height: 100%;
+  width: 100%;
+  background-color: $background-color;
+  color: $font-color;
+  text-indent: 0.6rem;
+  border: none;
+  border-radius: $border-radius;
+
+  &:focus-within {
+    outline: none;
+  }
+}
+
+@mixin multiselect-override-styles() {
+  & > div > div {
+    background-color: $background-color !important;
+    color: $font-color;
+    border: none !important;
+    border-radius: $border-radius !important;
+
+    &:focus-within {
+      box-shadow: none !important;
+      border: none;
+    }
+
+    & div {
+      background-color: $background-color !important;
+      & > div {
+        background: $background-color !important;
+      }
+      input {
+        color: $font-color;
+      }
+
+      ul {
+        @include scrollbar-styles();
+        overflow: auto !important;
+
+        label {
+          padding: 0 !important;
+
+          input[type='checkbox'] {
+            accent-color: $accent-color;
+          }
+        }
+
+        label:nth-child(1) > div:nth-child(1) {
+          padding: 0 10px !important;
+          display: flex;
+          align-items: center;
+          outline: none !important;
+        }
+      }
+    }
+  }
+
+  & > div > div > div > svg {
+    color: $accent-color !important;
+    cursor: pointer;
+  }
+}
+
+@mixin disable-input-default-arrows() {
+  /* Chrome, Safari, Edge, Opera */
+  &::-webkit-outer-spin-button,
+  &::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+  }
+
+  /* Firefox */
+  &[type='number'] {
+    -moz-appearance: textfield;
+  }
+}

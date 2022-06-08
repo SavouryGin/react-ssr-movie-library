@@ -1,4 +1,6 @@
+import { ButtonView } from 'enums/button-view';
 import { CommonProps } from './basic';
+import { Icon } from 'enums/icon';
 
 export type InputHandlersProps = {
   onChange?: () => void;
@@ -14,11 +16,12 @@ export type SelectEntity = {
 
 export type FormValues = { [key: string]: unknown };
 
-export type FormInput = HTMLInputElement | HTMLSelectElement;
+export type FormInput = HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement;
 
 export type FormContextProps = {
   formValues: FormValues;
   onChangeInput: (e: React.ChangeEvent<FormInput>) => void;
+  onChangeMultiSelect?: (name: string, options: MultiSelectOption[]) => void;
 };
 
 export type FormProps = CommonProps & {
@@ -29,6 +32,7 @@ export type FormProps = CommonProps & {
   isSubmitDisabled?: boolean;
   passValues?: (values: FormValues) => void;
   submitButtonText?: string;
+  hasResetButton?: boolean;
 };
 
 export type ButtonProps = CommonProps & {
@@ -37,7 +41,8 @@ export type ButtonProps = CommonProps & {
   title?: string;
   isDisabled?: boolean;
   onClick?: () => void;
-  view?: 'primary' | 'secondary';
+  view?: ButtonView;
+  icon?: Icon;
 };
 
 export type SelectProps = CommonProps &
@@ -65,5 +70,59 @@ export type TextInputProps = CommonProps &
     isAutocomplete?: boolean;
     maxLength?: number;
     minLength?: number;
+    value?: string;
+  };
+
+export type NumericInputProps = CommonProps &
+  InputHandlersProps & {
+    name: string;
+    label?: string;
+    max?: number;
+    min?: number;
+    step?: number;
+    placeholder?: string;
+    defaultValue?: number;
+    isDisabled?: boolean;
+    isRequired?: boolean;
+    isReadOnly?: boolean;
+    isInvalid?: boolean;
+    value?: string;
+  };
+
+export type MultiSelectOption = {
+  value: any;
+  label: string;
+  key?: string;
+  disabled?: boolean;
+};
+
+export type MultiSelectProps = CommonProps & {
+  name: string;
+  options: MultiSelectOption[];
+  defaultOptions?: MultiSelectOption[];
+  placeholder?: string;
+  label?: string;
+};
+
+export type LabelProps = CommonProps & {
+  inputId: string;
+  labelText: string;
+};
+
+export type TextAreaProps = TextInputProps;
+
+export type DatePickerProps = CommonProps &
+  InputHandlersProps & {
+    name: string;
+    label: string;
+    max?: string;
+    min?: string;
+    step?: number;
+    placeholder?: string;
+    defaultValue?: string;
+    isDisabled?: boolean;
+    isRequired?: boolean;
+    isReadOnly?: boolean;
+    isInvalid?: boolean;
     value?: string;
   };
