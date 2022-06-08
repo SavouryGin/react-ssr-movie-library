@@ -10,7 +10,7 @@ export const FormContext = React.createContext({} as FormContextProps);
 const Form = ({ className, onSubmit, inputs, initialValues, passValues, ...rest }: FormProps) => {
   const formClass = classNames({ [className as string]: !!className });
   const [formValues, setFormValues] = useState<FormValues>(initialValues);
-  const [formKey, setFormKey] = useState(0);
+  const [formKey, setFormKey] = useState<number>(0);
 
   const onChangeInput = (e: React.ChangeEvent<FormInput>) => {
     const isCheckbox = e.target instanceof HTMLInputElement && e.target.type == 'checkbox';

@@ -2,11 +2,11 @@ import React, { useContext, useMemo, useState } from 'react';
 import classNames from 'classnames';
 import style from './style.module.scss';
 import { FormContext } from 'components/controls/form';
-import { SelectEntity, SelectProps } from 'types/controls';
+import { FormContextProps, SelectEntity, SelectProps } from 'types/controls';
 
-const Select = ({ options, className, name, defaultOption, onChange, ...rest }: SelectProps) => {
+const Select = ({ options, className, name, defaultOption, onChange, passOption, ...rest }: SelectProps) => {
   const [selectedValue, setSelectedValue] = useState<SelectEntity | undefined>(defaultOption);
-  const formContext = useContext(FormContext);
+  const formContext = useContext<FormContextProps>(FormContext);
 
   const { onChangeInput } = formContext;
   const id = useMemo(() => rest.id || `select_${name}`, [rest.id]);
@@ -22,7 +22,7 @@ const Select = ({ options, className, name, defaultOption, onChange, ...rest }: 
 
   const onSelectChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
     const selected = options.filter((item) => item.value.toString() === e.target.value);
-    console.log(selected);
+
     setSelectedValue(selected[0]);
 
     if (onChangeInput) {
@@ -31,8 +31,8 @@ const Select = ({ options, className, name, defaultOption, onChange, ...rest }: 
     if (onChange) {
       onChange();
     }
-    if (rest.passOption) {
-      rest.passOption(selected[0]);
+    if (passOption) {
+      passOption(selected[0]);
     }
   };
 
@@ -44,6 +44,7 @@ const Select = ({ options, className, name, defaultOption, onChange, ...rest }: 
         </label>
       )}
       <select
+        {...rest}
         name={name}
         id={id}
         value={selectedValue?.value}
@@ -52,8 +53,6 @@ const Select = ({ options, className, name, defaultOption, onChange, ...rest }: 
         required={rest.isRequired}
         className={style.field}
         onChange={onSelectChange}
-        onBlur={rest.onBlur}
-        onFocus={rest.onFocus}
       >
         {optionList}
       </select>

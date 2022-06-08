@@ -11,8 +11,8 @@ import { FormValues } from 'types/controls';
 import { MovieEditProps, MovieItem } from 'types/movies';
 import { genreOptions, inputLimits, movieDefaultValues } from './constants';
 
-const MovieEdit = ({ className, isEditMode, ...rest }: MovieEditProps) => {
-  const initialValues = isEditMode && rest.movie ? rest.movie : movieDefaultValues;
+const MovieEdit = ({ className, isEditMode, movie }: MovieEditProps) => {
+  const initialValues = isEditMode && movie ? movie : movieDefaultValues;
   const movieEditFormClass = classNames(style.form, { [className as string]: !!className });
   const [movieValues, setMovieValues] = useState(initialValues);
 

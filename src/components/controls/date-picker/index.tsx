@@ -4,14 +4,14 @@ import React, { useContext, useMemo, useState } from 'react';
 import classNames from 'classnames';
 import style from './style.module.scss';
 import { ButtonView } from 'enums/button-view';
-import { DatePickerProps } from 'types/controls';
+import { DatePickerProps, FormContextProps } from 'types/controls';
 import { FormContext } from '../form';
 import { Icon } from 'enums/icon';
 import { MAX_DATE, MIN_DATE } from './constants';
 
-const DatePicker = ({ name, onChange, className, label, ...rest }: DatePickerProps) => {
-  const formContext = useContext(FormContext);
-  const [inputValue, setInputValue] = useState<string>(rest.defaultValue || '');
+const DatePicker = ({ name, onChange, className, label, defaultValue, ...rest }: DatePickerProps) => {
+  const formContext = useContext<FormContextProps>(FormContext);
+  const [inputValue, setInputValue] = useState<string>(defaultValue || '');
 
   const { onChangeInput } = formContext;
   const inputClass = classNames(style.input, { [className as string]: !!className });
@@ -33,13 +33,12 @@ const DatePicker = ({ name, onChange, className, label, ...rest }: DatePickerPro
     <div className={inputClass}>
       <Label inputId={id} labelText={label} />
       <input
+        {...rest}
         type='date'
         name={name}
         id={id}
         value={inputValue}
         onChange={onInputChange}
-        onBlur={rest.onBlur}
-        onFocus={rest.onFocus}
         min={rest.min || MIN_DATE}
         max={rest.max || MAX_DATE}
         className={style.field}

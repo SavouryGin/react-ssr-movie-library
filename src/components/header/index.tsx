@@ -8,7 +8,7 @@ import { ButtonView } from 'enums/button-view';
 import { CommonProps } from 'types/basic';
 import { Icon } from 'enums/icon';
 
-type HeaderProps = CommonProps;
+interface HeaderProps extends CommonProps {}
 
 const Header = ({ className }: HeaderProps) => {
   const [isAddMovieOpened, setIsAddMovieOpened] = useState<boolean>(false);

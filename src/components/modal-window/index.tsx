@@ -28,7 +28,7 @@ const ModalWindow = ({ isOpened, onClose, content, title, className, element }: 
 
   const portal = <div className={style.background}>{window}</div>;
 
-  return !isOpened || !element ? null : ReactDOM.createPortal(portal, element);
+  return isOpened && element ? ReactDOM.createPortal(portal, element) : null;
 };
 
 export default ModalWindow;

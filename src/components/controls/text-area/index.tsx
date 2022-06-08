@@ -3,11 +3,11 @@ import React, { useContext, useMemo, useState } from 'react';
 import classNames from 'classnames';
 import style from './style.module.scss';
 import { FormContext } from '../form';
-import { TextAreaProps } from 'types/controls';
+import { FormContextProps, TextAreaProps } from 'types/controls';
 
-const TextArea = ({ className, name, label, onChange, ...rest }: TextAreaProps) => {
-  const formContext = useContext(FormContext);
-  const [inputValue, setInputValue] = useState<string>(rest.defaultValue || '');
+const TextArea = ({ className, name, label, onChange, defaultValue, ...rest }: TextAreaProps) => {
+  const formContext = useContext<FormContextProps>(FormContext);
+  const [inputValue, setInputValue] = useState<string>(defaultValue || '');
 
   const areaClass = classNames(style.area, { [className as string]: !!className });
   const { onChangeInput } = formContext;
@@ -29,18 +29,15 @@ const TextArea = ({ className, name, label, onChange, ...rest }: TextAreaProps) 
     <div className={areaClass}>
       {label && <Label inputId={id} labelText={label} />}
       <textarea
+        {...rest}
         name={name}
         id={id}
         value={inputValue}
         onChange={onTextAreaChange}
-        onBlur={rest.onBlur}
-        onFocus={rest.onFocus}
         placeholder={rest.placeholder || 'Please type...'}
         className={style.field}
         disabled={rest.isDisabled}
         readOnly={rest.isReadOnly}
-        maxLength={rest.maxLength}
-        minLength={rest.minLength}
         autoComplete={rest.isAutocomplete ? 'on' : 'off'}
       />
     </div>

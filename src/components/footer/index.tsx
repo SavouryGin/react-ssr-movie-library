@@ -3,7 +3,7 @@ import classNames from 'classnames';
 import style from './style.module.scss';
 import { CommonProps } from 'types/basic';
 
-type FooterProps = CommonProps;
+interface FooterProps extends CommonProps {}
 
 const Footer = ({ className }: FooterProps) => {
   const footerClass = classNames(style.wrapper, { [className as string]: !!className });

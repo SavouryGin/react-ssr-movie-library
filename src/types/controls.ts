@@ -106,7 +106,7 @@ export type MultiSelectProps = CommonProps & {
 
 export type LabelProps = CommonProps & {
   inputId: string;
-  labelText?: string;
+  labelText: string;
 };
 
 export type TextAreaProps = TextInputProps;

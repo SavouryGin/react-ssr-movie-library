@@ -3,11 +3,11 @@ import React, { useContext, useMemo, useState } from 'react';
 import classNames from 'classnames';
 import style from './style.module.scss';
 import { FormContext } from '../form';
-import { TextInputProps } from 'types/controls';
+import { FormContextProps, TextInputProps } from 'types/controls';
 
-const TextInput = ({ name, onChange, className, label, ...rest }: TextInputProps) => {
-  const formContext = useContext(FormContext);
-  const [inputValue, setInputValue] = useState<string>(rest.defaultValue || '');
+const TextInput = ({ name, onChange, className, label, defaultValue, ...rest }: TextInputProps) => {
+  const formContext = useContext<FormContextProps>(FormContext);
+  const [inputValue, setInputValue] = useState<string>(defaultValue || '');
 
   const { onChangeInput } = formContext;
   const inputClass = classNames(style.input, { [className as string]: !!className });
@@ -29,19 +29,16 @@ const TextInput = ({ name, onChange, className, label, ...rest }: TextInputProps
     <div className={inputClass}>
       {label && <Label inputId={id} labelText={label} />}
       <input
+        {...rest}
         type='text'
         name={name}
         id={id}
         value={inputValue}
         onChange={onInputChange}
-        onBlur={rest.onBlur}
-        onFocus={rest.onFocus}
         placeholder={rest.placeholder || 'Please type...'}
         className={style.field}
         disabled={rest.isDisabled}
         readOnly={rest.isReadOnly}
-        maxLength={rest.maxLength}
-        minLength={rest.minLength}
         autoComplete={rest.isAutocomplete ? 'on' : 'off'}
       />
     </div>

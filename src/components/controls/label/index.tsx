@@ -8,7 +8,7 @@ const Label = ({ className, inputId, labelText }: LabelProps) => {
 
   return (
     <label className={labelClass} htmlFor={inputId}>
-      {labelText || 'Label'}
+      {labelText}
     </label>
   );
 };
