@@ -47,4 +47,8 @@ export type MovieDeleteConfirmationProps = CommonProps & {
   onConfirm: () => void;
 };
 
+export type MovieContextProps = {
+  onClickMovie: (id: string) => void;
+};
+
 type GenreOption = { label: string; value: Genre };

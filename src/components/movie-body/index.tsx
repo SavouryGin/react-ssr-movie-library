@@ -1,5 +1,5 @@
 import Image from 'components/image';
-import React, { useContext, useMemo } from 'react';
+import React, { useCallback, useContext, useMemo } from 'react';
 import style from './style.module.scss';
 import { FALLBACK_IMAGE_PATH } from './constants';
 import { MovieBodyProps } from 'types/movies';
@@ -12,9 +12,9 @@ const MovieBody = ({ title, date, genres, imagePath, id }: MovieBodyProps) => {
   const genresList = useMemo(() => genres.map((item) => item.label).join(', '), [genres]);
   const { onClickMovie } = movieContext;
 
-  const onClickMovieImage = () => {
+  const onClickMovieImage = useCallback(() => {
     onClickMovie(id);
-  };
+  }, [id]);
 
   return (
     <>

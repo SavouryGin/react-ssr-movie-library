@@ -20,14 +20,14 @@ const MovieEdit = ({ className, isEditMode, movie }: MovieEditProps) => {
     setMovieValues(values as MovieItem);
   };
 
-  const addNewMovie = (movie: MovieItem) => {
+  const addNewMovie = (item: MovieItem) => {
     // TODO: Implement adding movie API call
-    console.log(movie);
+    console.log(item);
   };
 
-  const updateMovie = (movie: MovieItem) => {
+  const updateMovie = (item: MovieItem) => {
     // TODO: Implement updating movie API call
-    console.log(movie);
+    console.log(item);
   };
 
   const onSubmit = (e: React.FormEvent<HTMLFormElement>) => {

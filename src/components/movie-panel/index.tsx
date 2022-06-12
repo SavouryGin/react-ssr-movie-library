@@ -7,8 +7,7 @@ import style from './style.module.scss';
 import { Guid } from 'guid-typescript';
 import { MovieItem, MoviePanelProps } from 'types/movies';
 import { SelectEntity } from 'types/controls';
-import { SortingValues } from 'enums/sorting-values';
-import { compareRatings, compareReleaseDates, compareRuntime, compareTitles } from './helpers';
+import { getSortedList } from './helpers';
 import { sortOptions } from './constants';
 
 const MoviePanel = ({ className, items }: MoviePanelProps) => {
@@ -38,31 +37,8 @@ const MoviePanel = ({ className, items }: MoviePanelProps) => {
   };
 
   const sortMovies = () => {
-    switch (sortOption.value) {
-      case SortingValues.Date: {
-        const byRelease = [...items].sort(compareReleaseDates);
-        setList(byRelease);
-        break;
-      }
-
-      case SortingValues.Title: {
-        const byTitle = [...items].sort(compareTitles);
-        setList(byTitle);
-        break;
-      }
-
-      case SortingValues.Rating: {
-        const byRating = [...items].sort(compareRatings);
-        setList(byRating);
-        break;
-      }
-
-      case SortingValues.Runtime: {
-        const byRuntime = [...items].sort(compareRuntime);
-        setList(byRuntime);
-        break;
-      }
-    }
+    const sorted = getSortedList(items, sortOption);
+    setList(sorted);
   };
 
   return (
