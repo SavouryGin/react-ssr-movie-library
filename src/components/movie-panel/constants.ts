@@ -10,4 +10,12 @@ export const sortOptions: SelectEntity[] = [
     option: 'Title',
     value: SortingValues.Title,
   },
+  {
+    option: 'Rating',
+    value: SortingValues.Rating,
+  },
+  {
+    option: 'Runtime',
+    value: SortingValues.Runtime,
+  },
 ];

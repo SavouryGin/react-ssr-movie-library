@@ -1,8 +1,10 @@
 @import 'styles/colors.scss';
 @import 'styles/sizes.scss';
 @import 'styles/mixins.scss';
+@import 'styles/animations.scss';
 
 .background {
+  @include fade-in();
   position: fixed;
   z-index: 2;
   top: 0;
@@ -16,6 +18,7 @@
 }
 
 .window {
+  @include pop-in-modal();
   width: fit-content;
   height: fit-content;
   max-width: 80%;

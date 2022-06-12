@@ -1,6 +1,8 @@
 @import 'styles/sizes.scss';
+@import 'styles/animations.scss';
 
 .form {
+  @include fade-in();
   position: absolute;
   top: -260px;
   left: 0;

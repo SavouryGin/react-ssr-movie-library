@@ -4,12 +4,11 @@ import MovieBody from 'components/movie-body';
 import MovieDeleteConfirmation from 'components/movie-delete-confirmation';
 import MovieEdit from 'components/movie-edit';
 import MovieMenu from 'components/movie-menu';
-import React, { useContext, useEffect, useRef, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import classNames from 'classnames';
 import style from './style.module.scss';
 import { ButtonView } from 'enums/button-view';
 import { Icon } from 'enums/icon';
-import { MovieContext } from 'pages/home';
 import { MovieProps } from 'types/movies';
 
 const Movie = (props: MovieProps) => {
@@ -17,14 +16,12 @@ const Movie = (props: MovieProps) => {
 
   const editRef = useRef<HTMLDivElement>(null);
   const deleteRef = useRef<HTMLDivElement>(null);
-  const movieContext = useContext(MovieContext);
   const [editElement, setEditElement] = useState<HTMLDivElement | null>(null);
   const [deleteElement, setDeleteElement] = useState<HTMLDivElement | null>(null);
   const [isMenuOpened, setIsMenuOpened] = useState<boolean>(false);
   const [isEditMovieOpened, setIsEditMovieOpened] = useState<boolean>(false);
   const [isDeleteConfirmationOpened, setIsDeleteConfirmationOpened] = useState<boolean>(false);
 
-  const { onClickMovie } = movieContext;
   const movieClass = classNames(style.movie, { [`${className}`]: !!className });
 
   useEffect(() => {
@@ -56,13 +53,15 @@ const Movie = (props: MovieProps) => {
   };
 
   return (
-    <div className={movieClass} onMouseLeave={closeMenuOnLeave} onClick={() => onClickMovie(id)}>
-      {isMenuOpened ? (
-        <MovieMenu onClose={toggleMenu} editMovie={toggleEditForm} deleteMovie={toggleDeleteConfirmation} />
-      ) : (
-        <Button onClick={toggleMenu} icon={Icon.Menu} view={ButtonView.Icon} className={style.button} />
-      )}
-      <MovieBody title={title} date={date} genres={genres} imagePath={rest.imagePath} />
+    <>
+      <div className={movieClass} onMouseLeave={closeMenuOnLeave}>
+        {isMenuOpened ? (
+          <MovieMenu onClose={toggleMenu} editMovie={toggleEditForm} deleteMovie={toggleDeleteConfirmation} />
+        ) : (
+          <Button onClick={toggleMenu} icon={Icon.Menu} view={ButtonView.Icon} className={style.button} />
+        )}
+        <MovieBody title={title} date={date} genres={genres} imagePath={rest.imagePath} id={id} />
+      </div>
       <div ref={editRef}>
         {editElement && (
           <ModalWindow
@@ -85,7 +84,7 @@ const Movie = (props: MovieProps) => {
           />
         )}
       </div>
-    </div>
+    </>
   );
 };
 

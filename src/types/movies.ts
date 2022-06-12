@@ -31,6 +31,7 @@ export type MovieViewProps = CommonProps & {
 };
 
 export type MovieBodyProps = {
+  id: string;
   title: string;
   date: string;
   genres: GenreOption[];

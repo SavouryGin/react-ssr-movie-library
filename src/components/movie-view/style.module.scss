@@ -1,8 +1,10 @@
 @import 'styles/sizes.scss';
 @import 'styles/colors.scss';
 @import 'styles/mixins.scss';
+@import 'styles/animations.scss';
 
 .view {
+  @include fade-in();
   display: grid;
   grid-template-rows: 2fr 1fr 1fr 8fr;
   grid-template-columns: 3fr 9fr;

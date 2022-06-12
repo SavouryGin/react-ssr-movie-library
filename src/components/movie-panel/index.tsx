@@ -8,27 +8,12 @@ import { Guid } from 'guid-typescript';
 import { MovieItem, MoviePanelProps } from 'types/movies';
 import { SelectEntity } from 'types/controls';
 import { SortingValues } from 'enums/sorting-values';
-import { compareReleaseDates, compareTitles } from './helpers';
+import { compareRatings, compareReleaseDates, compareRuntime, compareTitles } from './helpers';
 import { sortOptions } from './constants';
 
 const MoviePanel = ({ className, items }: MoviePanelProps) => {
-  const panelClass = classNames(style.panel, { [`${className}`]: !!className });
   const [sortOption, setSortOption] = useState<SelectEntity>(sortOptions[0]);
   const [list, setList] = useState<MovieItem[]>([]);
-  const takeOption = (option: SelectEntity) => {
-    setSortOption(option);
-  };
-
-  const sortMovies = () => {
-    if (sortOption.value === SortingValues.Date) {
-      const byRelease = [...items].sort(compareReleaseDates);
-      setList(byRelease);
-    }
-    if (sortOption.value === SortingValues.Title) {
-      const byTitle = [...items].sort(compareTitles);
-      setList(byTitle);
-    }
-  };
 
   useEffect(() => {
     setList(items);
@@ -39,6 +24,7 @@ const MoviePanel = ({ className, items }: MoviePanelProps) => {
     sortMovies();
   }, [sortOption]);
 
+  const panelClass = classNames(style.panel, { [className as string]: !!className });
   const movies = list.map((item) => {
     return (
       <li key={Guid.create().toString()} className={style.item}>
@@ -46,6 +32,38 @@ const MoviePanel = ({ className, items }: MoviePanelProps) => {
       </li>
     );
   });
+
+  const takeOption = (option: SelectEntity) => {
+    setSortOption(option);
+  };
+
+  const sortMovies = () => {
+    switch (sortOption.value) {
+      case SortingValues.Date: {
+        const byRelease = [...items].sort(compareReleaseDates);
+        setList(byRelease);
+        break;
+      }
+
+      case SortingValues.Title: {
+        const byTitle = [...items].sort(compareTitles);
+        setList(byTitle);
+        break;
+      }
+
+      case SortingValues.Rating: {
+        const byRating = [...items].sort(compareRatings);
+        setList(byRating);
+        break;
+      }
+
+      case SortingValues.Runtime: {
+        const byRuntime = [...items].sort(compareRuntime);
+        setList(byRuntime);
+        break;
+      }
+    }
+  };
 
   return (
     <div className={panelClass}>
