@@ -1,0 +1,54 @@
+@import 'styles/sizes.scss';
+@import 'styles/colors.scss';
+
+.view {
+  position: absolute;
+  top: -340px;
+  left: 0;
+  width: 100%;
+
+  display: grid;
+  grid-template-rows: 2fr 1fr 1fr 8fr;
+  grid-template-columns: 3fr 9fr;
+  gap: $horizontal-padding;
+  grid-template-areas:
+    'image title'
+    'image genres'
+    'image year'
+    'image overview';
+}
+
+.button {
+  position: absolute;
+}
+
+.image {
+  grid-area: image;
+  img {
+    height: 308px;
+  }
+}
+
+.title {
+  grid-area: title;
+}
+
+.rating {
+  // grid-area: rating;
+}
+
+.genres {
+  grid-area: genres;
+}
+
+.year {
+  grid-area: year;
+}
+
+.duration {
+  // grid-area: duration;
+}
+
+.overview {
+  grid-area: overview;
+}

@@ -1,4 +1,5 @@
 import MovieSearchForm from 'components/movie-search-form';
+import MovieView from 'components/movie-view';
 import React, { useState } from 'react';
 import TabList from 'components/tab-list';
 import style from './style.module.scss';
@@ -20,7 +21,7 @@ const Home = () => {
 
   return (
     <article className={style.home}>
-      {movieId ? <h1>{movieId}</h1> : <MovieSearchForm />}
+      {movieId ? <MovieView movieId={movieId} onCloseView={() => setMovieId(null)} /> : <MovieSearchForm />}
       <MovieContext.Provider value={{ onClickMovie }}>
         <TabList tabs={homeTabs} />
       </MovieContext.Provider>

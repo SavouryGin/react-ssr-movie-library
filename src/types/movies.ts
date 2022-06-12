@@ -25,6 +25,11 @@ export type MovieMenuProps = CommonProps & {
   deleteMovie: () => void;
 };
 
+export type MovieViewProps = CommonProps & {
+  movieId: string;
+  onCloseView: () => void;
+};
+
 export type MovieBodyProps = {
   title: string;
   date: string;

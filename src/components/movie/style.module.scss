@@ -15,6 +15,7 @@
 
   &:hover {
     text-shadow: $accent-shadow;
+    filter: brightness(120%);
 
     .button {
       display: block;
