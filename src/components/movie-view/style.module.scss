@@ -1,12 +1,8 @@
 @import 'styles/sizes.scss';
 @import 'styles/colors.scss';
+@import 'styles/mixins.scss';
 
 .view {
-  position: absolute;
-  top: -340px;
-  left: 0;
-  width: 100%;
-
   display: grid;
   grid-template-rows: 2fr 1fr 1fr 8fr;
   grid-template-columns: 3fr 9fr;
@@ -20,6 +16,12 @@
 
 .button {
   position: absolute;
+  top: 0.3rem;
+  right: 0;
+  display: inline-block;
+  padding: 1.125rem 0.75rem;
+  color: $accent-color;
+  font-size: larger;
 }
 
 .image {
@@ -31,10 +33,20 @@
 
 .title {
   grid-area: title;
+  text-transform: uppercase;
+  font-weight: lighter;
+  letter-spacing: 0.2rem;
 }
 
 .rating {
-  // grid-area: rating;
+  display: inline-block;
+  min-width: 4rem;
+  text-align: center;
+  padding: $vertical-padding;
+  margin-left: $vertical-padding;
+  border-radius: 50%;
+  font-size: medium;
+  border: 1px solid $font-color;
 }
 
 .genres {
@@ -43,12 +55,16 @@
 
 .year {
   grid-area: year;
+  color: $accent-color;
+  font-size: larger;
 }
 
 .duration {
-  // grid-area: duration;
+  margin-left: 2rem;
 }
 
 .overview {
   grid-area: overview;
+  overflow-y: auto;
+  @include scrollbar-styles();
 }

@@ -29,12 +29,12 @@ export const movieList: MovieItem[] = [
     imagePath: 'assets/images/Bitmap-2.jpg',
     url: '',
     rating: 6.7,
-    runtime: 140,
+    runtime: 110,
     overview:
       'Bohemian Rhapsody is a 2018 biographical musical drama film directed by Bryan Singer[a] from a screenplay by Anthony McCarten, and produced by Graham King and Queen manager Jim Beach. The film tells the story of the life of Freddie Mercury, the lead singer of the British rock band Queen, from the formation of the band in 1970 up to their 1985 Live Aid performance at the original Wembley Stadium.',
   },
   {
-    id: 'test-movie-2',
+    id: 'test-movie-3',
     title: 'Kill Bill: Vol 2',
     genres: [
       { label: 'Crime', value: Genre.Crime },
@@ -44,12 +44,12 @@ export const movieList: MovieItem[] = [
     imagePath: 'assets/images/Bitmap-3.jpg',
     url: '',
     rating: 7.4,
-    runtime: 135,
+    runtime: 115,
     overview:
       'The Bride continues her quest of vengeance against her former boss and lover Bill, the reclusive bouncer Budd, and the treacherous, one-eyed Elle.',
   },
   {
-    id: 'test-movie-3',
+    id: 'test-movie-4',
     title: 'Avengers: War of Infinity',
     genres: [
       { label: 'Action', value: Genre.Action },
@@ -63,7 +63,7 @@ export const movieList: MovieItem[] = [
     overview: 'Avengers: Infinity War is a 2018 American superhero film based on the Marvel Comics superhero team the Avengers.',
   },
   {
-    id: 'test-movie-4',
+    id: 'test-movie-5',
     title: 'Inception',
     genres: [
       { label: 'Action', value: Genre.Action },
@@ -78,7 +78,7 @@ export const movieList: MovieItem[] = [
       "Cobb and Arthur are \"extractors\"; they perform corporate espionage using experimental dream-sharing technology to infiltrate their targets' subconscious and extract information. Their latest target, Saito, is impressed with Cobb's ability to layer multiple dreams within each other and offers to hire Cobb for the supposedly impossible job of implanting an idea into a person's subconscious; performing \"inception\" on Robert, the son of Saito's competitor Maurice Fischer, with the idea to dissolve his father's company. Saito promises to clear Cobb's criminal status, allowing him to return home to his children. ",
   },
   {
-    id: 'test-movie-5',
+    id: 'test-movie-6',
     title: 'Reservoir dogs',
     genres: [{ label: 'Crime', value: Genre.Crime }],
     date: '1992-01-01',

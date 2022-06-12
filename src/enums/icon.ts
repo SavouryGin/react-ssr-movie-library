@@ -7,4 +7,5 @@ export enum Icon {
   EyeClosed = 'icon_eye-slash',
   Calendar = 'icon_calendar',
   Menu = 'icon_cog',
+  Search = 'icon_search',
 }

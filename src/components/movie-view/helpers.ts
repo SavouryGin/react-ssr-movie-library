@@ -1,14 +1,10 @@
-export function getDuration(minutes: number): string {
+export const getDuration = (minutes: number): string => {
   if (minutes === 0) {
-    return '00:00 hours';
+    return '0 min';
   } else {
-    const hours = padNumberWithZero(Math.trunc(+minutes / 60));
-    const rest = padNumberWithZero(+minutes % 60);
+    const hours = Math.trunc(minutes / 60);
+    const min = minutes % 60;
 
-    return `${hours}:${rest} hours`;
+    return `${hours}h ${min} min`;
   }
-}
-
-function padNumberWithZero(n: number): string {
-  return n < 10 ? '0' + n : n.toString();
-}
+};

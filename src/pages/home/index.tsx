@@ -21,7 +21,7 @@ const Home = () => {
 
   return (
     <article className={style.home}>
-      {movieId ? <MovieView movieId={movieId} onCloseView={() => setMovieId(null)} /> : <MovieSearchForm />}
+      {movieId ? <MovieView movieId={movieId} onCloseView={() => setMovieId(null)} className={style.movie} /> : <MovieSearchForm />}
       <MovieContext.Provider value={{ onClickMovie }}>
         <TabList tabs={homeTabs} />
       </MovieContext.Provider>

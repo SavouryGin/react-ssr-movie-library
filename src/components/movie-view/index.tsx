@@ -23,7 +23,7 @@ const MovieView = ({ className, movieId, onCloseView }: MovieViewProps) => {
 
   return (
     <div className={viewClass}>
-      <Button view={ButtonView.Icon} onClick={onCloseView} icon={Icon.Close} className={style.button} />
+      <Button view={ButtonView.Icon} onClick={onCloseView} icon={Icon.Search} className={style.button} />
       <Image path={imagePath || FALLBACK_IMAGE_PATH} altText={`Banner for "${title}"`} className={style.image} />
       <h2 className={style.title}>
         {title} <span className={style.rating}>{rating}</span>

@@ -4,3 +4,11 @@
   padding: $horizontal-padding $vertical-padding;
   position: relative;
 }
+
+.movie {
+  position: absolute;
+  top: -340px;
+  left: 0;
+  width: 80%;
+  height: $movie-view-height;
+}
