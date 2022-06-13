@@ -90,3 +90,15 @@ export const movieList: MovieItem[] = [
       'When a simple jewelry heist goes horribly wrong, the surviving criminals begin to suspect that one of them is a police informant',
   },
 ];
+
+export const defaultMovie: MovieItem = {
+  id: 'movie-fallback',
+  title: '',
+  genres: [],
+  date: '2000-01-01',
+  imagePath: 'assets/images/Fallback.jpg',
+  url: '',
+  rating: 0,
+  runtime: 0,
+  overview: '',
+};

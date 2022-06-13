@@ -44,10 +44,6 @@ const compareReleaseDates = (a: MovieItem, b: MovieItem): number => {
   return bYear - aYear;
 };
 
-const compareRatings = (a: MovieItem, b: MovieItem): number => {
-  return b.rating - a.rating;
-};
+const compareRatings = (a: MovieItem, b: MovieItem): number => b.rating - a.rating;
 
-const compareRuntime = (a: MovieItem, b: MovieItem): number => {
-  return b.runtime - a.runtime;
-};
+const compareRuntime = (a: MovieItem, b: MovieItem): number => b.runtime - a.runtime;

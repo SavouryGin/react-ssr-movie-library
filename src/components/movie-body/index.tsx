@@ -9,7 +9,7 @@ const MovieBody = ({ title, date, genres, imagePath, id }: MovieBodyProps) => {
   const movieContext = useContext(MovieContext);
 
   const year = useMemo(() => new Date(date).getFullYear(), [date]);
-  const genresList = useMemo(() => genres.map((item) => item.label).join(', '), [genres]);
+  const genresList = useMemo(() => genres.map((item) => item.label).join(', '), [genres.length]);
   const { onClickMovie } = movieContext;
 
   const onClickMovieImage = useCallback(() => {

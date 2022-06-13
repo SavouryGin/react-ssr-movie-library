@@ -7,19 +7,15 @@ import { ButtonView } from 'enums/button-view';
 import { FALLBACK_IMAGE_PATH } from 'components/movie-body/constants';
 import { Icon } from 'enums/icon';
 import { MovieViewProps } from 'types/movies';
-import { getDuration } from './helpers';
-import { movieList } from '__mocks__/movie-list';
+import { getDuration, useMovieSearch } from './helpers';
 
 const MovieView = ({ className, movieId, onCloseView }: MovieViewProps) => {
-  const movie = movieList.find((item) => item.id === movieId);
-  if (!movie) {
-    return null;
-  }
-  const { date, genres, title, imagePath, rating, runtime, overview } = movie;
+  const { date, genres, title, imagePath, rating, runtime, overview } = useMovieSearch(movieId);
+  const year = useMemo(() => new Date(date).getFullYear(), [date]);
+  const genresList = useMemo(() => genres.map((item) => item.label).join(', '), [genres.length]);
+  const duration = useMemo(() => getDuration(runtime), [runtime]);
+
   const viewClass = classNames(style.view, { [className as string]: !!className });
-  const year = useMemo(() => new Date(date).getFullYear(), [movie]);
-  const genresList = useMemo(() => genres.map((item) => item.label).join(', '), [movie]);
-  const duration = useMemo(() => getDuration(runtime), [movie]);
 
   return (
     <div className={viewClass}>
