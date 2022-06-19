@@ -22,3 +22,7 @@ export interface IMoviesResponse {
   offset: number;
   limit: number;
 }
+
+export interface IBadRequestError {
+  messages: string[];
+}

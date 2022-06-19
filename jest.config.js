@@ -10,6 +10,7 @@ module.exports = {
     '^enums(.*)$': '<rootDir>/src/enums$1',
     '^hooks(.*)$': '<rootDir>/src/hooks$1',
     '^store(.*)$': '<rootDir>/src/store$1',
+    '^services(.*)$': '<rootDir>/src/services$1',
     '^__mocks__(.*)$': '<rootDir>/src/__mocks__$1',
     '\\.(css|scss)$': '<rootDir>/src/__mocks__/style-mock.js',
   },
