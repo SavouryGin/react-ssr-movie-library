@@ -11,6 +11,10 @@ export type MovieItem = {
   runtime: number;
   overview: string;
   imagePath?: string;
+  voteAverage?: number;
+  voteCount?: number;
+  budget?: number;
+  revenue?: number;
 };
 
 export type MovieProps = CommonProps & MovieItem;

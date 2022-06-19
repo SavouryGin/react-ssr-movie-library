@@ -21,6 +21,7 @@ const config = {
       pages: path.resolve(__dirname, './src/pages'),
       types: path.resolve(__dirname, './src/types'),
       enums: path.resolve(__dirname, './src/enums'),
+      hooks: path.resolve(__dirname, './src/hooks'),
       __mocks__: path.resolve(__dirname, './src/__mocks__'),
     },
   },
