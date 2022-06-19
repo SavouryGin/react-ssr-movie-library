@@ -25,7 +25,13 @@ export type MovieMenuProps = CommonProps & {
   deleteMovie: () => void;
 };
 
+export type MovieViewProps = CommonProps & {
+  movieId: string;
+  onCloseView: () => void;
+};
+
 export type MovieBodyProps = {
+  id: string;
   title: string;
   date: string;
   genres: GenreOption[];
@@ -39,6 +45,10 @@ export type MovieEditProps = CommonProps & {
 
 export type MovieDeleteConfirmationProps = CommonProps & {
   onConfirm: () => void;
+};
+
+export type MovieContextProps = {
+  onClickMovie: (id: string) => void;
 };
 
 type GenreOption = { label: string; value: Genre };

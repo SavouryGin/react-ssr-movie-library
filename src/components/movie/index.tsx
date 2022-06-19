@@ -12,7 +12,7 @@ import { Icon } from 'enums/icon';
 import { MovieProps } from 'types/movies';
 
 const Movie = (props: MovieProps) => {
-  const { className, title, genres, date, ...rest } = props;
+  const { className, title, genres, date, id, ...rest } = props;
 
   const editRef = useRef<HTMLDivElement>(null);
   const deleteRef = useRef<HTMLDivElement>(null);
@@ -53,13 +53,15 @@ const Movie = (props: MovieProps) => {
   };
 
   return (
-    <div className={movieClass} onMouseLeave={closeMenuOnLeave}>
-      {isMenuOpened ? (
-        <MovieMenu onClose={toggleMenu} editMovie={toggleEditForm} deleteMovie={toggleDeleteConfirmation} />
-      ) : (
-        <Button onClick={toggleMenu} icon={Icon.Menu} view={ButtonView.Icon} className={style.button} />
-      )}
-      <MovieBody title={title} date={date} genres={genres} imagePath={rest.imagePath} />
+    <>
+      <div className={movieClass} onMouseLeave={closeMenuOnLeave}>
+        {isMenuOpened ? (
+          <MovieMenu onClose={toggleMenu} editMovie={toggleEditForm} deleteMovie={toggleDeleteConfirmation} />
+        ) : (
+          <Button onClick={toggleMenu} icon={Icon.Menu} view={ButtonView.Icon} className={style.button} />
+        )}
+        <MovieBody title={title} date={date} genres={genres} imagePath={rest.imagePath} id={id} />
+      </div>
       <div ref={editRef}>
         {editElement && (
           <ModalWindow
@@ -82,7 +84,7 @@ const Movie = (props: MovieProps) => {
           />
         )}
       </div>
-    </div>
+    </>
   );
 };
 

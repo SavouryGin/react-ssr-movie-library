@@ -1,0 +1,27 @@
+@import 'styles/sizes.scss';
+@import 'styles/animations.scss';
+
+.form {
+  @include fade-in();
+  position: absolute;
+  top: -260px;
+  left: 0;
+  width: 100%;
+}
+
+.heading {
+  padding: $horizontal-padding $vertical-padding;
+  text-transform: uppercase;
+  font-weight: lighter;
+  font-size: 2rem;
+}
+
+.search {
+  padding: $horizontal-padding $vertical-padding;
+  display: flex;
+  gap: $vertical-padding;
+}
+
+.input {
+  width: $search-input-length;
+}

@@ -5,26 +5,10 @@
   position: relative;
 }
 
-.form {
+.movie {
   position: absolute;
-  top: -260px;
+  top: -340px;
   left: 0;
-  width: 100%;
-}
-
-.heading {
-  padding: $horizontal-padding $vertical-padding;
-  text-transform: uppercase;
-  font-weight: lighter;
-  font-size: 2rem;
-}
-
-.search {
-  padding: $horizontal-padding $vertical-padding;
-  display: flex;
-  gap: $vertical-padding;
-}
-
-.input {
-  width: $search-input-length;
+  width: 80%;
+  height: $movie-view-height;
 }
