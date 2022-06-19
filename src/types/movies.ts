@@ -56,3 +56,7 @@ export type MovieContextProps = {
 };
 
 type GenreOption = { label: string; value: Genre };
+
+export type MoviesInitialState = {
+  movies: MovieItem[];
+};

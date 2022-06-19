@@ -1,3 +1,5 @@
+import { store } from 'store';
+
 export type CommonProps = {
   className?: string;
   id?: string;
@@ -10,3 +12,7 @@ export type ModalWindowProps = CommonProps & {
   element: HTMLDivElement | null;
   content?: React.ReactElement;
 };
+
+export type RootState = ReturnType<typeof store.getState>;
+
+export type AppDispatch = typeof store.dispatch;
