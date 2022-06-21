@@ -1,3 +1,5 @@
+import { Genre } from 'enums/genre';
+
 export interface IMovieBaseEntity {
   title: string; // Movie title
   tagline?: string; // Movie tagline
@@ -32,7 +34,7 @@ export interface IGetMoviesParams {
   sortOrder?: 'desc' | 'asc';
   search?: string;
   searchBy?: 'title' | 'genres';
-  filter?: string[];
+  filter?: Genre[];
   offset?: string;
   limit?: string;
 }

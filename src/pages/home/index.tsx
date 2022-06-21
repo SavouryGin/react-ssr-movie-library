@@ -2,22 +2,17 @@ import ErrorBoundary from 'components/error-boundary';
 import MoviePanel from 'components/movie-panel';
 import MovieSearchForm from 'components/movie-search-form';
 import MovieView from 'components/movie-view';
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import TabList from 'components/tab-list';
 import style from './style.module.scss';
+import { Genre } from 'enums/genre';
 import { MovieContextProps } from 'types/movies';
 import { TabItem } from 'types/tabs';
-import { getMovieList } from 'store/movies/selectors';
-import { loadAllMovies } from 'store/movies/thuks/load-all-movies';
-import { useAppDispatch } from 'hooks';
-import { useSelector } from 'react-redux';
 
 export const MovieContext = React.createContext({} as MovieContextProps);
 
 const Home = () => {
   const [movieId, setMovieId] = useState<string | null>(null);
-  const dispatch = useAppDispatch();
-  const movieList = useSelector(getMovieList);
 
   const onClickMovie = (id: string) => {
     setMovieId(id);
@@ -27,43 +22,42 @@ const Home = () => {
     setMovieId(null);
   };
 
-  // Initial data loading
-  useEffect(() => {
-    console.log('loading...');
-    dispatch(loadAllMovies());
-  }, []);
-
   const homeHeader = movieId ? <MovieView movieId={movieId} onCloseView={onClickSearch} className={style.movie} /> : <MovieSearchForm />;
 
   const homeTabs: TabItem[] = [
     {
-      tabContent: <MoviePanel items={movieList} />,
+      tabContent: <MoviePanel />,
       tabTitle: 'All',
       tabId: 'all-movies',
     },
     {
-      tabContent: <MoviePanel items={movieList} />,
-      tabTitle: 'Documentary',
-      tabId: 'documentary-movies',
+      tabContent: <MoviePanel panelGenre={Genre.Drama} />,
+      tabTitle: Genre.Drama,
+      tabId: 'drama-movies',
     },
     {
-      tabContent: <MoviePanel items={movieList} />,
-      tabTitle: 'Comedy',
+      tabContent: <MoviePanel panelGenre={Genre.Comedy} />,
+      tabTitle: Genre.Comedy,
       tabId: 'comedy-movies',
     },
     {
-      tabContent: <MoviePanel items={movieList} />,
-      tabTitle: 'Horror',
-      tabId: 'horror-movies',
+      tabContent: <MoviePanel panelGenre={Genre.Animation} />,
+      tabTitle: Genre.Animation,
+      tabId: 'animation-movies',
     },
     {
-      tabContent: <MoviePanel items={movieList} />,
-      tabTitle: 'Crime',
-      tabId: 'crime-movies',
+      tabContent: <MoviePanel panelGenre={Genre.Adventure} />,
+      tabTitle: Genre.Adventure,
+      tabId: 'adventure-movies',
     },
     {
-      tabContent: <MoviePanel items={movieList} />,
-      tabTitle: 'Action',
+      tabContent: <MoviePanel panelGenre={Genre.Family} />,
+      tabTitle: Genre.Family,
+      tabId: 'family-movies',
+    },
+    {
+      tabContent: <MoviePanel panelGenre={Genre.Action} />,
+      tabTitle: Genre.Action,
       tabId: 'action-movies',
     },
   ];

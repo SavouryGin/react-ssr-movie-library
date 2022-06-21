@@ -3,7 +3,7 @@ import { IGetMoviesParams } from 'types/server-entities';
 
 const moviesService = {
   getMovies: (params?: IGetMoviesParams) => {
-    return http.get('/movies', { params });
+    return http.get('/movies', { params: { ...params, filter: params?.filter?.join(',') } });
   },
 
   getMovieById: (id: string) => {

@@ -1,15 +1,15 @@
 import service from 'services/movies-service';
 import { AppDispatch } from 'types/basic';
 import { AxiosResponse } from 'axios';
-import { IBadRequestError, IMoviesResponse } from 'types/server-entities';
-import { moviesActions as actions } from '../slice';
-import { transformGetMoviesResponse } from '../helpers';
+import { IBadRequestError, IGetMoviesParams, IMoviesResponse } from 'types/server-entities';
+import { moviesActions as actions } from './slice';
+import { transformGetMoviesResponse } from './helpers';
 
-export const loadAllMovies = () => async (dispatch: AppDispatch) => {
+export const loadMovies = (params?: IGetMoviesParams) => async (dispatch: AppDispatch) => {
   dispatch(actions.setIsMoviesLoading(true));
 
   try {
-    const response: AxiosResponse<IMoviesResponse> = await service.getMovies();
+    const response: AxiosResponse<IMoviesResponse> = await service.getMovies(params);
     console.log('response', response);
     console.log('transformed', transformGetMoviesResponse(response));
     dispatch(actions.setMovies(transformGetMoviesResponse(response)));

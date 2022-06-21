@@ -5,23 +5,35 @@ import Select from 'components/controls/select';
 import classNames from 'classnames';
 import style from './style.module.scss';
 import { Guid } from 'guid-typescript';
-import { MovieItem, MoviePanelProps } from 'types/movies';
+import { MoviePanelProps } from 'types/movies';
 import { SelectEntity } from 'types/controls';
-import { getSortedList } from './helpers';
+import { getMovieList } from 'store/movies/selectors';
+import { loadMovies } from 'store/movies/thunks';
 import { sortOptions } from './constants';
+import { useAppDispatch } from 'hooks';
+import { useSelector } from 'react-redux';
 
-const MoviePanel = ({ className, items }: MoviePanelProps) => {
+const MoviePanel = ({ className, panelGenre }: MoviePanelProps) => {
   const [sortOption, setSortOption] = useState<SelectEntity>(sortOptions[0]);
-  const [list, setList] = useState<MovieItem[]>([]);
+  // const [list, setList] = useState<MovieItem[]>([]);
+  const dispatch = useAppDispatch();
+  const list = useSelector(getMovieList);
+
+  // useEffect(() => {
+  //   setList(items);
+  //   sortMovies();
+  // }, [items]);
 
   useEffect(() => {
-    setList(items);
-    sortMovies();
-  }, [items]);
-
-  useEffect(() => {
-    sortMovies();
+    //sortMovies();
   }, [sortOption]);
+
+  // Initial data loading
+  useEffect(() => {
+    console.log('loading...');
+    const genreFilter = panelGenre ? { filter: [panelGenre] } : undefined;
+    dispatch(loadMovies(genreFilter));
+  }, [panelGenre]);
 
   const panelClass = classNames(style.panel, { [className as string]: !!className });
   const movies = list.map((item) => {
@@ -36,10 +48,10 @@ const MoviePanel = ({ className, items }: MoviePanelProps) => {
     setSortOption(option);
   };
 
-  const sortMovies = () => {
-    const sorted = getSortedList(items, sortOption);
-    setList(sorted);
-  };
+  // const sortMovies = () => {
+  //   const sorted = getSortedList(items, sortOption);
+  //   setList(sorted);
+  // };
 
   return (
     <div className={panelClass}>

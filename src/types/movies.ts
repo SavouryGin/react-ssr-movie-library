@@ -20,7 +20,7 @@ export type MovieItem = {
 export type MovieProps = CommonProps & MovieItem;
 
 export type MoviePanelProps = CommonProps & {
-  items: MovieItem[];
+  panelGenre?: Genre;
 };
 
 export type MovieMenuProps = CommonProps & {
