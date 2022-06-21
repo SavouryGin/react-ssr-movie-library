@@ -58,7 +58,7 @@ export type MovieContextProps = {
 export type GenreOption = { label: string; value: Genre };
 
 export type MoviesInitialState = {
-  movies: MovieItem[];
+  data: MovieItem[];
   isLoading: boolean;
   error: IBadRequestError | null;
 };

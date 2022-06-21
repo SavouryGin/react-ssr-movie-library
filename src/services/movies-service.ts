@@ -1,16 +1,17 @@
 import http from './http-common';
+import { IGetMoviesParams } from 'types/server-entities';
 
 const moviesService = {
-  getMovies: () => {
-    return http.get('/movies');
+  getMovies: (params?: IGetMoviesParams) => {
+    return http.get('/movies', { params });
   },
 
   getMovieById: (id: string) => {
     return http.get(`/movies/${id}`, { params: { id } });
   },
 
-  deleteMovieById: (id: string, token: string) => {
-    return http.delete(`/movies/${id}`, { params: { id }, headers: { Authorization: token } });
+  deleteMovieById: (id: string) => {
+    return http.delete(`/movies/${id}`, { params: { id } });
   },
 };
 

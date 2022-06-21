@@ -26,3 +26,13 @@ export interface IMoviesResponse {
 export interface IBadRequestError {
   messages: string[];
 }
+
+export interface IGetMoviesParams {
+  sortBy?: string;
+  sortOrder?: 'desc' | 'asc';
+  search?: string;
+  searchBy?: 'title' | 'genres';
+  filter?: string[];
+  offset?: string;
+  limit?: string;
+}
