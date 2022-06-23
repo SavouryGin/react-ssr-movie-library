@@ -10,8 +10,20 @@ export const loadMovies = (params?: IGetMoviesParams) => async (dispatch: AppDis
 
   try {
     const response: AxiosResponse<IMoviesResponse> = await service.getMovies(params);
-    console.log('response', response);
-    console.log('transformed', transformGetMoviesResponse(response));
+    dispatch(actions.setMovies(transformGetMoviesResponse(response)));
+    dispatch(actions.setError(null));
+  } catch (err: unknown) {
+    dispatch(actions.setError(err as IBadRequestError));
+  } finally {
+    dispatch(actions.setIsMoviesLoading(false));
+  }
+};
+
+export const loadMovieById = (id: string) => async (dispatch: AppDispatch) => {
+  dispatch(actions.setIsMoviesLoading(true));
+
+  try {
+    const response: AxiosResponse<IMoviesResponse> = await service.deleteMovieById(id);
     dispatch(actions.setMovies(transformGetMoviesResponse(response)));
     dispatch(actions.setError(null));
   } catch (err: unknown) {

@@ -2,10 +2,11 @@ import { IBadRequestError } from 'types/server-entities';
 import { MovieItem, MoviesInitialState } from 'types/movies';
 import { PayloadAction, createSlice } from '@reduxjs/toolkit';
 
-export const moviesInitialState: MoviesInitialState = {
-  data: [],
+const moviesInitialState: MoviesInitialState = {
+  list: [],
   isLoading: false,
   error: null,
+  selectedMovie: null,
 };
 
 export const moviesSlice = createSlice({
@@ -17,11 +18,11 @@ export const moviesSlice = createSlice({
     },
 
     setMovies: (state, action: PayloadAction<MovieItem[]>) => {
-      state.data = action.payload;
+      state.list = action.payload;
     },
 
-    loadAllMovies: (state, _action: PayloadAction) => {
-      return state;
+    setMovie: (state, action: PayloadAction<MovieItem>) => {
+      state.selectedMovie = action.payload;
     },
 
     setIsMoviesLoading: (state, action: PayloadAction<boolean>) => {

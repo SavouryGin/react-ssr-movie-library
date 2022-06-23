@@ -14,4 +14,5 @@ export enum Genre {
   Family = 'Family',
   ScienceFiction = 'Science Fiction',
   Fantasy = 'Fantasy',
+  Thriller = 'Thriller',
 }
