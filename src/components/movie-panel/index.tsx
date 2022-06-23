@@ -1,44 +1,40 @@
 import ErrorBoundary from 'components/error-boundary';
 import Movie from 'components/movie';
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useMemo, useState } from 'react';
 import Select from 'components/controls/select';
 import Spinner from 'components/spinner';
 import classNames from 'classnames';
 import style from './style.module.scss';
 import { Guid } from 'guid-typescript';
 import { MoviePanelProps } from 'types/movies';
-import { SelectEntity } from 'types/controls';
+import { SelectEntity, SortParams } from 'types/controls';
 import { getIsLoadingStatus, getMovieList } from 'store/movies/selectors';
 import { loadMovies } from 'store/movies/thunks';
 import { sortOptions } from './constants';
-import { useAppDispatch } from 'hooks';
-import { useSelector } from 'react-redux';
+import { useAppDispatch, useAppSelector } from 'hooks';
 
 const MoviePanel = ({ className, panelGenre }: MoviePanelProps) => {
-  const [sortOption, setSortOption] = useState<SelectEntity>(sortOptions[0]);
-  // const [list, setList] = useState<MovieItem[]>([]);
   const dispatch = useAppDispatch();
-  const list = useSelector(getMovieList);
-  const isLoading = useSelector(getIsLoadingStatus);
-
-  // useEffect(() => {
-  //   setList(items);
-  //   sortMovies();
-  // }, [items]);
-
-  useEffect(() => {
-    //sortMovies();
-  }, [sortOption]);
+  const [sortOption, setSortOption] = useState<SelectEntity>(sortOptions[0]);
+  const moviesList = useAppSelector(getMovieList);
+  const isLoading = useAppSelector(getIsLoadingStatus);
+  const params: SortParams = useMemo(() => {
+    return panelGenre ? { filter: [panelGenre], ...(sortOption.params as SortParams) } : (sortOption.params as SortParams);
+  }, [sortOption.value, panelGenre]);
 
   // Initial data loading
   useEffect(() => {
-    console.log('loading...');
-    const genreFilter = panelGenre ? { filter: [panelGenre] } : undefined;
-    dispatch(loadMovies(genreFilter));
+    dispatch(loadMovies(params));
   }, [panelGenre]);
 
+  // Reload data on change sort params
+  useEffect(() => {
+    console.log(sortOption);
+    dispatch(loadMovies(params));
+  }, [sortOption]);
+
   const panelClass = classNames(style.panel, { [className as string]: !!className });
-  const movies = list.map((item) => {
+  const movies = moviesList.map((item) => {
     return (
       <li key={Guid.create().toString()} className={style.item}>
         <Movie {...item} />
@@ -49,11 +45,6 @@ const MoviePanel = ({ className, panelGenre }: MoviePanelProps) => {
   const takeOption = (option: SelectEntity) => {
     setSortOption(option);
   };
-
-  // const sortMovies = () => {
-  //   const sorted = getSortedList(items, sortOption);
-  //   setList(sorted);
-  // };
 
   return (
     <div className={panelClass}>
@@ -67,7 +58,7 @@ const MoviePanel = ({ className, panelGenre }: MoviePanelProps) => {
         passOption={takeOption}
       />
       <p className={style.counter}>
-        <strong>{`${list.length}`}</strong> movies found
+        <strong>{`${moviesList.length}`}</strong> movies found
       </p>
       <ErrorBoundary>
         <ul className={style.list}>{movies}</ul>

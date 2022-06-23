@@ -1,6 +1,10 @@
 export enum SortingValues {
-  Date,
-  Title,
-  Rating,
-  Runtime,
+  DateAsc,
+  DateDesc,
+  TitleAsc,
+  TitleDesc,
+  RatingAsc,
+  RatingDesc,
+  RuntimeAsc,
+  RuntimeDesc,
 }

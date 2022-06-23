@@ -14,6 +14,11 @@ export type SelectEntity = {
   [key: string]: unknown;
 };
 
+export type SortParams = {
+  sortBy: string;
+  sortOrder: 'asc' | 'desc';
+};
+
 export type FormValues = { [key: string]: unknown };
 
 export type FormInput = HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement;

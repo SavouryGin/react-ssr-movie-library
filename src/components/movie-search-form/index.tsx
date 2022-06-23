@@ -3,11 +3,10 @@ import React, { useState } from 'react';
 import TextInput from 'components/controls/text-input';
 import style from './style.module.scss';
 import { FormValues } from 'types/controls';
-import { searchFormInitialValue } from 'pages/home/constants';
 
 const MovieSearchForm = () => {
+  const searchFormInitialValue = { movie: '' };
   const [searchQuery, setSearchQuery] = useState<FormValues>(searchFormInitialValue);
-
   const takeValues = (values: FormValues) => {
     setSearchQuery(values as typeof searchFormInitialValue);
   };
