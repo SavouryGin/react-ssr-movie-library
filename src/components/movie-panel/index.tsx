@@ -2,12 +2,13 @@ import ErrorBoundary from 'components/error-boundary';
 import Movie from 'components/movie';
 import React, { useEffect, useState } from 'react';
 import Select from 'components/controls/select';
+import Spinner from 'components/spinner';
 import classNames from 'classnames';
 import style from './style.module.scss';
 import { Guid } from 'guid-typescript';
 import { MoviePanelProps } from 'types/movies';
 import { SelectEntity } from 'types/controls';
-import { getMovieList } from 'store/movies/selectors';
+import { getIsLoadingStatus, getMovieList } from 'store/movies/selectors';
 import { loadMovies } from 'store/movies/thunks';
 import { sortOptions } from './constants';
 import { useAppDispatch } from 'hooks';
@@ -18,6 +19,7 @@ const MoviePanel = ({ className, panelGenre }: MoviePanelProps) => {
   // const [list, setList] = useState<MovieItem[]>([]);
   const dispatch = useAppDispatch();
   const list = useSelector(getMovieList);
+  const isLoading = useSelector(getIsLoadingStatus);
 
   // useEffect(() => {
   //   setList(items);
@@ -55,6 +57,7 @@ const MoviePanel = ({ className, panelGenre }: MoviePanelProps) => {
 
   return (
     <div className={panelClass}>
+      {isLoading && <Spinner />}
       <Select
         name='sortMovies'
         options={sortOptions}

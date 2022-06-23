@@ -16,3 +16,7 @@ export type ModalWindowProps = CommonProps & {
 export type RootState = ReturnType<typeof store.getState>;
 
 export type AppDispatch = typeof store.dispatch;
+
+export type SpinnerProps = CommonProps & {
+  size?: number;
+};
