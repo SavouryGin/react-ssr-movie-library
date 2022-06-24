@@ -22,16 +22,9 @@ const MoviePanel = ({ className, panelGenre }: MoviePanelProps) => {
     return panelGenre ? { filter: [panelGenre], ...(sortOption.params as SortParams) } : (sortOption.params as SortParams);
   }, [sortOption.value, panelGenre]);
 
-  // Initial data loading
   useEffect(() => {
     dispatch(loadMovies(params));
-  }, [panelGenre]);
-
-  // Reload data on change sort params
-  useEffect(() => {
-    console.log(sortOption);
-    dispatch(loadMovies(params));
-  }, [sortOption]);
+  }, [sortOption, panelGenre]);
 
   const panelClass = classNames(style.panel, { [className as string]: !!className });
   const movies = moviesList.map((item) => {
