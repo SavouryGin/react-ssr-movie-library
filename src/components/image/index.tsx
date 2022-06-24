@@ -1,7 +1,7 @@
 import React from 'react';
 import classNames from 'classnames';
 import { CommonProps } from 'types/basic';
-import { FALLBACK_IMAGE_PATH } from 'components/movie-body/constants';
+import { FALLBACK_IMAGE_PATH } from 'components/image/constants';
 
 type ImageProps = CommonProps & {
   path: string;

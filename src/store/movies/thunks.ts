@@ -1,9 +1,9 @@
 import service from 'services/movies-service';
 import { AppDispatch } from 'types/basic';
 import { AxiosResponse } from 'axios';
-import { IBadRequestError, IGetMoviesParams, IMoviesResponse } from 'types/server-entities';
+import { IBadRequestError, IGetMoviesParams, IMovieEntity, IMoviesResponse } from 'types/server-entities';
 import { moviesActions as actions } from './slice';
-import { transformGetMoviesResponse } from './helpers';
+import { transformGetMovieByIdResponse, transformGetMoviesResponse } from './helpers';
 
 export const loadMovies = (params?: IGetMoviesParams) => async (dispatch: AppDispatch) => {
   dispatch(actions.setIsMoviesLoading(true));
@@ -23,8 +23,8 @@ export const loadMovieById = (id: string) => async (dispatch: AppDispatch) => {
   dispatch(actions.setIsMoviesLoading(true));
 
   try {
-    const response: AxiosResponse<IMoviesResponse> = await service.deleteMovieById(id);
-    dispatch(actions.setMovies(transformGetMoviesResponse(response)));
+    const response: AxiosResponse<IMovieEntity> = await service.getMovieById(id);
+    dispatch(actions.setMovie(transformGetMovieByIdResponse(response)));
     dispatch(actions.setError(null));
   } catch (err: unknown) {
     dispatch(actions.setError(err as IBadRequestError));

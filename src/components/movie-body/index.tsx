@@ -1,7 +1,7 @@
 import Image from 'components/image';
 import React, { useCallback, useContext, useMemo } from 'react';
 import style from './style.module.scss';
-import { FALLBACK_IMAGE_PATH } from './constants';
+import { FALLBACK_IMAGE_PATH } from '../image/constants';
 import { MovieBodyProps } from 'types/movies';
 import { MovieContext } from 'pages/home';
 
