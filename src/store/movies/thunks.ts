@@ -20,7 +20,7 @@ export const loadMovies = (params?: IGetMoviesParams) => async (dispatch: AppDis
 };
 
 export const loadMovieById = (id: string) => async (dispatch: AppDispatch) => {
-  dispatch(actions.setIsMoviesLoading(true));
+  dispatch(actions.setIsSelectedMovieLoading(true));
 
   try {
     const response: AxiosResponse<IMovieEntity> = await service.getMovieById(id);
@@ -29,6 +29,6 @@ export const loadMovieById = (id: string) => async (dispatch: AppDispatch) => {
   } catch (err: unknown) {
     dispatch(actions.setError(err as IBadRequestError));
   } finally {
-    dispatch(actions.setIsMoviesLoading(false));
+    dispatch(actions.setIsSelectedMovieLoading(false));
   }
 };

@@ -8,7 +8,7 @@ import style from './style.module.scss';
 import { Guid } from 'guid-typescript';
 import { MoviePanelProps } from 'types/movies';
 import { SelectEntity, SortParams } from 'types/controls';
-import { getIsLoadingStatus, getMovieList } from 'store/movies/selectors';
+import { getIsMoviesLoadingStatus, getMovieList } from 'store/movies/selectors';
 import { loadMovies } from 'store/movies/thunks';
 import { sortOptions } from './constants';
 import { useAppDispatch, useAppSelector } from 'hooks';
@@ -17,7 +17,7 @@ const MoviePanel = ({ className, panelGenre }: MoviePanelProps) => {
   const dispatch = useAppDispatch();
   const [sortOption, setSortOption] = useState<SelectEntity>(sortOptions[0]);
   const moviesList = useAppSelector(getMovieList);
-  const isLoading = useAppSelector(getIsLoadingStatus);
+  const isLoading = useAppSelector(getIsMoviesLoadingStatus);
   const params: SortParams = useMemo(() => {
     return panelGenre ? { filter: [panelGenre], ...(sortOption.params as SortParams) } : (sortOption.params as SortParams);
   }, [sortOption.value, panelGenre]);

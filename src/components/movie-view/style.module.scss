@@ -75,3 +75,8 @@
   overflow-y: auto;
   @include scrollbar-styles();
 }
+
+.spinner {
+  background: transparent;
+  align-items: center;
+}

@@ -59,7 +59,8 @@ export type GenreOption = { label: string; value: Genre };
 
 export type MoviesInitialState = {
   list: MovieItem[];
-  isLoading: boolean;
   selectedMovie: MovieItem | null;
+  isMoviesLoading: boolean;
+  isSelectedMovieLoading: boolean;
   error: IBadRequestError | null;
 };

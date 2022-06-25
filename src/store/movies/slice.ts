@@ -4,7 +4,8 @@ import { PayloadAction, createSlice } from '@reduxjs/toolkit';
 
 const moviesInitialState: MoviesInitialState = {
   list: [],
-  isLoading: false,
+  isMoviesLoading: false,
+  isSelectedMovieLoading: false,
   error: null,
   selectedMovie: null,
 };
@@ -26,7 +27,11 @@ export const moviesSlice = createSlice({
     },
 
     setIsMoviesLoading: (state, action: PayloadAction<boolean>) => {
-      state.isLoading = action.payload;
+      state.isMoviesLoading = action.payload;
+    },
+
+    setIsSelectedMovieLoading: (state, action: PayloadAction<boolean>) => {
+      state.isSelectedMovieLoading = action.payload;
     },
 
     setError: (state, action: PayloadAction<IBadRequestError | null>) => {
