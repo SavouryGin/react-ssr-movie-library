@@ -1,9 +1,9 @@
 import Button from 'components/controls/button';
 import ModalWindow from 'components/modal-window';
-import MovieBody from 'components/movie-body';
-import MovieDeleteConfirmation from 'components/movie-delete-confirmation';
-import MovieEdit from 'components/movie-edit';
-import MovieMenu from 'components/movie-menu';
+import MovieBody from 'components/movie/body';
+import MovieDeleteConfirmation from 'components/movie/delete-confirmation';
+import MovieEdit from 'components/movie/edit';
+import MovieMenu from 'components/movie/menu';
 import React, { useEffect, useRef, useState } from 'react';
 import classNames from 'classnames';
 import style from './style.module.scss';
@@ -11,7 +11,7 @@ import { ButtonView } from 'enums/button-view';
 import { Icon } from 'enums/icon';
 import { MovieProps } from 'types/movies';
 
-const Movie = (props: MovieProps) => {
+const MovieItem = (props: MovieProps) => {
   const { className, title, genres, date, id, ...rest } = props;
 
   const editRef = useRef<HTMLDivElement>(null);
@@ -88,4 +88,4 @@ const Movie = (props: MovieProps) => {
   );
 };
 
-export default Movie;
+export default MovieItem;

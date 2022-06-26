@@ -1,4 +1,4 @@
-import MoviePanel from 'components/movie-panel';
+import MoviePanel from 'components/movie/panel';
 import React from 'react';
 import { Genre } from 'enums/genre';
 import { TabItem } from 'types/tabs';

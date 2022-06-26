@@ -1,5 +1,5 @@
 import ErrorBoundary from 'components/error-boundary';
-import Movie from 'components/movie';
+import MovieItem from 'components/movie/item';
 import React, { useEffect, useMemo, useState } from 'react';
 import Select from 'components/controls/select';
 import Spinner from 'components/spinner';
@@ -30,7 +30,7 @@ const MoviePanel = ({ className, panelGenre }: MoviePanelProps) => {
   const movies = moviesList.map((item) => {
     return (
       <li key={Guid.create().toString()} className={style.item}>
-        <Movie {...item} />
+        <MovieItem {...item} />
       </li>
     );
   });

@@ -1,6 +1,6 @@
 import ErrorBoundary from 'components/error-boundary';
-import MovieSearchForm from 'components/movie-search-form';
-import MovieView from 'components/movie-view';
+import MovieSearchForm from 'components/movie/search-form';
+import MovieView from 'components/movie/view';
 import React, { useState } from 'react';
 import TabList from 'components/tab-list';
 import style from './style.module.scss';
