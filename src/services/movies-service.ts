@@ -1,25 +1,26 @@
 import http from './http-common';
 import { IGetMoviesParams, IMovieBaseEntity, IMovieEntity } from 'types/server-entities';
+import { MOVIES_BASE_URL } from './constants';
 
 const moviesService = {
   getMovies: (params?: IGetMoviesParams) => {
-    return http.get('/movies', { params: { ...params, filter: params?.filter?.join(',') } });
+    return http.get(MOVIES_BASE_URL, { params: { ...params, filter: params?.filter?.join(',') } });
   },
 
   getMovieById: (id: string) => {
-    return http.get(`/movies/${id}`, { params: { id } });
+    return http.get(`${MOVIES_BASE_URL}/${id}`, { params: { id } });
   },
 
   deleteMovieById: (id: string) => {
-    return http.delete(`/movies/${id}`, { params: { id } });
+    return http.delete(`${MOVIES_BASE_URL}/${id}`, { params: { id } });
   },
 
   createNewMovie: (data: IMovieBaseEntity) => {
-    return http.post('/movies', data);
+    return http.post(MOVIES_BASE_URL, data);
   },
 
   updateMovieById: (data: IMovieEntity) => {
-    return http.put('/movies', data);
+    return http.put(MOVIES_BASE_URL, data);
   },
 };
 

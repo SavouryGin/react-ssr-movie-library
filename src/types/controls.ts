@@ -1,6 +1,7 @@
 import { ButtonView } from 'enums/button-view';
 import { CommonProps } from './basic';
 import { Icon } from 'enums/icon';
+import { SortOrder } from 'enums/params';
 
 export type InputHandlersProps = {
   onChange?: () => void;
@@ -16,7 +17,7 @@ export type SelectEntity = {
 
 export type SortParams = {
   sortBy: string;
-  sortOrder: 'asc' | 'desc';
+  sortOrder: SortOrder;
 };
 
 export type FormValues = { [key: string]: unknown };

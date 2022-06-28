@@ -4,6 +4,7 @@ import TextInput from 'components/controls/text-input';
 import style from './style.module.scss';
 import { FormValues } from 'types/controls';
 import { IGetMoviesParams } from 'types/server-entities';
+import { SearchBy } from 'enums/params';
 import { loadMovies } from 'store/movies/thunks';
 import { useAppDispatch } from 'hooks';
 
@@ -17,7 +18,7 @@ const MovieSearchForm = () => {
 
   const onSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    const params: IGetMoviesParams = { searchBy: 'title', search: searchQuery.movie as string };
+    const params: IGetMoviesParams = { searchBy: SearchBy.Title, search: searchQuery.movie as string };
     dispatch(loadMovies(params));
   };
 

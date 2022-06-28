@@ -1,5 +1,5 @@
 import { SelectEntity } from 'types/controls';
-import { SortingValues } from 'enums/sorting-values';
+import { SortOrder, SortingValues } from 'enums/params';
 
 export const sortOptions: SelectEntity[] = [
   {
@@ -7,7 +7,7 @@ export const sortOptions: SelectEntity[] = [
     value: SortingValues.DateDesc,
     params: {
       sortBy: 'release_date',
-      sortOrder: 'desc',
+      sortOrder: SortOrder.Desc,
     },
   },
   {
@@ -15,7 +15,7 @@ export const sortOptions: SelectEntity[] = [
     value: SortingValues.DateAsc,
     params: {
       sortBy: 'release_date',
-      sortOrder: 'asc',
+      sortOrder: SortOrder.Asc,
     },
   },
   {
@@ -23,7 +23,7 @@ export const sortOptions: SelectEntity[] = [
     value: SortingValues.TitleAsc,
     params: {
       sortBy: 'title',
-      sortOrder: 'asc',
+      sortOrder: SortOrder.Asc,
     },
   },
   {
@@ -31,7 +31,7 @@ export const sortOptions: SelectEntity[] = [
     value: SortingValues.TitleDesc,
     params: {
       sortBy: 'title',
-      sortOrder: 'desc',
+      sortOrder: SortOrder.Desc,
     },
   },
   {
@@ -39,7 +39,7 @@ export const sortOptions: SelectEntity[] = [
     value: SortingValues.RatingDesc,
     params: {
       sortBy: 'vote_average',
-      sortOrder: 'desc',
+      sortOrder: SortOrder.Desc,
     },
   },
   {
@@ -47,7 +47,7 @@ export const sortOptions: SelectEntity[] = [
     value: SortingValues.RatingAsc,
     params: {
       sortBy: 'vote_average',
-      sortOrder: 'asc',
+      sortOrder: SortOrder.Asc,
     },
   },
   {
@@ -55,7 +55,7 @@ export const sortOptions: SelectEntity[] = [
     value: SortingValues.RuntimeDesc,
     params: {
       sortBy: 'runtime',
-      sortOrder: 'desc',
+      sortOrder: SortOrder.Desc,
     },
   },
   {
@@ -63,7 +63,7 @@ export const sortOptions: SelectEntity[] = [
     value: SortingValues.RuntimeAsc,
     params: {
       sortBy: 'runtime',
-      sortOrder: 'asc',
+      sortOrder: SortOrder.Asc,
     },
   },
 ];

@@ -8,7 +8,7 @@ import style from './style.module.scss';
 import { Guid } from 'guid-typescript';
 import { MoviePanelProps } from 'types/movies';
 import { SelectEntity, SortParams } from 'types/controls';
-import { getIsMoviesLoadingStatus, getMovieList } from 'store/movies/selectors';
+import { getIsMoviesLoadingStatus, getMovieItems } from 'store/movies/selectors';
 import { loadMovies } from 'store/movies/thunks';
 import { sortOptions } from './constants';
 import { useAppDispatch, useAppSelector } from 'hooks';
@@ -16,7 +16,7 @@ import { useAppDispatch, useAppSelector } from 'hooks';
 const MoviePanel = ({ className, panelGenre }: MoviePanelProps) => {
   const dispatch = useAppDispatch();
   const [sortOption, setSortOption] = useState<SelectEntity>(sortOptions[0]);
-  const moviesList = useAppSelector(getMovieList);
+  const movieItems = useAppSelector(getMovieItems);
   const isLoading = useAppSelector(getIsMoviesLoadingStatus);
   const params: SortParams = useMemo(() => {
     return panelGenre ? { filter: [panelGenre], ...(sortOption.params as SortParams) } : (sortOption.params as SortParams);
@@ -27,7 +27,7 @@ const MoviePanel = ({ className, panelGenre }: MoviePanelProps) => {
   }, [sortOption, panelGenre]);
 
   const panelClass = classNames(style.panel, { [className as string]: !!className });
-  const movies = moviesList.map((item) => {
+  const movies = movieItems.map((item) => {
     return (
       <li key={Guid.create().toString()} className={style.item}>
         <MovieItem {...item} />
@@ -51,7 +51,7 @@ const MoviePanel = ({ className, panelGenre }: MoviePanelProps) => {
         passOption={takeOption}
       />
       <p className={style.counter}>
-        <strong>{`${moviesList.length}`}</strong> movies found
+        <strong>{`${movieItems.length}`}</strong> movies found
       </p>
       <ErrorBoundary>
         <ul className={style.list}>{movies}</ul>

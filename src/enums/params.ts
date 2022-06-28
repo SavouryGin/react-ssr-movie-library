@@ -8,3 +8,13 @@ export enum SortingValues {
   RuntimeAsc,
   RuntimeDesc,
 }
+
+export enum SortOrder {
+  Asc = 'asc',
+  Desc = 'desc',
+}
+
+export enum SearchBy {
+  Title = 'title',
+  Genres = 'genres',
+}

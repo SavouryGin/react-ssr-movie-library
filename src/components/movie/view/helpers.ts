@@ -1,5 +1,5 @@
 export const getDuration = (minutes: number): string => {
-  if (minutes === 0) {
+  if (!minutes) {
     return 'Unknown';
   }
 

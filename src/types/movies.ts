@@ -58,7 +58,7 @@ export type MovieContextProps = {
 export type GenreOption = { label: string; value: Genre };
 
 export type MoviesInitialState = {
-  list: MovieItem[];
+  items: MovieItem[];
   selectedMovie: MovieItem | null;
   isMoviesLoading: boolean;
   isSelectedMovieLoading: boolean;

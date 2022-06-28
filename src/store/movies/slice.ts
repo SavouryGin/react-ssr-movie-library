@@ -3,7 +3,7 @@ import { MovieItem, MoviesInitialState } from 'types/movies';
 import { PayloadAction, createSlice } from '@reduxjs/toolkit';
 
 const moviesInitialState: MoviesInitialState = {
-  list: [],
+  items: [],
   isMoviesLoading: false,
   isSelectedMovieLoading: false,
   error: null,
@@ -19,7 +19,7 @@ export const moviesSlice = createSlice({
     },
 
     setMovies: (state, action: PayloadAction<MovieItem[]>) => {
-      state.list = action.payload;
+      state.items = action.payload;
     },
 
     setMovie: (state, action: PayloadAction<MovieItem>) => {

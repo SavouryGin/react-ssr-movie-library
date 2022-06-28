@@ -1,4 +1,5 @@
 import { Genre } from 'enums/genre';
+import { SearchBy, SortOrder } from 'enums/params';
 
 export interface IMovieBaseEntity {
   title: string; // Movie title
@@ -8,7 +9,7 @@ export interface IMovieBaseEntity {
   release_date?: string; // Movie release date
   poster_path: string; // Url to the poster image
   overview: string; // Short description of the movie
-  budget?: number; // Movie production budget, minimum: 0
+  budget: number; // Movie production budget, minimum: 0
   revenue?: number; // Movie revenue, minimum: 0
   runtime: number; // Movie duration time, minimum: 0
   genres: string[]; // List of genres
@@ -31,9 +32,9 @@ export interface IBadRequestError {
 
 export interface IGetMoviesParams {
   sortBy?: string;
-  sortOrder?: 'desc' | 'asc';
+  sortOrder?: SortOrder;
   search?: string;
-  searchBy?: 'title' | 'genres';
+  searchBy?: SearchBy;
   filter?: Genre[];
   offset?: string;
   limit?: string;
