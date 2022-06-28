@@ -1,6 +1,8 @@
 import React from 'react';
 import classNames from 'classnames';
+import style from './style.module.scss';
 import { CommonProps } from 'types/basic';
+import { FALLBACK_IMAGE_PATH } from 'components/image/constants';
 
 type ImageProps = CommonProps & {
   path: string;
@@ -20,7 +22,16 @@ const Image = ({ className, path, altText, onClickImage }: ImageProps) => {
 
   return (
     <div className={imageClass} onClick={onClick}>
-      <img src={path} alt={altText} role='img' />
+      <img
+        src={path}
+        alt={altText}
+        className={style.image}
+        role='img'
+        onError={({ currentTarget }) => {
+          currentTarget.onerror = null;
+          currentTarget.src = FALLBACK_IMAGE_PATH;
+        }}
+      />
     </div>
   );
 };

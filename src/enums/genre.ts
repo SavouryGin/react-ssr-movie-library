@@ -1,4 +1,5 @@
 export enum Genre {
+  Unknown = 'Unknown',
   Comedy = 'Comedy',
   Documentary = 'Documentary',
   Horror = 'Horror',
@@ -8,4 +9,10 @@ export enum Genre {
   Music = 'Music',
   Adventure = 'Adventure',
   Action = 'Action',
+  Romance = 'Romance',
+  Animation = 'Animation',
+  Family = 'Family',
+  ScienceFiction = 'Science Fiction',
+  Fantasy = 'Fantasy',
+  Thriller = 'Thriller',
 }

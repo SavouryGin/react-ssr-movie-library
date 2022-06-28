@@ -1,6 +1,6 @@
 import Button from 'components/controls/button';
 import ModalWindow from 'components/modal-window';
-import MovieEdit from 'components/movie-edit';
+import MovieEdit from 'components/movie/edit';
 import React, { useEffect, useRef, useState } from 'react';
 import classNames from 'classnames';
 import style from './style.module.scss';

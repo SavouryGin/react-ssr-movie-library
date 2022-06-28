@@ -8,7 +8,8 @@
   display: grid;
   grid-template-rows: 2fr 1fr 1fr 8fr;
   grid-template-columns: 3fr 9fr;
-  gap: $horizontal-padding;
+  row-gap: $horizontal-padding;
+  column-gap: $vertical-padding;
   grid-template-areas:
     'image title'
     'image genres'
@@ -18,8 +19,8 @@
 
 .button {
   position: absolute;
-  top: 0.3rem;
-  right: 0;
+  bottom: 0.5rem;
+  right: -7.5rem;
   display: inline-block;
   padding: 1.125rem 0.75rem;
   color: $accent-color;
@@ -29,7 +30,7 @@
 .image {
   grid-area: image;
   img {
-    height: 308px;
+    height: 19.25rem;
   }
 }
 
@@ -38,14 +39,17 @@
   text-transform: uppercase;
   font-weight: lighter;
   letter-spacing: 0.2rem;
+  display: flex;
+  gap: $vertical-padding;
+  justify-content: space-between;
 }
 
 .rating {
-  display: inline-block;
+  display: block;
   min-width: 4rem;
+  height: 4rem;
+  line-height: 4rem;
   text-align: center;
-  padding: $vertical-padding;
-  margin-left: $vertical-padding;
   border-radius: 50%;
   font-size: medium;
   border: 1px solid $font-color;
@@ -69,4 +73,9 @@
   grid-area: overview;
   overflow-y: auto;
   @include scrollbar-styles();
+}
+
+.spinner {
+  background: transparent;
+  align-items: center;
 }

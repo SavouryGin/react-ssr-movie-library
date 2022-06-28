@@ -4,10 +4,14 @@
 .image {
   grid-area: movie-image;
   cursor: pointer;
+  height: $movie-image-height;
 }
 
 .title {
   grid-area: movie-title;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
 }
 
 .year {

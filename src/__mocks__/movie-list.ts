@@ -93,7 +93,7 @@ export const movieList: MovieItem[] = [
 
 export const defaultMovie: MovieItem = {
   id: 'movie-fallback',
-  title: '',
+  title: 'Not Found',
   genres: [],
   date: '2000-01-01',
   imagePath: 'assets/images/Fallback.jpg',

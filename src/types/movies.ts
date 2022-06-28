@@ -1,22 +1,26 @@
 import { CommonProps } from './basic';
 import { Genre } from 'enums/genre';
+import { IBadRequestError } from './server-entities';
 
 export type MovieItem = {
   id: string;
   title: string;
-  url: string;
   genres: GenreOption[];
   date: string;
   rating: number;
   runtime: number;
   overview: string;
+  url?: string;
   imagePath?: string;
+  voteCount?: number;
+  budget?: number;
+  revenue?: number;
 };
 
 export type MovieProps = CommonProps & MovieItem;
 
 export type MoviePanelProps = CommonProps & {
-  items: MovieItem[];
+  panelGenre?: Genre;
 };
 
 export type MovieMenuProps = CommonProps & {
@@ -51,4 +55,12 @@ export type MovieContextProps = {
   onClickMovie: (id: string) => void;
 };
 
-type GenreOption = { label: string; value: Genre };
+export type GenreOption = { label: string; value: Genre };
+
+export type MoviesInitialState = {
+  items: MovieItem[];
+  selectedMovie: MovieItem | null;
+  isMoviesLoading: boolean;
+  isSelectedMovieLoading: boolean;
+  error: IBadRequestError | null;
+};

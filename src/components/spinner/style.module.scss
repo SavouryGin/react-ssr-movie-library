@@ -1,0 +1,25 @@
+@import 'styles/sizes.scss';
+@import 'styles/animations.scss';
+@import 'styles/colors.scss';
+
+.spinner {
+  position: absolute;
+  height: 102%;
+  width: 102%;
+  top: -$border-height;
+  left: -$border-height;
+  display: grid;
+  justify-content: center;
+  align-items: start;
+  z-index: 3;
+  background-color: $dark-background-color;
+}
+
+.circle {
+  display: inline-block;
+  background-color: $accent-color;
+  margin: $vertical-padding;
+  padding: $vertical-padding;
+  border-radius: 50%;
+  @include wrap-around();
+}

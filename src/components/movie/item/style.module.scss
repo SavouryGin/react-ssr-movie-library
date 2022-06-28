@@ -4,9 +4,9 @@
 .movie {
   position: relative;
   display: grid;
-  grid-row-gap: $horizontal-padding;
+  gap: $horizontal-padding;
   grid-template-columns: 10fr 2fr;
-  grid-template-rows: auto auto auto;
+  grid-template-rows: $movie-image-height auto auto;
   grid-template-areas:
     'movie-image movie-image'
     'movie-title movie-year'
