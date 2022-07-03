@@ -29,7 +29,7 @@ const Select = ({ options, className, name, defaultOption, onChange, passOption,
       onChangeInput(e);
     }
     if (onChange) {
-      onChange();
+      onChange(e);
     }
     if (passOption) {
       passOption(selected[0]);

@@ -4,7 +4,7 @@ import { Icon } from 'enums/icon';
 import { SortOrder } from 'enums/params';
 
 export type InputHandlersProps = {
-  onChange?: () => void;
+  onChange?: (event: React.ChangeEvent<FormInput>) => void;
   onBlur?: () => void;
   onFocus?: () => void;
 };
@@ -108,6 +108,7 @@ export type MultiSelectProps = CommonProps & {
   defaultOptions?: MultiSelectOption[];
   placeholder?: string;
   label?: string;
+  onSelect: (options: MultiSelectOption[]) => void;
 };
 
 export type LabelProps = CommonProps & {

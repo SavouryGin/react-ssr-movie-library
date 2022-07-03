@@ -25,7 +25,7 @@ const DatePicker = ({ name, onChange, className, label, defaultValue, ...rest }:
       onChangeInput(e);
     }
     if (onChange) {
-      onChange();
+      onChange(e);
     }
   };
 

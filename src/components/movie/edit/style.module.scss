@@ -1,5 +1,11 @@
 @import 'styles/sizes.scss';
 
+.buttons {
+  display: flex;
+  justify-content: flex-end;
+  gap: $vertical-padding;
+}
+
 .form {
   div.form-buttons {
     display: flex;

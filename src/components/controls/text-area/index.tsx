@@ -21,7 +21,7 @@ const TextArea = ({ className, name, label, onChange, defaultValue, ...rest }: T
       onChangeInput(e);
     }
     if (onChange) {
-      onChange();
+      onChange(e);
     }
   };
 
