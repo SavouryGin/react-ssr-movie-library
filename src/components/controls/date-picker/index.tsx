@@ -9,7 +9,7 @@ import { FormContext } from '../form';
 import { Icon } from 'enums/icon';
 import { MAX_DATE, MIN_DATE } from './constants';
 
-const DatePicker = ({ name, onChange, className, label, defaultValue, ...rest }: DatePickerProps) => {
+const DatePicker = ({ name, onChange, className, label, defaultValue, error, ...rest }: DatePickerProps) => {
   const formContext = useContext<FormContextProps>(FormContext);
   const [inputValue, setInputValue] = useState<string>(defaultValue || '');
 
@@ -46,6 +46,7 @@ const DatePicker = ({ name, onChange, className, label, defaultValue, ...rest }:
         readOnly={rest.isReadOnly}
       />
       <Button view={ButtonView.Icon} icon={Icon.Calendar} className={style.button} />
+      {error && <span className={style.error}>{error}</span>}
     </div>
   );
 };

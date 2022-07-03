@@ -7,11 +7,7 @@
 }
 
 .form {
-  div.form-buttons {
-    display: flex;
-    justify-content: flex-end;
-    gap: $vertical-padding;
-  }
+  min-width: 1024px;
 }
 
 .fieldset {

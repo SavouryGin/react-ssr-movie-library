@@ -6,7 +6,7 @@ import { FormContext } from '../form';
 import { FormContextProps, MultiSelectOption, MultiSelectProps } from 'types/controls';
 import { MultiSelect } from 'react-multi-select-component';
 
-const CustomMultiSelect = ({ className, label, name, options, defaultOptions, onSelect, ...rest }: MultiSelectProps) => {
+const CustomMultiSelect = ({ className, label, name, options, defaultOptions, onSelect, error, ...rest }: MultiSelectProps) => {
   const formContext = useContext<FormContextProps>(FormContext);
   const [selected, setSelected] = useState<MultiSelectOption[]>(defaultOptions || []);
 
@@ -28,6 +28,7 @@ const CustomMultiSelect = ({ className, label, name, options, defaultOptions, on
     <div className={selectClass}>
       {label && <Label inputId={id} labelText={label} />}
       <MultiSelect options={options} value={selected} onChange={onChange} labelledBy={rest.placeholder || 'Select'} />
+      {error && <span className={style.error}>{error}</span>}
     </div>
   );
 };

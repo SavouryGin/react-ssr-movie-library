@@ -5,7 +5,7 @@ import style from './style.module.scss';
 import { FormContext } from '../form';
 import { FormContextProps, NumericInputProps } from 'types/controls';
 
-const NumericInput = ({ name, onChange, className, label, defaultValue, ...rest }: NumericInputProps) => {
+const NumericInput = ({ name, onChange, className, label, defaultValue, error, ...rest }: NumericInputProps) => {
   const formContext = useContext<FormContextProps>(FormContext);
   const [inputValue, setInputValue] = useState<number>(defaultValue || 0);
 
@@ -39,6 +39,7 @@ const NumericInput = ({ name, onChange, className, label, defaultValue, ...rest 
         disabled={rest.isDisabled}
         readOnly={rest.isReadOnly}
       />
+      {error && <span className={style.error}>{error}</span>}
     </div>
   );
 };

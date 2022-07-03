@@ -15,3 +15,7 @@
   padding: $horizontal-padding;
   resize: none;
 }
+
+.error {
+  @include input-error-style();
+}

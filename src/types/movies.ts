@@ -64,3 +64,11 @@ export type MoviesInitialState = {
   isSelectedMovieLoading: boolean;
   error: IBadRequestError | null;
 };
+
+export type MovieFormErrors = {
+  title?: string;
+  genres?: string;
+  date?: string;
+  rating?: string;
+  runtime?: string;
+};

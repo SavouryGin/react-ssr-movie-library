@@ -7,6 +7,7 @@ import { ButtonView } from 'enums/button-view';
 import { Form, FormRenderProps } from 'react-final-form';
 import { MovieEditProps, MovieItem } from 'types/movies';
 import { movieDefaultValues } from './constants';
+import { validateMovieEditForm } from './validation';
 
 const MovieEdit = ({ className, isEditMode, movie }: MovieEditProps) => {
   const [formKey, setFormKey] = useState<number>(0);
@@ -36,20 +37,22 @@ const MovieEdit = ({ className, isEditMode, movie }: MovieEditProps) => {
     <Form
       onSubmit={onSubmit}
       subscription={{ submitting: true, pristine: true }}
-      render={(formProps) => {
+      validate={validateMovieEditForm}
+      render={(formRenderProps) => {
         return (
-          <form className={movieEditFormClass} onSubmit={formProps.handleSubmit} key={formKey}>
+          <form className={movieEditFormClass} onSubmit={formRenderProps.handleSubmit} key={formKey}>
             <EditFieldSet initialValues={initialValues} />
             <div className={style.buttons}>
               <Button
                 type='reset'
                 text='Reset'
                 view={ButtonView.Secondary}
-                onClick={() => onReset(formProps)}
-                isDisabled={formProps.submitting || formProps.pristine}
+                onClick={() => onReset(formRenderProps)}
+                isDisabled={formRenderProps.submitting || formRenderProps.pristine}
               />
-              <Button type='submit' text='Submit' isDisabled={formProps.submitting} />
+              <Button type='submit' text='Submit' isDisabled={formRenderProps.submitting} />
             </div>
+            {formRenderProps.submitError && <div className='error'>{formRenderProps.submitError}</div>}
           </form>
         );
       }}

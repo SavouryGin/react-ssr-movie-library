@@ -7,6 +7,7 @@ export type InputHandlersProps = {
   onChange?: (event: React.ChangeEvent<FormInput>) => void;
   onBlur?: () => void;
   onFocus?: () => void;
+  error?: string;
 };
 
 export type SelectEntity = {
@@ -109,6 +110,7 @@ export type MultiSelectProps = CommonProps & {
   placeholder?: string;
   label?: string;
   onSelect: (options: MultiSelectOption[]) => void;
+  error?: string;
 };
 
 export type LabelProps = CommonProps & {

@@ -17,73 +17,77 @@ const EditFieldSet = ({ initialValues }: EditFieldSetProps) => {
   return (
     <fieldset className={style.fieldset}>
       <Field name='title'>
-        {(props) => (
+        {({ meta, input }) => (
           <TextInput
-            name={props.input.name}
+            name={input.name}
             label='Title'
             className={style.title}
-            maxLength={100}
+            maxLength={inputLimits.maxTextInputLength}
             defaultValue={initialValues.title}
-            onChange={props.input.onChange}
+            onChange={input.onChange}
+            error={meta.touched && meta.error}
           />
         )}
       </Field>
       <Field name='url'>
-        {(props) => (
+        {({ meta, input }) => (
           <TextInput
-            name={props.input.name}
+            name={input.name}
             label='Movie url'
             className={style.url}
             placeholder='https://'
             maxLength={inputLimits.maxTextInputLength}
             defaultValue={initialValues.url}
-            onChange={props.input.onChange}
+            onChange={input.onChange}
+            error={meta.touched && meta.error}
           />
         )}
       </Field>
       <Field name='genres'>
-        {(props: FieldRenderProps<string, HTMLElement, string>) => (
+        {({ meta, input }: FieldRenderProps<string, HTMLElement, string>) => (
           <CustomMultiSelect
-            name={props.input.name}
+            name={input.name}
             label='Genres'
             className={style.genre}
             options={genreOptions}
             placeholder='Select genre'
             defaultOptions={initialValues.genres}
-            onSelect={props.input.onChange}
+            onSelect={input.onChange}
+            error={meta.touched && meta.error}
           />
         )}
       </Field>
       <Field name='date'>
-        {(props) => (
+        {({ meta, input }) => (
           <DatePicker
-            name={props.input.name}
+            name={input.name}
             label='Release date'
             className={style.date}
             defaultValue={initialValues.date}
-            onChange={props.input.onChange}
+            onChange={input.onChange}
+            error={meta.touched && meta.error}
           />
         )}
       </Field>
       <Field name='rating'>
-        {(props) => (
+        {({ meta, input }) => (
           <NumericInput
-            name={props.input.name}
+            name={input.name}
             label='Rating'
             className={style.rating}
             max={inputLimits.maxRating}
             min={inputLimits.minRating}
             step={inputLimits.ratingStep}
-            placeholder='From 0 to 10'
             defaultValue={initialValues.rating}
-            onChange={props.input.onChange}
+            onChange={input.onChange}
+            error={meta.touched && meta.error}
           />
         )}
       </Field>
       <Field name='runtime'>
-        {(props) => (
+        {({ meta, input }) => (
           <NumericInput
-            name={props.input.name}
+            name={input.name}
             label='Runtime'
             className={style.runtime}
             placeholder='minutes'
@@ -91,19 +95,21 @@ const EditFieldSet = ({ initialValues }: EditFieldSetProps) => {
             max={inputLimits.maxRuntime}
             step={inputLimits.runtimeStep}
             defaultValue={initialValues.runtime}
-            onChange={props.input.onChange}
+            onChange={input.onChange}
+            error={meta.touched && meta.error}
           />
         )}
       </Field>
       <Field name='overview'>
-        {(props) => (
+        {({ meta, input }) => (
           <TextArea
-            name={props.input.name}
+            name={input.name}
             label='Overview'
             className={style.overview}
             maxLength={inputLimits.maxTextInputLength}
             defaultValue={initialValues.overview}
-            onChange={props.input.onChange}
+            onChange={input.onChange}
+            error={meta.touched && meta.error}
           />
         )}
       </Field>

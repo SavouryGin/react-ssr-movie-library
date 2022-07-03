@@ -5,7 +5,7 @@ import style from './style.module.scss';
 import { FormContext } from '../form';
 import { FormContextProps, TextInputProps } from 'types/controls';
 
-const TextInput = ({ name, onChange, className, label, defaultValue, ...rest }: TextInputProps) => {
+const TextInput = ({ name, onChange, className, label, defaultValue, error, ...rest }: TextInputProps) => {
   const formContext = useContext<FormContextProps>(FormContext);
   const [inputValue, setInputValue] = useState<string>(defaultValue || '');
 
@@ -41,6 +41,7 @@ const TextInput = ({ name, onChange, className, label, defaultValue, ...rest }: 
         readOnly={rest.isReadOnly}
         autoComplete={rest.isAutocomplete ? 'on' : 'off'}
       />
+      {error && <span className={style.error}>{error}</span>}
     </div>
   );
 };
