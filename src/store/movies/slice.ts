@@ -1,12 +1,12 @@
 import { IBadRequestError } from 'types/server-entities';
 import { MovieItem, MoviesFlag, MoviesInitialState } from 'types/movies';
 import { PayloadAction, createSlice } from '@reduxjs/toolkit';
+import { SortParams } from 'types/controls';
 
 const moviesInitialState: MoviesInitialState = {
   items: [],
   selectedMovie: null,
   error: null,
-  editMovieId: undefined,
   flags: {
     isMoviesLoading: false,
     isSelectedMovieLoading: false,
@@ -44,6 +44,10 @@ export const moviesSlice = createSlice({
       const { isOpened, editMovieId } = action.payload;
       state.flags.isEditMovieOpened = isOpened;
       state.editMovieId = editMovieId;
+    },
+
+    setParams: (state, action: PayloadAction<SortParams>) => {
+      state.loadMoviesParams = action.payload;
     },
   },
 });

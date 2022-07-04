@@ -1,6 +1,7 @@
 import { CommonProps } from './basic';
 import { Genre } from 'enums/genre';
 import { IBadRequestError } from './server-entities';
+import { SortParams } from './controls';
 
 export type MovieItem = {
   id: string;
@@ -58,6 +59,7 @@ export type MoviesInitialState = {
   error: IBadRequestError | null;
   editMovieId?: string;
   flags: MoviesFlags;
+  loadMoviesParams?: SortParams;
 };
 
 export type MovieFormErrors = {

@@ -9,6 +9,7 @@ import style from './style.module.scss';
 import { ButtonView } from 'enums/button-view';
 import { Icon } from 'enums/icon';
 import { MovieProps } from 'types/movies';
+import { deleteMovieById } from 'store/movies/thunks';
 import { moviesActions } from 'store/movies/slice';
 import { useAppDispatch } from 'hooks';
 
@@ -46,8 +47,8 @@ const MovieItem = (props: MovieProps) => {
   };
 
   const confirmMovieDeletion = () => {
-    // TODO: Implement delete movie API call
     setIsDeleteConfirmationOpened(false);
+    dispatch(deleteMovieById(id));
   };
 
   return (

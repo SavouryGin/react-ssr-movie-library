@@ -4,6 +4,8 @@ import { AxiosResponse } from 'axios';
 import { IBadRequestError, IGetMoviesParams, IMovieEntity, IMoviesResponse } from 'types/server-entities';
 import { MovieItem } from 'types/movies';
 import { moviesActions as actions } from './slice';
+import { getLoadMoviesParams } from './selectors';
+import { store } from 'store';
 import {
   transformGetMovieByIdResponse,
   transformGetMoviesResponse,
@@ -47,6 +49,7 @@ export const createNewMovie = (data: MovieItem) => async (dispatch: AppDispatch)
     await service.createNewMovie(payload);
     dispatch(actions.toggleEditMovieForm({ isOpened: false }));
     dispatch(actions.setError(null));
+    dispatch(refreshMoviesList());
   } catch (err: unknown) {
     dispatch(actions.setError(err as IBadRequestError));
   } finally {
@@ -62,9 +65,36 @@ export const updateMovie = (data: MovieItem) => async (dispatch: AppDispatch) =>
     await service.updateMovieById(payload);
     dispatch(actions.toggleEditMovieForm({ isOpened: false }));
     dispatch(actions.setError(null));
+    dispatch(refreshMoviesList());
   } catch (err: unknown) {
     dispatch(actions.setError(err as IBadRequestError));
   } finally {
     dispatch(actions.setUpFlag({ flag: 'isEditRequestInProgress', value: false }));
+  }
+};
+
+export const deleteMovieById = (id: string) => async (dispatch: AppDispatch) => {
+  dispatch(actions.setUpFlag({ flag: 'isMoviesLoading', value: true }));
+
+  try {
+    await service.deleteMovieById(id);
+    dispatch(actions.setError(null));
+    dispatch(refreshMoviesList());
+  } catch (err: unknown) {
+    dispatch(actions.setError(err as IBadRequestError));
+  } finally {
+    dispatch(actions.setUpFlag({ flag: 'isMoviesLoading', value: false }));
+  }
+};
+
+const refreshMoviesList = () => async (dispatch: AppDispatch) => {
+  try {
+    const params = getLoadMoviesParams(store.getState());
+
+    const response: AxiosResponse<IMoviesResponse> = await service.getMovies(params);
+    dispatch(actions.setMovies(transformGetMoviesResponse(response)));
+    dispatch(actions.setError(null));
+  } catch (err: unknown) {
+    dispatch(actions.setError(err as IBadRequestError));
   }
 };
