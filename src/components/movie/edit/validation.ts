@@ -28,6 +28,10 @@ export const validateMovieEditForm = (values: MovieItem) => {
     errors.url = 'Enter a valid url path to the movie poster';
   }
 
+  if (!values.overview) {
+    errors.overview = 'Enter a movie description';
+  }
+
   return errors;
 };
 

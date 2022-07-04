@@ -69,6 +69,7 @@ export type MovieFormErrors = {
   rating?: string;
   runtime?: string;
   url?: string;
+  overview?: string;
 };
 
 export interface MoviesFlags {
