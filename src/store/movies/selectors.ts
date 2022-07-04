@@ -10,3 +10,9 @@ export const getIsMoviesLoadingStatus = (state: RootState): boolean => state.mov
 export const getIsSelectedMovieLoading = (state: RootState): boolean => state.movies.isSelectedMovieLoading;
 
 export const getIsEditMovieOpened = (state: RootState): boolean => state.movies.isEditMovieOpened;
+
+export const getEditMovieItem = (state: RootState): MovieItem | undefined => {
+  const id = state.movies.editMovieId;
+
+  return state.movies.items.find((item) => item.id === id);
+};

@@ -7,11 +7,15 @@ import style from './style.module.scss';
 import { ButtonView } from 'enums/button-view';
 import { CommonProps } from 'types/basic';
 import { Icon } from 'enums/icon';
+import { getIsEditMovieOpened } from 'store/movies/selectors';
+import { moviesActions } from 'store/movies/slice';
+import { useAppDispatch, useAppSelector } from 'hooks';
 
 interface HeaderProps extends CommonProps {}
 
 const Header = ({ className }: HeaderProps) => {
-  const [isAddMovieOpened, setIsAddMovieOpened] = useState<boolean>(false);
+  const dispatch = useAppDispatch();
+  const isEditFormOpened = useAppSelector(getIsEditMovieOpened);
   const modalRef = useRef<HTMLDivElement>(null);
   const [element, setElement] = useState<HTMLDivElement | null>(null);
 
@@ -22,11 +26,11 @@ const Header = ({ className }: HeaderProps) => {
   }, []);
 
   const onAddMovieClick = () => {
-    setIsAddMovieOpened(true);
+    dispatch(moviesActions.toggleEditMovieForm({ isOpened: true }));
   };
 
   const closeAddMovie = () => {
-    setIsAddMovieOpened(false);
+    dispatch(moviesActions.toggleEditMovieForm({ isOpened: false }));
   };
 
   return (
@@ -39,7 +43,7 @@ const Header = ({ className }: HeaderProps) => {
       </div>
       <div ref={modalRef}>
         {element && (
-          <ModalWindow element={element} isOpened={isAddMovieOpened} onClose={closeAddMovie} title={'Add movie'} content={<MovieEdit />} />
+          <ModalWindow element={element} isOpened={isEditFormOpened} onClose={closeAddMovie} title={'Add movie'} content={<MovieEdit />} />
         )}
       </div>
     </header>

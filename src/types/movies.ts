@@ -42,11 +42,6 @@ export type MovieBodyProps = {
   imagePath?: string;
 };
 
-export type MovieEditProps = CommonProps & {
-  isEditMode?: boolean;
-  movie?: MovieItem;
-};
-
 export type MovieDeleteConfirmationProps = CommonProps & {
   onConfirm: () => void;
 };
@@ -64,6 +59,7 @@ export type MoviesInitialState = {
   isSelectedMovieLoading: boolean;
   error: IBadRequestError | null;
   isEditMovieOpened: boolean;
+  editMovieId?: string;
 };
 
 export type MovieFormErrors = {

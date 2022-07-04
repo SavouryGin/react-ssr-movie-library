@@ -39,11 +39,8 @@ export const createNewMovie = (data: MovieItem) => async (dispatch: AppDispatch)
 
   try {
     const payload = transformMovieItemToBaseEntity(data);
-    const response = await service.createNewMovie(payload);
-    console.log('response', response);
-
-    // const response: AxiosResponse<IMovieEntity> = await service.getMovieById(id);
-    // dispatch(actions.setMovie(transformGetMovieByIdResponse(response)));
+    await service.createNewMovie(payload);
+    dispatch(actions.toggleEditMovieForm({ isOpened: false }));
     dispatch(actions.setError(null));
   } catch (err: unknown) {
     dispatch(actions.setError(err as IBadRequestError));

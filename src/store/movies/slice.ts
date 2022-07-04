@@ -7,6 +7,7 @@ const moviesInitialState: MoviesInitialState = {
   isMoviesLoading: false,
   isSelectedMovieLoading: false,
   isEditMovieOpened: false,
+  editMovieId: undefined,
   error: null,
   selectedMovie: null,
 };
@@ -39,8 +40,10 @@ export const moviesSlice = createSlice({
       state.error = action.payload;
     },
 
-    setIsEditMovieOpened: (state, action: PayloadAction<boolean>) => {
-      state.isEditMovieOpened = action.payload;
+    toggleEditMovieForm: (state, action: PayloadAction<{ isOpened: boolean; editMovieId?: string }>) => {
+      const { isOpened, editMovieId } = action.payload;
+      state.isEditMovieOpened = isOpened;
+      state.editMovieId = editMovieId;
     },
   },
 });

@@ -4,16 +4,20 @@ import React, { useState } from 'react';
 import classNames from 'classnames';
 import style from './style.module.scss';
 import { ButtonView } from 'enums/button-view';
+import { CommonProps } from 'types/basic';
 import { Form, FormRenderProps } from 'react-final-form';
-import { MovieEditProps, MovieItem } from 'types/movies';
+import { MovieItem } from 'types/movies';
 import { createNewMovie } from 'store/movies/thunks';
+import { getEditMovieItem } from 'store/movies/selectors';
 import { movieDefaultValues } from './constants';
-import { useAppDispatch } from 'hooks';
+import { useAppDispatch, useAppSelector } from 'hooks';
 import { validateMovieEditForm } from './validation';
 
-const MovieEdit = ({ className, isEditMode, movie }: MovieEditProps) => {
+const MovieEdit = ({ className }: CommonProps) => {
   const [formKey, setFormKey] = useState<number>(0);
   const dispatch = useAppDispatch();
+  const movie = useAppSelector(getEditMovieItem);
+  const isEditMode = !!movie;
   const initialValues = isEditMode && movie ? movie : movieDefaultValues;
   const movieEditFormClass = classNames(style.form, { [className as string]: !!className });
 
