@@ -16,6 +16,8 @@ export const getEditMovieItem = (state: RootState): MovieItem | undefined => {
   return state.movies.items.find((item) => item.id === id);
 };
 
+export const getEditMovieId = (state: RootState): string | undefined => state.movies.editMovieId;
+
 export const getError = (state: RootState): IBadRequestError | null => state.movies.error;
 
 export const getLoadMoviesParams = (state: RootState): SortParams | undefined => state.movies.loadMoviesParams;

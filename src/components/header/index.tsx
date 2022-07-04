@@ -7,7 +7,7 @@ import style from './style.module.scss';
 import { ButtonView } from 'enums/button-view';
 import { CommonProps } from 'types/basic';
 import { Icon } from 'enums/icon';
-import { getIsEditMovieOpened } from 'store/movies/selectors';
+import { getEditMovieId, getIsEditMovieOpened } from 'store/movies/selectors';
 import { moviesActions } from 'store/movies/slice';
 import { useAppDispatch, useAppSelector } from 'hooks';
 
@@ -16,6 +16,9 @@ interface HeaderProps extends CommonProps {}
 const Header = ({ className }: HeaderProps) => {
   const dispatch = useAppDispatch();
   const isEditFormOpened = useAppSelector(getIsEditMovieOpened);
+  const editMovieId = useAppSelector(getEditMovieId);
+  const isEditMode = !!editMovieId;
+  const popupTitle = isEditMode ? 'Update Movie' : 'Add Movie';
   const modalRef = useRef<HTMLDivElement>(null);
   const [element, setElement] = useState<HTMLDivElement | null>(null);
 
@@ -43,7 +46,7 @@ const Header = ({ className }: HeaderProps) => {
       </div>
       <div ref={modalRef}>
         {element && (
-          <ModalWindow element={element} isOpened={isEditFormOpened} onClose={closeAddMovie} title={'Add movie'} content={<MovieEdit />} />
+          <ModalWindow element={element} isOpened={isEditFormOpened} onClose={closeAddMovie} title={popupTitle} content={<MovieEdit />} />
         )}
       </div>
     </header>
