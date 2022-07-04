@@ -9,11 +9,7 @@ import { Field, FieldRenderProps } from 'react-final-form';
 import { MovieItem } from 'types/movies';
 import { genreOptions, inputLimits } from './constants';
 
-type EditFieldSetProps = {
-  initialValues: MovieItem;
-};
-
-const EditFieldSet = ({ initialValues }: EditFieldSetProps) => {
+const EditFieldSet = ({ initialValues }: { initialValues: MovieItem }) => {
   return (
     <fieldset className={style.fieldset}>
       <Field name='title'>

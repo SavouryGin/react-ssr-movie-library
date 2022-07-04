@@ -63,6 +63,7 @@ export type MoviesInitialState = {
   isMoviesLoading: boolean;
   isSelectedMovieLoading: boolean;
   error: IBadRequestError | null;
+  isEditMovieOpened: boolean;
 };
 
 export type MovieFormErrors = {
@@ -71,4 +72,5 @@ export type MovieFormErrors = {
   date?: string;
   rating?: string;
   runtime?: string;
+  url?: string;
 };

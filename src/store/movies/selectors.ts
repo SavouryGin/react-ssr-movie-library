@@ -8,3 +8,5 @@ export const getSelectedMovie = (state: RootState): MovieItem | null => state.mo
 export const getIsMoviesLoadingStatus = (state: RootState): boolean => state.movies.isMoviesLoading;
 
 export const getIsSelectedMovieLoading = (state: RootState): boolean => state.movies.isSelectedMovieLoading;
+
+export const getIsEditMovieOpened = (state: RootState): boolean => state.movies.isEditMovieOpened;

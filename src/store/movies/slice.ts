@@ -6,6 +6,7 @@ const moviesInitialState: MoviesInitialState = {
   items: [],
   isMoviesLoading: false,
   isSelectedMovieLoading: false,
+  isEditMovieOpened: false,
   error: null,
   selectedMovie: null,
 };
@@ -36,6 +37,10 @@ export const moviesSlice = createSlice({
 
     setError: (state, action: PayloadAction<IBadRequestError | null>) => {
       state.error = action.payload;
+    },
+
+    setIsEditMovieOpened: (state, action: PayloadAction<boolean>) => {
+      state.isEditMovieOpened = action.payload;
     },
   },
 });
