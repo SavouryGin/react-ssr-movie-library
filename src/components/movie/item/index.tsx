@@ -19,7 +19,6 @@ const MovieItem = (props: MovieProps) => {
   const deleteRef = useRef<HTMLDivElement>(null);
   const [deleteElement, setDeleteElement] = useState<HTMLDivElement | null>(null);
   const [isMenuOpened, setIsMenuOpened] = useState<boolean>(false);
-
   const [isDeleteConfirmationOpened, setIsDeleteConfirmationOpened] = useState<boolean>(false);
 
   const movieClass = classNames(style.movie, { [`${className}`]: !!className });

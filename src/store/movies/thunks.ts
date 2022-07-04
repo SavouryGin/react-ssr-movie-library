@@ -4,7 +4,12 @@ import { AxiosResponse } from 'axios';
 import { IBadRequestError, IGetMoviesParams, IMovieEntity, IMoviesResponse } from 'types/server-entities';
 import { MovieItem } from 'types/movies';
 import { moviesActions as actions } from './slice';
-import { transformGetMovieByIdResponse, transformGetMoviesResponse, transformMovieItemToBaseEntity } from './helpers';
+import {
+  transformGetMovieByIdResponse,
+  transformGetMoviesResponse,
+  transformMovieItemToBaseEntity,
+  transformMovieItemToMovieEntity,
+} from './helpers';
 
 export const loadMovies = (params?: IGetMoviesParams) => async (dispatch: AppDispatch) => {
   dispatch(actions.setUpFlag({ flag: 'isMoviesLoading', value: true }));
@@ -40,6 +45,21 @@ export const createNewMovie = (data: MovieItem) => async (dispatch: AppDispatch)
   try {
     const payload = transformMovieItemToBaseEntity(data);
     await service.createNewMovie(payload);
+    dispatch(actions.toggleEditMovieForm({ isOpened: false }));
+    dispatch(actions.setError(null));
+  } catch (err: unknown) {
+    dispatch(actions.setError(err as IBadRequestError));
+  } finally {
+    dispatch(actions.setUpFlag({ flag: 'isEditRequestInProgress', value: false }));
+  }
+};
+
+export const updateMovie = (data: MovieItem) => async (dispatch: AppDispatch) => {
+  dispatch(actions.setUpFlag({ flag: 'isEditRequestInProgress', value: true }));
+
+  try {
+    const payload = transformMovieItemToMovieEntity(data);
+    await service.updateMovieById(payload);
     dispatch(actions.toggleEditMovieForm({ isOpened: false }));
     dispatch(actions.setError(null));
   } catch (err: unknown) {

@@ -8,7 +8,7 @@ import { ButtonView } from 'enums/button-view';
 import { CommonProps } from 'types/basic';
 import { Form, FormRenderProps } from 'react-final-form';
 import { MovieItem } from 'types/movies';
-import { createNewMovie } from 'store/movies/thunks';
+import { createNewMovie, updateMovie } from 'store/movies/thunks';
 import { getEditMovieItem, getError, getIsEditRequestInProgress } from 'store/movies/selectors';
 import { movieDefaultValues } from './constants';
 import { moviesActions } from 'store/movies/slice';
@@ -25,17 +25,8 @@ const MovieEdit = ({ className }: CommonProps) => {
   const initialValues = isEditMode && movie ? movie : movieDefaultValues;
   const movieEditFormClass = classNames(style.form, { [className as string]: !!className });
 
-  const addNewMovie = (item: MovieItem) => {
-    dispatch(createNewMovie(item));
-  };
-
-  const updateMovie = (item: MovieItem) => {
-    // TODO: Implement updating movie API call
-    console.log(item);
-  };
-
   const onSubmit = (values: MovieItem) => {
-    isEditMode ? updateMovie(values) : addNewMovie(values);
+    isEditMode ? dispatch(updateMovie({ ...movie, ...values })) : dispatch(createNewMovie(values));
   };
 
   const onReset = (formProps: FormRenderProps<MovieItem, Partial<MovieItem>>) => {
@@ -49,6 +40,7 @@ const MovieEdit = ({ className }: CommonProps) => {
       onSubmit={onSubmit}
       subscription={{ submitting: true, pristine: true }}
       validate={validateMovieEditForm}
+      initialValues={initialValues}
       render={(formRenderProps) => {
         return (
           <form className={movieEditFormClass} onSubmit={formRenderProps.handleSubmit} key={formKey}>
