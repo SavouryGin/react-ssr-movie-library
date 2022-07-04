@@ -1,4 +1,6 @@
 @import 'styles/sizes.scss';
+@import 'styles/mixins.scss';
+@import 'styles/colors.scss';
 
 .buttons {
   display: flex;
@@ -7,7 +9,22 @@
 }
 
 .form {
-  min-width: 1024px;
+  min-width: 64rem;
+  position: relative;
+}
+
+.spinner {
+  width: 100%;
+  height: 100%;
+  background: transparent;
+  align-items: center;
+}
+
+.error {
+  @include input-error-style();
+  margin: $vertical-padding 0;
+  padding: $vertical-padding;
+  border: $border-height solid $accent-color;
 }
 
 .fieldset {

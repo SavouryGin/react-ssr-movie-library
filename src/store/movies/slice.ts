@@ -4,9 +4,9 @@ import { PayloadAction, createSlice } from '@reduxjs/toolkit';
 
 const moviesInitialState: MoviesInitialState = {
   items: [],
-  editMovieId: undefined,
-  error: null,
   selectedMovie: null,
+  error: null,
+  editMovieId: undefined,
   flags: {
     isMoviesLoading: false,
     isSelectedMovieLoading: false,

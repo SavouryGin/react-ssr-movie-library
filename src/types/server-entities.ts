@@ -28,6 +28,8 @@ export interface IMoviesResponse {
 
 export interface IBadRequestError {
   messages: string[];
+  message: string;
+  status: number;
 }
 
 export interface IGetMoviesParams {

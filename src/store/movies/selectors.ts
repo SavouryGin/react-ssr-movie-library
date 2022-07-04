@@ -1,3 +1,4 @@
+import { IBadRequestError } from 'types/server-entities';
 import { MovieItem, MoviesFlags } from 'types/movies';
 import { RootState } from 'types/basic';
 import { createSelector } from '@reduxjs/toolkit';
@@ -13,6 +14,8 @@ export const getEditMovieItem = (state: RootState): MovieItem | undefined => {
 
   return state.movies.items.find((item) => item.id === id);
 };
+
+export const getError = (state: RootState): IBadRequestError | null => state.movies.error;
 
 export const getIsMoviesLoadingStatus = createSelector(getMoviesFlags, (data: MoviesFlags): boolean => data.isMoviesLoading);
 
