@@ -55,11 +55,9 @@ export type GenreOption = { label: string; value: Genre };
 export type MoviesInitialState = {
   items: MovieItem[];
   selectedMovie: MovieItem | null;
-  isMoviesLoading: boolean;
-  isSelectedMovieLoading: boolean;
   error: IBadRequestError | null;
-  isEditMovieOpened: boolean;
   editMovieId?: string;
+  flags: MoviesFlags;
 };
 
 export type MovieFormErrors = {
@@ -70,3 +68,12 @@ export type MovieFormErrors = {
   runtime?: string;
   url?: string;
 };
+
+export interface MoviesFlags {
+  isMoviesLoading: boolean;
+  isSelectedMovieLoading: boolean;
+  isEditMovieOpened: boolean;
+  isEditRequestInProgress: boolean;
+}
+
+export type MoviesFlag = keyof MoviesFlags;

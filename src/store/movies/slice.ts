@@ -1,15 +1,18 @@
 import { IBadRequestError } from 'types/server-entities';
-import { MovieItem, MoviesInitialState } from 'types/movies';
+import { MovieItem, MoviesFlag, MoviesInitialState } from 'types/movies';
 import { PayloadAction, createSlice } from '@reduxjs/toolkit';
 
 const moviesInitialState: MoviesInitialState = {
   items: [],
-  isMoviesLoading: false,
-  isSelectedMovieLoading: false,
-  isEditMovieOpened: false,
   editMovieId: undefined,
   error: null,
   selectedMovie: null,
+  flags: {
+    isMoviesLoading: false,
+    isSelectedMovieLoading: false,
+    isEditMovieOpened: false,
+    isEditRequestInProgress: false,
+  },
 };
 
 export const moviesSlice = createSlice({
@@ -28,21 +31,18 @@ export const moviesSlice = createSlice({
       state.selectedMovie = action.payload;
     },
 
-    setIsMoviesLoading: (state, action: PayloadAction<boolean>) => {
-      state.isMoviesLoading = action.payload;
-    },
-
-    setIsSelectedMovieLoading: (state, action: PayloadAction<boolean>) => {
-      state.isSelectedMovieLoading = action.payload;
-    },
-
     setError: (state, action: PayloadAction<IBadRequestError | null>) => {
       state.error = action.payload;
     },
 
+    setUpFlag: (state, action: PayloadAction<{ flag: MoviesFlag; value: boolean }>) => {
+      const { flag, value } = action.payload;
+      state.flags[flag] = value;
+    },
+
     toggleEditMovieForm: (state, action: PayloadAction<{ isOpened: boolean; editMovieId?: string }>) => {
       const { isOpened, editMovieId } = action.payload;
-      state.isEditMovieOpened = isOpened;
+      state.flags.isEditMovieOpened = isOpened;
       state.editMovieId = editMovieId;
     },
   },

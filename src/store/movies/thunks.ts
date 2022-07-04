@@ -7,7 +7,7 @@ import { moviesActions as actions } from './slice';
 import { transformGetMovieByIdResponse, transformGetMoviesResponse, transformMovieItemToBaseEntity } from './helpers';
 
 export const loadMovies = (params?: IGetMoviesParams) => async (dispatch: AppDispatch) => {
-  dispatch(actions.setIsMoviesLoading(true));
+  dispatch(actions.setUpFlag({ flag: 'isMoviesLoading', value: true }));
 
   try {
     const response: AxiosResponse<IMoviesResponse> = await service.getMovies(params);
@@ -16,12 +16,12 @@ export const loadMovies = (params?: IGetMoviesParams) => async (dispatch: AppDis
   } catch (err: unknown) {
     dispatch(actions.setError(err as IBadRequestError));
   } finally {
-    dispatch(actions.setIsMoviesLoading(false));
+    dispatch(actions.setUpFlag({ flag: 'isMoviesLoading', value: false }));
   }
 };
 
 export const loadMovieById = (id: string) => async (dispatch: AppDispatch) => {
-  dispatch(actions.setIsSelectedMovieLoading(true));
+  dispatch(actions.setUpFlag({ flag: 'isSelectedMovieLoading', value: true }));
 
   try {
     const response: AxiosResponse<IMovieEntity> = await service.getMovieById(id);
@@ -30,12 +30,12 @@ export const loadMovieById = (id: string) => async (dispatch: AppDispatch) => {
   } catch (err: unknown) {
     dispatch(actions.setError(err as IBadRequestError));
   } finally {
-    dispatch(actions.setIsSelectedMovieLoading(false));
+    dispatch(actions.setUpFlag({ flag: 'isSelectedMovieLoading', value: false }));
   }
 };
 
 export const createNewMovie = (data: MovieItem) => async (dispatch: AppDispatch) => {
-  dispatch(actions.setIsMoviesLoading(true));
+  dispatch(actions.setUpFlag({ flag: 'isEditRequestInProgress', value: true }));
 
   try {
     const payload = transformMovieItemToBaseEntity(data);
@@ -45,6 +45,6 @@ export const createNewMovie = (data: MovieItem) => async (dispatch: AppDispatch)
   } catch (err: unknown) {
     dispatch(actions.setError(err as IBadRequestError));
   } finally {
-    dispatch(actions.setIsMoviesLoading(false));
+    dispatch(actions.setUpFlag({ flag: 'isEditRequestInProgress', value: false }));
   }
 };
