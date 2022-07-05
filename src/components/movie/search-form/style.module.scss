@@ -25,3 +25,9 @@
 .input {
   width: $search-input-length;
 }
+
+.button {
+  display: flex;
+  justify-content: flex-end;
+  gap: $vertical-padding;
+}

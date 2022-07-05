@@ -12,7 +12,3 @@
   @include form-input-common-styles();
   @include disable-input-default-arrows();
 }
-
-.error {
-  @include input-error-style();
-}

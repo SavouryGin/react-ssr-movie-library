@@ -14,7 +14,7 @@ import {
 } from './helpers';
 
 export const loadMovies = (params?: IGetMoviesParams) => async (dispatch: AppDispatch) => {
-  dispatch(actions.setUpFlag({ flag: 'isMoviesLoading', value: true }));
+  dispatch(actions.setUpFlag({ flag: 'moviesLoading', value: true }));
 
   try {
     const response: AxiosResponse<IMoviesResponse> = await service.getMovies(params);
@@ -23,7 +23,7 @@ export const loadMovies = (params?: IGetMoviesParams) => async (dispatch: AppDis
   } catch (err: unknown) {
     dispatch(actions.setError(err as IBadRequestError));
   } finally {
-    dispatch(actions.setUpFlag({ flag: 'isMoviesLoading', value: false }));
+    dispatch(actions.setUpFlag({ flag: 'moviesLoading', value: false }));
   }
 };
 
@@ -74,7 +74,7 @@ export const updateMovie = (data: MovieItem) => async (dispatch: AppDispatch) =>
 };
 
 export const deleteMovieById = (id: string) => async (dispatch: AppDispatch) => {
-  dispatch(actions.setUpFlag({ flag: 'isMoviesLoading', value: true }));
+  dispatch(actions.setUpFlag({ flag: 'moviesLoading', value: true }));
 
   try {
     await service.deleteMovieById(id);
@@ -83,7 +83,7 @@ export const deleteMovieById = (id: string) => async (dispatch: AppDispatch) => 
   } catch (err: unknown) {
     dispatch(actions.setError(err as IBadRequestError));
   } finally {
-    dispatch(actions.setUpFlag({ flag: 'isMoviesLoading', value: false }));
+    dispatch(actions.setUpFlag({ flag: 'moviesLoading', value: false }));
   }
 };
 

@@ -1,28 +1,20 @@
+import ErrorLabel from '../error-label';
 import Label from '../label';
-import React, { useContext, useMemo, useState } from 'react';
+import React, { useMemo, useState } from 'react';
 import classNames from 'classnames';
 import style from './style.module.scss';
-import { FormContext } from '../form';
-import { FormContextProps, TextInputProps } from 'types/controls';
+import { TextInputProps } from 'types/controls';
 
-const TextInput = ({ name, onChange, className, label, defaultValue, error, ...rest }: TextInputProps) => {
-  const formContext = useContext<FormContextProps>(FormContext);
-  const [inputValue, setInputValue] = useState<string>(defaultValue || '');
-
-  const { onChangeInput } = formContext;
+const TextInput = ({ className, label, defaultInputValue, meta, input, ...rest }: TextInputProps) => {
+  const [inputValue, setInputValue] = useState<string>(defaultInputValue || '');
   const inputClass = classNames(style.input, { [className as string]: !!className });
-  const id = useMemo(() => rest.id || `text_input_${name}`, [rest.id]);
+  const id = useMemo(() => rest.id || `text_input_${input.name}`, [rest.id]);
 
   const onInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const value = e.target.value || '';
     setInputValue(value);
 
-    if (onChangeInput) {
-      onChangeInput(e);
-    }
-    if (onChange) {
-      onChange(e);
-    }
+    input.onChange(e);
   };
 
   return (
@@ -31,7 +23,7 @@ const TextInput = ({ name, onChange, className, label, defaultValue, error, ...r
       <input
         {...rest}
         type='text'
-        name={name}
+        name={input.name}
         id={id}
         value={inputValue}
         onChange={onInputChange}
@@ -41,7 +33,7 @@ const TextInput = ({ name, onChange, className, label, defaultValue, error, ...r
         readOnly={rest.isReadOnly}
         autoComplete={rest.isAutocomplete ? 'on' : 'off'}
       />
-      {error && <span className={style.error}>{error}</span>}
+      <ErrorLabel message={meta.touched && meta.error} />
     </div>
   );
 };

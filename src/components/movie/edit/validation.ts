@@ -8,7 +8,7 @@ export const validateMovieEditForm = (values: MovieItem) => {
     errors.title = 'Enter a movie title';
   }
 
-  if (!values.genres) {
+  if (!values.genres || !values.genres.length) {
     errors.genres = 'Select at least one genre';
   }
 
@@ -16,11 +16,15 @@ export const validateMovieEditForm = (values: MovieItem) => {
     errors.date = 'Enter a release date';
   }
 
-  if (!values.rating || values.rating > inputLimits.maxRating || values.rating < inputLimits.minRating) {
+  const isRatingValid = !values.rating || values.rating > inputLimits.maxRating || values.rating < inputLimits.minRating;
+
+  if (isRatingValid) {
     errors.rating = 'Enter a correct rating value';
   }
 
-  if (!values.runtime || values.runtime < inputLimits.minRuntime || values.runtime > inputLimits.maxRuntime) {
+  const isRuntimeValid = !values.runtime || values.runtime < inputLimits.minRuntime || values.runtime > inputLimits.maxRuntime;
+
+  if (isRuntimeValid) {
     errors.runtime = 'Enter a correct runtime value';
   }
 
@@ -35,6 +39,18 @@ export const validateMovieEditForm = (values: MovieItem) => {
   return errors;
 };
 
+/**
+ * Determines if the provided input is a valid url address.
+ *
+ * Examples of valid addresses:
+ * http://www.foufos.com
+ * https://www.foufos.com
+ * http://foufos.com
+ *
+ * Examples of non valid addresses:
+ * www.-foufos.com
+ * www.foufos
+ */
 const isValidUrl = (input: string): boolean => {
   const urlPattern = new RegExp(
     '^(https?:\\/\\/)?' + // validate protocol

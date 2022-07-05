@@ -73,7 +73,7 @@ export type MovieFormErrors = {
 };
 
 export interface MoviesFlags {
-  isMoviesLoading: boolean;
+  moviesLoading: boolean;
   isSelectedMovieLoading: boolean;
   isEditMovieOpened: boolean;
   isEditRequestInProgress: boolean;

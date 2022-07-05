@@ -26,7 +26,3 @@
   background: transparent;
   pointer-events: none;
 }
-
-.error {
-  @include input-error-style();
-}

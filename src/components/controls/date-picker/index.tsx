@@ -1,41 +1,34 @@
 import Button from '../button';
+import ErrorLabel from '../error-label';
 import Label from '../label';
-import React, { useContext, useMemo, useState } from 'react';
+import React, { useMemo, useState } from 'react';
 import classNames from 'classnames';
 import style from './style.module.scss';
 import { ButtonView } from 'enums/button-view';
-import { DatePickerProps, FormContextProps } from 'types/controls';
-import { FormContext } from '../form';
+import { DatePickerProps } from 'types/controls';
 import { Icon } from 'enums/icon';
 import { MAX_DATE, MIN_DATE } from './constants';
 
-const DatePicker = ({ name, onChange, className, label, defaultValue, error, ...rest }: DatePickerProps) => {
-  const formContext = useContext<FormContextProps>(FormContext);
-  const [inputValue, setInputValue] = useState<string>(defaultValue || '');
+const DatePicker = ({ className, label, defaultInputValue, meta, input, ...rest }: DatePickerProps) => {
+  const [inputValue, setInputValue] = useState<string>(defaultInputValue || '');
 
-  const { onChangeInput } = formContext;
   const inputClass = classNames(style.input, { [className as string]: !!className });
-  const id = useMemo(() => rest.id || `date_picker_${name}`, [rest.id]);
+  const id = useMemo(() => rest.id || `date_picker_${input.name}`, [rest.id]);
 
   const onInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const value = e.target.value || '';
     setInputValue(value);
 
-    if (onChangeInput) {
-      onChangeInput(e);
-    }
-    if (onChange) {
-      onChange(e);
-    }
+    input.onChange(e);
   };
 
   return (
     <div className={inputClass}>
-      <Label inputId={id} labelText={label} />
+      <Label inputId={id} labelText={label || ''} />
       <input
         {...rest}
         type='date'
-        name={name}
+        name={input.name}
         id={id}
         value={inputValue}
         onChange={onInputChange}
@@ -46,7 +39,7 @@ const DatePicker = ({ name, onChange, className, label, defaultValue, error, ...
         readOnly={rest.isReadOnly}
       />
       <Button view={ButtonView.Icon} icon={Icon.Calendar} className={style.button} />
-      {error && <span className={style.error}>{error}</span>}
+      <ErrorLabel message={meta.touched && meta.error} />
     </div>
   );
 };

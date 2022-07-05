@@ -8,7 +8,7 @@ const moviesInitialState: MoviesInitialState = {
   selectedMovie: null,
   error: null,
   flags: {
-    isMoviesLoading: false,
+    moviesLoading: false,
     isSelectedMovieLoading: false,
     isEditMovieOpened: false,
     isEditRequestInProgress: false,

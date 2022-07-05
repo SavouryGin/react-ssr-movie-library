@@ -1,7 +1,7 @@
 import Button from 'components/controls/button';
 import ModalWindow from 'components/modal-window';
 import MovieEdit from 'components/movie/edit';
-import React, { useEffect, useRef, useState } from 'react';
+import React, { useEffect, useMemo, useRef, useState } from 'react';
 import classNames from 'classnames';
 import style from './style.module.scss';
 import { ButtonView } from 'enums/button-view';
@@ -17,8 +17,9 @@ const Header = ({ className }: HeaderProps) => {
   const dispatch = useAppDispatch();
   const isEditFormOpened = useAppSelector(getIsEditMovieOpened);
   const editMovieId = useAppSelector(getEditMovieId);
+
   const isEditMode = !!editMovieId;
-  const popupTitle = isEditMode ? 'Update Movie' : 'Add Movie';
+  const popupTitle = useMemo(() => (isEditMode ? 'Update Movie' : 'Add Movie'), [editMovieId]);
   const modalRef = useRef<HTMLDivElement>(null);
   const [element, setElement] = useState<HTMLDivElement | null>(null);
 

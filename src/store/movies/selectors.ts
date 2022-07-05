@@ -22,7 +22,7 @@ export const getError = (state: RootState): IBadRequestError | null => state.mov
 
 export const getLoadMoviesParams = (state: RootState): SortParams | undefined => state.movies.loadMoviesParams;
 
-export const getIsMoviesLoadingStatus = createSelector(getMoviesFlags, (data: MoviesFlags): boolean => data.isMoviesLoading);
+export const getIsMoviesLoadingStatus = createSelector(getMoviesFlags, (data: MoviesFlags): boolean => data.moviesLoading);
 
 export const getIsSelectedMovieLoading = createSelector(getMoviesFlags, (data: MoviesFlags): boolean => data.isSelectedMovieLoading);
 

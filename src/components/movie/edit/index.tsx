@@ -1,12 +1,12 @@
 import Button from 'components/controls/button';
-import EditFieldSet from './edit-field-set';
+import EditFieldSet from '../edit-form';
 import React, { useState } from 'react';
 import Spinner from 'components/spinner';
 import classNames from 'classnames';
 import style from './style.module.scss';
 import { ButtonView } from 'enums/button-view';
 import { CommonProps } from 'types/basic';
-import { Form, FormRenderProps } from 'react-final-form';
+import { Form } from 'react-final-form';
 import { MovieItem } from 'types/movies';
 import { createNewMovie, updateMovie } from 'store/movies/thunks';
 import { getEditMovieItem, getError, getIsEditRequestInProgress } from 'store/movies/selectors';
@@ -21,6 +21,7 @@ const MovieEdit = ({ className }: CommonProps) => {
   const movie = useAppSelector(getEditMovieItem);
   const isLoading = useAppSelector(getIsEditRequestInProgress);
   const serverError = useAppSelector(getError);
+
   const isEditMode = !!movie;
   const initialValues = isEditMode && movie ? movie : movieDefaultValues;
   const movieEditFormClass = classNames(style.form, { [className as string]: !!className });
@@ -29,8 +30,7 @@ const MovieEdit = ({ className }: CommonProps) => {
     isEditMode ? dispatch(updateMovie({ ...movie, ...values })) : dispatch(createNewMovie(values));
   };
 
-  const onReset = (formProps: FormRenderProps<MovieItem, Partial<MovieItem>>) => {
-    formProps.form.reset();
+  const onReset = () => {
     setFormKey(formKey + 1);
     dispatch(moviesActions.setError(null));
   };
@@ -51,7 +51,7 @@ const MovieEdit = ({ className }: CommonProps) => {
                 type='reset'
                 text='Reset'
                 view={ButtonView.Secondary}
-                onClick={() => onReset(formRenderProps)}
+                onClick={onReset}
                 isDisabled={formRenderProps.submitting || formRenderProps.pristine}
               />
               <Button type='submit' text='Submit' isDisabled={formRenderProps.submitting} />

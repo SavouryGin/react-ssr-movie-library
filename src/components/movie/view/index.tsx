@@ -18,6 +18,7 @@ const MovieView = ({ className, movieId, onCloseView }: MovieViewProps) => {
   const dispatch = useAppDispatch();
   const movie = useAppSelector(getSelectedMovie) || defaultMovie;
   const isLoading = useAppSelector(getIsSelectedMovieLoading);
+
   const { date, genres, title, imagePath, rating, runtime, overview } = movie;
   const year = useMemo(() => new Date(date).getFullYear(), [date]);
   const genresList = useMemo(() => genres.map((item) => item.label).join(', '), [genres.length]);

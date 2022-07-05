@@ -1,5 +1,3 @@
-@import 'styles/colors.scss';
-@import 'styles/sizes.scss';
 @import 'styles/mixins.scss';
 
 .select {
@@ -10,8 +8,4 @@
   &:hover {
     opacity: 1;
   }
-}
-
-.error {
-  @include input-error-style();
 }

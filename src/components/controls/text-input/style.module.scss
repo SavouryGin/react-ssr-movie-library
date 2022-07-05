@@ -11,7 +11,3 @@
 .field {
   @include form-input-common-styles();
 }
-
-.error {
-  @include input-error-style();
-}

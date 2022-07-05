@@ -9,34 +9,30 @@ export const transformGetMoviesResponse = (response: AxiosResponse<IMoviesRespon
 
 export const transformGetMovieByIdResponse = (response: AxiosResponse<IMovieEntity>): MovieItem => mapMovieEntityToMovieItem(response.data);
 
-export const transformMovieItemToBaseEntity = (item: MovieItem): IMovieBaseEntity => {
-  return {
-    title: item.title,
-    vote_average: +item.rating,
-    release_date: item.date,
-    poster_path: item.url ?? '',
-    overview: item.overview,
-    budget: item.budget ?? 0,
-    revenue: item.revenue ?? 0,
-    runtime: +item.runtime,
-    genres: item.genres.map((option) => option.value),
-  };
-};
+export const transformMovieItemToBaseEntity = (item: MovieItem): IMovieBaseEntity => ({
+  title: item.title,
+  vote_average: +item.rating,
+  release_date: item.date,
+  poster_path: item.url ?? '',
+  overview: item.overview,
+  budget: item.budget ?? 0,
+  revenue: item.revenue ?? 0,
+  runtime: +item.runtime,
+  genres: item.genres.map((option) => option.value),
+});
 
-export const transformMovieItemToMovieEntity = (item: MovieItem): IMovieEntity => {
-  return {
-    id: +item.id,
-    title: item.title,
-    vote_average: +item.rating,
-    release_date: item.date,
-    poster_path: item.url ?? '',
-    overview: item.overview,
-    budget: item.budget ?? 0,
-    revenue: item.revenue ?? 0,
-    runtime: +item.runtime,
-    genres: item.genres.map((option) => option.value),
-  };
-};
+export const transformMovieItemToMovieEntity = (item: MovieItem): IMovieEntity => ({
+  id: +item.id,
+  title: item.title,
+  vote_average: +item.rating,
+  release_date: item.date,
+  poster_path: item.url ?? '',
+  overview: item.overview,
+  budget: item.budget ?? 0,
+  revenue: item.revenue ?? 0,
+  runtime: +item.runtime,
+  genres: item.genres.map((option) => option.value),
+});
 
 const mapGenresToGenreOptions = (input: string[]): GenreOption[] =>
   input.map((item) => {
@@ -46,19 +42,17 @@ const mapGenresToGenreOptions = (input: string[]): GenreOption[] =>
     return { label, value };
   });
 
-const mapMovieEntityToMovieItem = (entity: IMovieEntity): MovieItem => {
-  return {
-    id: entity.id.toString(),
-    title: entity.title,
-    genres: mapGenresToGenreOptions(entity.genres),
-    date: entity.release_date ?? MIN_DATE,
-    rating: entity.vote_average ?? 0,
-    runtime: entity.runtime ?? 0,
-    overview: entity.overview,
-    voteCount: entity.vote_count,
-    imagePath: entity.poster_path,
-    budget: entity.budget,
-    revenue: entity.revenue,
-    url: entity.poster_path,
-  };
-};
+const mapMovieEntityToMovieItem = (entity: IMovieEntity): MovieItem => ({
+  id: entity.id.toString(),
+  title: entity.title,
+  genres: mapGenresToGenreOptions(entity.genres),
+  date: entity.release_date ?? MIN_DATE,
+  rating: entity.vote_average ?? 0,
+  runtime: entity.runtime ?? 0,
+  overview: entity.overview,
+  voteCount: entity.vote_count,
+  imagePath: entity.poster_path,
+  budget: entity.budget,
+  revenue: entity.revenue,
+  url: entity.poster_path,
+});
