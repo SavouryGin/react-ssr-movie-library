@@ -1,5 +1,6 @@
 import { IBadRequestError } from 'types/server-entities';
 import { MovieItem, MoviesFlags } from 'types/movies';
+import { MoviesFlag } from 'enums/movies-flags';
 import { RootState } from 'types/basic';
 import { SortParams } from 'types/controls';
 import { createSelector } from '@reduxjs/toolkit';
@@ -22,10 +23,16 @@ export const getError = (state: RootState): IBadRequestError | null => state.mov
 
 export const getLoadMoviesParams = (state: RootState): SortParams | undefined => state.movies.loadMoviesParams;
 
-export const getIsMoviesLoadingStatus = createSelector(getMoviesFlags, (data: MoviesFlags): boolean => data.moviesLoading);
+export const getIsMoviesLoadingStatus = createSelector(getMoviesFlags, (data: MoviesFlags): boolean => data[MoviesFlag.MoviesLoading]);
 
-export const getIsSelectedMovieLoading = createSelector(getMoviesFlags, (data: MoviesFlags): boolean => data.isSelectedMovieLoading);
+export const getIsSelectedMovieLoading = createSelector(
+  getMoviesFlags,
+  (data: MoviesFlags): boolean => data[MoviesFlag.SelectedMovieLoading],
+);
 
-export const getIsEditMovieOpened = createSelector(getMoviesFlags, (data: MoviesFlags): boolean => data.isEditMovieOpened);
+export const getIsEditMovieOpened = createSelector(getMoviesFlags, (data: MoviesFlags): boolean => data[MoviesFlag.EditMovieOpened]);
 
-export const getIsEditRequestInProgress = createSelector(getMoviesFlags, (data: MoviesFlags): boolean => data.isEditRequestInProgress);
+export const getIsEditRequestInProgress = createSelector(
+  getMoviesFlags,
+  (data: MoviesFlags): boolean => data[MoviesFlag.EditRequestInProgress],
+);

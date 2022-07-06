@@ -1,5 +1,6 @@
 import { IBadRequestError } from 'types/server-entities';
-import { MovieItem, MoviesFlag, MoviesInitialState } from 'types/movies';
+import { MovieItem, MoviesInitialState } from 'types/movies';
+import { MoviesFlag } from 'enums/movies-flags';
 import { PayloadAction, createSlice } from '@reduxjs/toolkit';
 import { SortParams } from 'types/controls';
 
@@ -8,10 +9,10 @@ const moviesInitialState: MoviesInitialState = {
   selectedMovie: null,
   error: null,
   flags: {
-    moviesLoading: false,
-    isSelectedMovieLoading: false,
-    isEditMovieOpened: false,
-    isEditRequestInProgress: false,
+    [MoviesFlag.MoviesLoading]: false,
+    [MoviesFlag.SelectedMovieLoading]: false,
+    [MoviesFlag.EditMovieOpened]: false,
+    [MoviesFlag.EditRequestInProgress]: false,
   },
 };
 
@@ -42,7 +43,7 @@ export const moviesSlice = createSlice({
 
     toggleEditMovieForm: (state, action: PayloadAction<{ isOpened: boolean; editMovieId?: string }>) => {
       const { isOpened, editMovieId } = action.payload;
-      state.flags.isEditMovieOpened = isOpened;
+      state.flags[MoviesFlag.EditMovieOpened] = isOpened;
       state.editMovieId = editMovieId;
     },
 

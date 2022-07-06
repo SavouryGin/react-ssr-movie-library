@@ -1,6 +1,7 @@
 import { CommonProps } from './basic';
 import { Genre } from 'enums/genre';
 import { IBadRequestError } from './server-entities';
+import { MoviesFlag } from 'enums/movies-flags';
 import { SortParams } from './controls';
 
 export type MovieItem = {
@@ -72,11 +73,4 @@ export type MovieFormErrors = {
   overview?: string;
 };
 
-export interface MoviesFlags {
-  moviesLoading: boolean;
-  isSelectedMovieLoading: boolean;
-  isEditMovieOpened: boolean;
-  isEditRequestInProgress: boolean;
-}
-
-export type MoviesFlag = keyof MoviesFlags;
+export type MoviesFlags = { [key in MoviesFlag]: boolean };
