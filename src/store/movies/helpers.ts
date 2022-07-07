@@ -1,13 +1,12 @@
-import { AxiosResponse } from 'axios';
 import { Genre } from 'enums/genre';
 import { GenreOption, MovieItem } from 'types/movies';
 import { IMovieBaseEntity, IMovieEntity, IMoviesResponse } from 'types/server-entities';
 import { MIN_DATE } from 'components/controls/date-picker/constants';
 
-export const transformGetMoviesResponse = (response: AxiosResponse<IMoviesResponse>): MovieItem[] =>
-  response.data.data.map((entity) => mapMovieEntityToMovieItem(entity));
+export const transformGetMoviesResponse = (response: IMoviesResponse): MovieItem[] =>
+  response.data.map((entity) => mapMovieEntityToMovieItem(entity));
 
-export const transformGetMovieByIdResponse = (response: AxiosResponse<IMovieEntity>): MovieItem => mapMovieEntityToMovieItem(response.data);
+export const transformGetMovieByIdResponse = (response: IMovieEntity): MovieItem => mapMovieEntityToMovieItem(response);
 
 export const transformMovieItemToBaseEntity = (item: MovieItem): IMovieBaseEntity => ({
   title: item.title,

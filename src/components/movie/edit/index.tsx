@@ -9,8 +9,8 @@ import { CommonProps } from 'types/basic';
 import { Form } from 'react-final-form';
 import { MovieItem } from 'types/movies';
 import { createNewMovie, updateMovie } from 'store/movies/thunks';
+import { formSubscription, movieDefaultValues } from './constants';
 import { getEditMovieItem, getError, getIsEditRequestInProgress } from 'store/movies/selectors';
-import { movieDefaultValues } from './constants';
 import { moviesActions } from 'store/movies/slice';
 import { useAppDispatch, useAppSelector } from 'hooks';
 import { validateMovieEditForm } from './validation';
@@ -38,28 +38,26 @@ const MovieEdit = ({ className }: CommonProps) => {
   return (
     <Form
       onSubmit={onSubmit}
-      subscription={{ submitting: true, pristine: true }}
+      subscription={formSubscription}
       validate={validateMovieEditForm}
       initialValues={initialValues}
-      render={(formRenderProps) => {
-        return (
-          <form className={movieEditFormClass} onSubmit={formRenderProps.handleSubmit} key={formKey}>
-            {isLoading && <Spinner className={style.spinner} />}
-            <EditFieldSet initialValues={initialValues} />
-            <div className={style.buttons}>
-              <Button
-                type='reset'
-                text='Reset'
-                view={ButtonView.Secondary}
-                onClick={onReset}
-                isDisabled={formRenderProps.submitting || formRenderProps.pristine}
-              />
-              <Button type='submit' text='Submit' isDisabled={formRenderProps.submitting} />
-            </div>
-            {serverError && <div className={style.error}>{`Something went wrong... ${serverError?.message}`}</div>}
-          </form>
-        );
-      }}
+      render={(formRenderProps) => (
+        <form className={movieEditFormClass} onSubmit={formRenderProps.handleSubmit} key={formKey}>
+          {isLoading && <Spinner className={style.spinner} />}
+          <EditFieldSet initialValues={initialValues} />
+          <div className={style.buttons}>
+            <Button
+              type='reset'
+              text='Reset'
+              view={ButtonView.Secondary}
+              onClick={onReset}
+              isDisabled={formRenderProps.submitting || formRenderProps.pristine}
+            />
+            <Button type='submit' text='Submit' isDisabled={formRenderProps.submitting} />
+          </div>
+          {serverError && <div className={style.error}>{`Something went wrong... ${serverError.message}`}</div>}
+        </form>
+      )}
     />
   );
 };
