@@ -4,11 +4,17 @@ import { MOVIES_BASE_URL } from './constants';
 
 const moviesService = {
   getMovies: (params?: IGetMoviesParams) => {
-    return http.get(MOVIES_BASE_URL, { params: { ...params, filter: params?.filter?.join(',') } });
+    return http
+      .get(MOVIES_BASE_URL, { params: { ...params, filter: params?.filter?.join(',') } })
+      .then((response) => response.data)
+      .catch((error) => error);
   },
 
   getMovieById: (id: string) => {
-    return http.get(`${MOVIES_BASE_URL}/${id}`, { params: { id } });
+    return http
+      .get(`${MOVIES_BASE_URL}/${id}`, { params: { id } })
+      .then((response) => response.data)
+      .catch((error) => error);
   },
 
   deleteMovieById: (id: string) => {

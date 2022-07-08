@@ -1,12 +1,14 @@
 import { ButtonView } from 'enums/button-view';
 import { CommonProps } from './basic';
+import { FieldRenderProps } from 'react-final-form';
 import { Icon } from 'enums/icon';
 import { SortOrder } from 'enums/params';
 
 export type InputHandlersProps = {
-  onChange?: () => void;
+  onChange?: (event: React.ChangeEvent<FormInput>) => void;
   onBlur?: () => void;
   onFocus?: () => void;
+  error?: string;
 };
 
 export type SelectEntity = {
@@ -63,37 +65,32 @@ export type SelectProps = CommonProps &
     passOption?: (option: SelectEntity) => void;
   };
 
-export type TextInputProps = CommonProps &
-  InputHandlersProps & {
-    name: string;
-    label?: string;
-    defaultValue?: string;
-    placeholder?: string;
-    isDisabled?: boolean;
-    isRequired?: boolean;
-    isReadOnly?: boolean;
-    isInvalid?: boolean;
-    isAutocomplete?: boolean;
-    maxLength?: number;
-    minLength?: number;
-    value?: string;
-  };
+export type TextInputProps = CommonProps & {
+  label?: string;
+  defaultInputValue?: string;
+  placeholder?: string;
+  isDisabled?: boolean;
+  isRequired?: boolean;
+  isReadOnly?: boolean;
+  isInvalid?: boolean;
+  isAutocomplete?: boolean;
+  maxLength?: number;
+  minLength?: number;
+} & FieldRenderProps<string, HTMLInputElement, string>;
 
 export type NumericInputProps = CommonProps &
   InputHandlersProps & {
-    name: string;
     label?: string;
     max?: number;
     min?: number;
     step?: number;
     placeholder?: string;
-    defaultValue?: number;
+    defaultInputValue?: number;
     isDisabled?: boolean;
     isRequired?: boolean;
     isReadOnly?: boolean;
     isInvalid?: boolean;
-    value?: string;
-  };
+  } & FieldRenderProps<number, HTMLInputElement, number>;
 
 export type MultiSelectOption = {
   value: any;
@@ -103,12 +100,11 @@ export type MultiSelectOption = {
 };
 
 export type MultiSelectProps = CommonProps & {
-  name: string;
   options: MultiSelectOption[];
   defaultOptions?: MultiSelectOption[];
   placeholder?: string;
   label?: string;
-};
+} & FieldRenderProps<any, HTMLElement, any>;
 
 export type LabelProps = CommonProps & {
   inputId: string;
@@ -117,18 +113,16 @@ export type LabelProps = CommonProps & {
 
 export type TextAreaProps = TextInputProps;
 
-export type DatePickerProps = CommonProps &
-  InputHandlersProps & {
-    name: string;
-    label: string;
-    max?: string;
-    min?: string;
-    step?: number;
-    placeholder?: string;
-    defaultValue?: string;
-    isDisabled?: boolean;
-    isRequired?: boolean;
-    isReadOnly?: boolean;
-    isInvalid?: boolean;
-    value?: string;
-  };
+export type DatePickerProps = CommonProps & {
+  label?: string;
+  max?: string;
+  min?: string;
+  step?: number;
+  placeholder?: string;
+  defaultInputValue?: string;
+  isDisabled?: boolean;
+  isRequired?: boolean;
+  isReadOnly?: boolean;
+  isInvalid?: boolean;
+  value?: string;
+} & FieldRenderProps<string, HTMLInputElement, string>;

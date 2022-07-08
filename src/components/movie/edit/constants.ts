@@ -3,6 +3,8 @@ import { MovieItem } from 'types/movies';
 
 export const movieDefaultValues: MovieItem = { id: '', title: '', url: '', genres: [], date: '', rating: 0, runtime: 0, overview: '' };
 
+export const formSubscription = { submitting: true, pristine: true };
+
 export const genreOptions = [
   {
     label: 'Action',

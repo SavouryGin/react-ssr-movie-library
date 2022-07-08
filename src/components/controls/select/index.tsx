@@ -1,14 +1,11 @@
-import React, { useContext, useMemo, useState } from 'react';
+import React, { useMemo, useState } from 'react';
 import classNames from 'classnames';
 import style from './style.module.scss';
-import { FormContext } from 'components/controls/form';
-import { FormContextProps, SelectEntity, SelectProps } from 'types/controls';
+import { SelectEntity, SelectProps } from 'types/controls';
 
 const Select = ({ options, className, name, defaultOption, onChange, passOption, ...rest }: SelectProps) => {
   const [selectedValue, setSelectedValue] = useState<SelectEntity | undefined>(defaultOption);
-  const formContext = useContext<FormContextProps>(FormContext);
 
-  const { onChangeInput } = formContext;
   const id = useMemo(() => rest.id || `select_${name}`, [rest.id]);
   const selectClass = classNames({ [className as string]: !!className });
 
@@ -25,11 +22,8 @@ const Select = ({ options, className, name, defaultOption, onChange, passOption,
 
     setSelectedValue(selected[0]);
 
-    if (onChangeInput) {
-      onChangeInput(e);
-    }
     if (onChange) {
-      onChange();
+      onChange(e);
     }
     if (passOption) {
       passOption(selected[0]);

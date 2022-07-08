@@ -1,8 +1,8 @@
-import Form from 'components/controls/form';
-import React, { useState } from 'react';
+import Button from 'components/controls/button';
+import React from 'react';
 import TextInput from 'components/controls/text-input';
 import style from './style.module.scss';
-import { FormValues } from 'types/controls';
+import { Field, Form } from 'react-final-form';
 import { IGetMoviesParams } from 'types/server-entities';
 import { SearchBy } from 'enums/params';
 import { loadMovies } from 'store/movies/thunks';
@@ -11,14 +11,9 @@ import { useAppDispatch } from 'hooks';
 const MovieSearchForm = () => {
   const searchFormInitialValue = { movie: '' };
   const dispatch = useAppDispatch();
-  const [searchQuery, setSearchQuery] = useState<FormValues>(searchFormInitialValue);
-  const takeValues = (values: FormValues) => {
-    setSearchQuery(values as typeof searchFormInitialValue);
-  };
 
-  const onSubmit = (e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
-    const params: IGetMoviesParams = { searchBy: SearchBy.Title, search: searchQuery.movie as string };
+  const onSubmit = (values: { movie: string }) => {
+    const params: IGetMoviesParams = { searchBy: SearchBy.Title, search: values.movie };
     dispatch(loadMovies(params));
   };
 
@@ -27,11 +22,23 @@ const MovieSearchForm = () => {
       <h2 className={style.heading}>Find your movie</h2>
       <Form
         onSubmit={onSubmit}
-        passValues={takeValues}
-        inputs={<TextInput name='movie' className={style.input} placeholder='What do you want to watch?' />}
-        initialValues={searchFormInitialValue}
-        className={style.search}
-        submitButtonText='Search'
+        subscription={{ submitting: true, pristine: true }}
+        render={(formRenderProps) => {
+          return (
+            <form className={style.search} onSubmit={formRenderProps.handleSubmit}>
+              <Field
+                name='movie'
+                component={TextInput}
+                className={style.input}
+                placeholder='What do you want to watch?'
+                defaultInputValue={searchFormInitialValue.movie}
+              />
+              <div className={style.button}>
+                <Button type='submit' text='Submit' isDisabled={formRenderProps.submitting} />
+              </div>
+            </form>
+          );
+        }}
       />
     </div>
   );

@@ -1,6 +1,8 @@
 import { CommonProps } from './basic';
 import { Genre } from 'enums/genre';
 import { IBadRequestError } from './server-entities';
+import { MoviesFlag } from 'enums/movies-flags';
+import { SortParams } from './controls';
 
 export type MovieItem = {
   id: string;
@@ -42,11 +44,6 @@ export type MovieBodyProps = {
   imagePath?: string;
 };
 
-export type MovieEditProps = CommonProps & {
-  isEditMode?: boolean;
-  movie?: MovieItem;
-};
-
 export type MovieDeleteConfirmationProps = CommonProps & {
   onConfirm: () => void;
 };
@@ -60,7 +57,20 @@ export type GenreOption = { label: string; value: Genre };
 export type MoviesInitialState = {
   items: MovieItem[];
   selectedMovie: MovieItem | null;
-  isMoviesLoading: boolean;
-  isSelectedMovieLoading: boolean;
   error: IBadRequestError | null;
+  editMovieId?: string;
+  flags: MoviesFlags;
+  loadMoviesParams?: SortParams;
 };
+
+export type MovieFormErrors = {
+  title?: string;
+  genres?: string;
+  date?: string;
+  rating?: string;
+  runtime?: string;
+  url?: string;
+  overview?: string;
+};
+
+export type MoviesFlags = { [key in MoviesFlag]: boolean };

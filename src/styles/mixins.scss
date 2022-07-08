@@ -96,3 +96,9 @@
     -moz-appearance: textfield;
   }
 }
+
+@mixin input-error-style() {
+  color: $accent-color;
+  font-size: small;
+  font-style: italic;
+}

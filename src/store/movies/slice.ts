@@ -1,13 +1,19 @@
 import { IBadRequestError } from 'types/server-entities';
 import { MovieItem, MoviesInitialState } from 'types/movies';
+import { MoviesFlag } from 'enums/movies-flags';
 import { PayloadAction, createSlice } from '@reduxjs/toolkit';
+import { SortParams } from 'types/controls';
 
 const moviesInitialState: MoviesInitialState = {
   items: [],
-  isMoviesLoading: false,
-  isSelectedMovieLoading: false,
-  error: null,
   selectedMovie: null,
+  error: null,
+  flags: {
+    [MoviesFlag.MoviesLoading]: false,
+    [MoviesFlag.SelectedMovieLoading]: false,
+    [MoviesFlag.EditMovieOpened]: false,
+    [MoviesFlag.EditRequestInProgress]: false,
+  },
 };
 
 export const moviesSlice = createSlice({
@@ -26,16 +32,23 @@ export const moviesSlice = createSlice({
       state.selectedMovie = action.payload;
     },
 
-    setIsMoviesLoading: (state, action: PayloadAction<boolean>) => {
-      state.isMoviesLoading = action.payload;
-    },
-
-    setIsSelectedMovieLoading: (state, action: PayloadAction<boolean>) => {
-      state.isSelectedMovieLoading = action.payload;
-    },
-
     setError: (state, action: PayloadAction<IBadRequestError | null>) => {
       state.error = action.payload;
+    },
+
+    setUpFlag: (state, action: PayloadAction<{ flag: MoviesFlag; value: boolean }>) => {
+      const { flag, value } = action.payload;
+      state.flags[flag] = value;
+    },
+
+    toggleEditMovieForm: (state, action: PayloadAction<{ isOpened: boolean; editMovieId?: string }>) => {
+      const { isOpened, editMovieId } = action.payload;
+      state.flags[MoviesFlag.EditMovieOpened] = isOpened;
+      state.editMovieId = editMovieId;
+    },
+
+    setParams: (state, action: PayloadAction<SortParams>) => {
+      state.loadMoviesParams = action.payload;
     },
   },
 });

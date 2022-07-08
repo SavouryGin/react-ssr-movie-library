@@ -1,63 +1,28 @@
 @import 'styles/sizes.scss';
+@import 'styles/mixins.scss';
+@import 'styles/colors.scss';
+
+.buttons {
+  display: flex;
+  justify-content: flex-end;
+  gap: $vertical-padding;
+}
 
 .form {
-  div.form-buttons {
-    display: flex;
-    justify-content: flex-end;
-    gap: $vertical-padding;
-  }
+  min-width: 64rem;
+  position: relative;
 }
 
-.fieldset {
-  border: none;
-  padding: 0;
-  display: grid;
-  gap: $vertical-padding;
-  grid-template-columns: 8fr 4fr;
-  grid-template-rows: 5fr 5fr 5fr 9fr;
-  grid-template-areas:
-    'title date'
-    'url rating'
-    'genre runtime'
-    'overview overview';
+.spinner {
+  width: 100%;
+  height: 100%;
+  background: transparent;
+  align-items: center;
 }
 
-.title {
-  grid-area: title;
-}
-
-.url {
-  grid-area: url;
-}
-
-.genre {
-  grid-area: genre;
-}
-
-.date {
-  grid-area: date;
-}
-
-.rating {
-  grid-area: rating;
-}
-
-.runtime {
-  grid-area: runtime;
-}
-
-.overview {
-  grid-area: overview;
-  height: 5rem;
-}
-
-.title,
-.url,
-.genre,
-.date,
-.rating,
-.runtime {
-  input {
-    height: 2.4rem;
-  }
+.error {
+  @include input-error-style();
+  margin: $vertical-padding 0;
+  padding: $vertical-padding;
+  border: $border-height solid $accent-color;
 }

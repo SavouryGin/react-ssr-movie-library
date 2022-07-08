@@ -10,6 +10,7 @@ import { MoviePanelProps } from 'types/movies';
 import { SelectEntity, SortParams } from 'types/controls';
 import { getIsMoviesLoadingStatus, getMovieItems } from 'store/movies/selectors';
 import { loadMovies } from 'store/movies/thunks';
+import { moviesActions } from 'store/movies/slice';
 import { sortOptions } from './constants';
 import { useAppDispatch, useAppSelector } from 'hooks';
 
@@ -24,6 +25,7 @@ const MoviePanel = ({ className, panelGenre }: MoviePanelProps) => {
 
   useEffect(() => {
     dispatch(loadMovies(params));
+    dispatch(moviesActions.setParams(params));
   }, [sortOption, panelGenre]);
 
   const panelClass = classNames(style.panel, { [className as string]: !!className });

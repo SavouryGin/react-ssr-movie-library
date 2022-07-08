@@ -1,28 +1,21 @@
+import ErrorLabel from '../error-label';
 import Label from '../label';
-import React, { useContext, useMemo, useState } from 'react';
+import React, { useMemo, useState } from 'react';
 import classNames from 'classnames';
 import style from './style.module.scss';
-import { FormContext } from '../form';
-import { FormContextProps, NumericInputProps } from 'types/controls';
+import { NumericInputProps } from 'types/controls';
 
-const NumericInput = ({ name, onChange, className, label, defaultValue, ...rest }: NumericInputProps) => {
-  const formContext = useContext<FormContextProps>(FormContext);
-  const [inputValue, setInputValue] = useState<number>(defaultValue || 0);
+const NumericInput = ({ className, label, defaultInputValue, meta, input, ...rest }: NumericInputProps) => {
+  const [inputValue, setInputValue] = useState<number>(defaultInputValue || 0);
 
-  const { onChangeInput } = formContext;
   const inputClass = classNames(style.input, { [className as string]: !!className });
-  const id = useMemo(() => rest.id || `numeric_input_${name}`, [rest.id]);
+  const id = useMemo(() => rest.id || `numeric_input_${input.name}`, [rest.id]);
 
   const onInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const value = Number(e.target.value) || 0;
     setInputValue(value);
 
-    if (onChangeInput) {
-      onChangeInput(e);
-    }
-    if (onChange) {
-      onChange();
-    }
+    input.onChange(e);
   };
 
   return (
@@ -31,7 +24,7 @@ const NumericInput = ({ name, onChange, className, label, defaultValue, ...rest 
       <input
         {...rest}
         type='number'
-        name={name}
+        name={input.name}
         id={id}
         value={inputValue}
         onChange={onInputChange}
@@ -39,6 +32,7 @@ const NumericInput = ({ name, onChange, className, label, defaultValue, ...rest 
         disabled={rest.isDisabled}
         readOnly={rest.isReadOnly}
       />
+      <ErrorLabel message={meta.touched && meta.error} />
     </div>
   );
 };

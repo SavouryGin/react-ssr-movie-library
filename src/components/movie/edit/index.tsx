@@ -1,99 +1,63 @@
-import CustomMultiSelect from 'components/controls/multi-select';
-import DatePicker from 'components/controls/date-picker';
-import Form from 'components/controls/form';
-import NumericInput from 'components/controls/numeric-input';
+import Button from 'components/controls/button';
+import EditFieldSet from '../edit-form';
 import React, { useState } from 'react';
-import TextArea from 'components/controls/text-area';
-import TextInput from 'components/controls/text-input';
+import Spinner from 'components/spinner';
 import classNames from 'classnames';
 import style from './style.module.scss';
-import { FormValues } from 'types/controls';
-import { MovieEditProps, MovieItem } from 'types/movies';
-import { genreOptions, inputLimits, movieDefaultValues } from './constants';
+import { ButtonView } from 'enums/button-view';
+import { CommonProps } from 'types/basic';
+import { Form } from 'react-final-form';
+import { MovieItem } from 'types/movies';
+import { createNewMovie, updateMovie } from 'store/movies/thunks';
+import { formSubscription, movieDefaultValues } from './constants';
+import { getEditMovieItem, getError, getIsEditRequestInProgress } from 'store/movies/selectors';
+import { moviesActions } from 'store/movies/slice';
+import { useAppDispatch, useAppSelector } from 'hooks';
+import { validateMovieEditForm } from './validation';
 
-const MovieEdit = ({ className, isEditMode, movie }: MovieEditProps) => {
+const MovieEdit = ({ className }: CommonProps) => {
+  const [formKey, setFormKey] = useState<number>(0);
+  const dispatch = useAppDispatch();
+  const movie = useAppSelector(getEditMovieItem);
+  const isLoading = useAppSelector(getIsEditRequestInProgress);
+  const serverError = useAppSelector(getError);
+
+  const isEditMode = !!movie;
   const initialValues = isEditMode && movie ? movie : movieDefaultValues;
   const movieEditFormClass = classNames(style.form, { [className as string]: !!className });
-  const [movieValues, setMovieValues] = useState(initialValues);
 
-  const getFormValuesOnChangeInputs = (values: FormValues) => {
-    setMovieValues(values as MovieItem);
+  const onSubmit = (values: MovieItem) => {
+    isEditMode ? dispatch(updateMovie({ ...movie, ...values })) : dispatch(createNewMovie(values));
   };
 
-  const addNewMovie = (item: MovieItem) => {
-    // TODO: Implement adding movie API call
-    console.log(item);
+  const onReset = () => {
+    setFormKey(formKey + 1);
+    dispatch(moviesActions.setError(null));
   };
-
-  const updateMovie = (item: MovieItem) => {
-    // TODO: Implement updating movie API call
-    console.log(item);
-  };
-
-  const onSubmit = (e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
-    isEditMode ? updateMovie(movieValues) : addNewMovie(movieValues);
-  };
-
-  const inputs = (
-    <fieldset className={style.fieldset}>
-      <TextInput name='title' label='Title' className={style.title} maxLength={100} defaultValue={initialValues.title} />
-      <TextInput
-        name='url'
-        label='Movie url'
-        className={style.url}
-        placeholder='https://'
-        maxLength={inputLimits.maxTextInputLength}
-        defaultValue={initialValues.url}
-      />
-      <CustomMultiSelect
-        name='genres'
-        label='Genres'
-        className={style.genre}
-        options={genreOptions}
-        placeholder='Select genre'
-        defaultOptions={initialValues.genres}
-      />
-      <DatePicker name='date' label='Release date' className={style.date} defaultValue={initialValues.date} />
-      <NumericInput
-        name='rating'
-        label='Rating'
-        className={style.rating}
-        max={inputLimits.maxRating}
-        min={inputLimits.minRating}
-        step={inputLimits.ratingStep}
-        placeholder='From 0 to 10'
-        defaultValue={initialValues.rating}
-      />
-      <NumericInput
-        name='runtime'
-        label='Runtime'
-        className={style.runtime}
-        placeholder='minutes'
-        min={inputLimits.minRuntime}
-        max={inputLimits.maxRuntime}
-        step={inputLimits.runtimeStep}
-        defaultValue={initialValues.runtime}
-      />
-      <TextArea
-        name='overview'
-        label='Overview'
-        className={style.overview}
-        maxLength={inputLimits.maxTextInputLength}
-        defaultValue={initialValues.overview}
-      />
-    </fieldset>
-  );
 
   return (
     <Form
       onSubmit={onSubmit}
-      passValues={getFormValuesOnChangeInputs}
-      inputs={inputs}
+      subscription={formSubscription}
+      validate={validateMovieEditForm}
       initialValues={initialValues}
-      submitButtonText='Submit'
-      className={movieEditFormClass}
-      hasResetButton
+      render={(formRenderProps) => (
+        <form className={movieEditFormClass} onSubmit={formRenderProps.handleSubmit} key={formKey}>
+          {isLoading && <Spinner className={style.spinner} />}
+          <EditFieldSet initialValues={initialValues} />
+          <div className={style.buttons}>
+            <Button
+              type='reset'
+              text='Reset'
+              view={ButtonView.Secondary}
+              onClick={onReset}
+              isDisabled={formRenderProps.submitting || formRenderProps.pristine}
+            />
+            <Button type='submit' text='Submit' isDisabled={formRenderProps.submitting} />
+          </div>
+          {serverError && <div className={style.error}>{`Something went wrong... ${serverError.message}`}</div>}
+        </form>
+      )}
     />
   );
 };
