@@ -3,10 +3,11 @@ import React from 'react';
 import TextInput from 'components/controls/text-input';
 import style from './style.module.scss';
 import { Field, Form } from 'react-final-form';
+import { SEARCH_PATH } from 'pages/app-router/constants';
 import { SearchBy } from 'enums/params';
+import { createSearchParams, useNavigate } from 'react-router-dom';
 import { loadMovies } from 'store/movies/thunks';
 import { useAppDispatch } from 'hooks';
-import { useNavigate } from 'react-router-dom';
 
 const MovieSearchForm = () => {
   const searchFormInitialValue = { movie: '' };
@@ -16,7 +17,7 @@ const MovieSearchForm = () => {
   const onSubmit = (values: { movie: string }) => {
     const params = { searchBy: SearchBy.Title, search: values.movie };
     dispatch(loadMovies(params));
-    navigate(params);
+    navigate({ pathname: SEARCH_PATH, search: `?${createSearchParams({ search: values.movie })}` });
   };
 
   return (

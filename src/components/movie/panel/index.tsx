@@ -13,10 +13,12 @@ import { loadMovies } from 'store/movies/thunks';
 import { moviesActions } from 'store/movies/slice';
 import { sortOptions } from './constants';
 import { useAppDispatch, useAppSelector } from 'hooks';
+import { useSearchParams } from 'react-router-dom';
 
 const MoviePanel = ({ className, panelGenre }: MoviePanelProps) => {
   const dispatch = useAppDispatch();
   const [sortOption, setSortOption] = useState<SelectEntity>(sortOptions[0]);
+  const [searchParams, setSearchParams] = useSearchParams();
   const movieItems = useAppSelector(getMovieItems);
   const isLoading = useAppSelector(getIsMoviesLoadingStatus);
   const params: SortParams = useMemo(() => {
@@ -26,6 +28,8 @@ const MoviePanel = ({ className, panelGenre }: MoviePanelProps) => {
   useEffect(() => {
     dispatch(loadMovies(params));
     dispatch(moviesActions.setParams(params));
+    setSearchParams(params);
+    console.log(searchParams);
   }, [sortOption, panelGenre]);
 
   const panelClass = classNames(style.panel, { [className as string]: !!className });
