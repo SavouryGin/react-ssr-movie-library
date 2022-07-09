@@ -3,18 +3,20 @@ import React from 'react';
 import TextInput from 'components/controls/text-input';
 import style from './style.module.scss';
 import { Field, Form } from 'react-final-form';
-import { IGetMoviesParams } from 'types/server-entities';
 import { SearchBy } from 'enums/params';
 import { loadMovies } from 'store/movies/thunks';
 import { useAppDispatch } from 'hooks';
+import { useNavigate } from 'react-router-dom';
 
 const MovieSearchForm = () => {
   const searchFormInitialValue = { movie: '' };
   const dispatch = useAppDispatch();
+  const navigate = useNavigate();
 
   const onSubmit = (values: { movie: string }) => {
-    const params: IGetMoviesParams = { searchBy: SearchBy.Title, search: values.movie };
+    const params = { searchBy: SearchBy.Title, search: values.movie };
     dispatch(loadMovies(params));
+    navigate(params);
   };
 
   return (
