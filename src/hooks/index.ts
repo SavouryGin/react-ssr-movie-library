@@ -1,4 +1,6 @@
 import { AppDispatch, RootState } from 'types/basic';
+import { SortOrder } from 'enums/params';
+import { SortParams } from 'types/controls';
 import { TypedUseSelectorHook, useDispatch, useSelector } from 'react-redux';
 import { useEffect, useState } from 'react';
 
@@ -43,4 +45,18 @@ export const useMovieIdFromSearchParams = (searchParams: URLSearchParams): strin
   }, [searchParams]);
 
   return movieId;
+};
+
+export const useSortOptionsFromSearchParams = (searchParams: URLSearchParams): SortParams | undefined => {
+  const [sortOptions, setSortOptions] = useState<SortParams>();
+
+  useEffect(() => {
+    const sortBy = searchParams.get('sortBy');
+    const sortOrder = searchParams.get('sortOrder');
+    if (sortBy && sortOrder) {
+      setSortOptions({ sortBy, sortOrder: sortOrder as SortOrder });
+    }
+  }, [searchParams]);
+
+  return sortOptions;
 };

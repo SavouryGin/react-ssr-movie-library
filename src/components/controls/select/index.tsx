@@ -1,4 +1,4 @@
-import React, { useMemo, useState } from 'react';
+import React, { useEffect, useMemo, useState } from 'react';
 import classNames from 'classnames';
 import style from './style.module.scss';
 import { SelectEntity, SelectProps } from 'types/controls';
@@ -16,6 +16,10 @@ const Select = ({ options, className, name, defaultOption, onChange, passOption,
       </option>
     );
   });
+
+  useEffect(() => {
+    setSelectedValue(defaultOption);
+  }, [defaultOption]);
 
   const onSelectChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
     const selected = options.filter((item) => item.value.toString() === e.target.value);
