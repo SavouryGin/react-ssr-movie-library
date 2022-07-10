@@ -1,12 +1,12 @@
 import ErrorLabel from '../error-label';
 import Label from '../label';
-import React, { useMemo, useState } from 'react';
+import React, { useEffect, useMemo, useState } from 'react';
 import classNames from 'classnames';
 import style from './style.module.scss';
 import { TextInputProps } from 'types/controls';
 
 const TextInput = ({ className, label, defaultInputValue, meta, input, ...rest }: TextInputProps) => {
-  const [inputValue, setInputValue] = useState<string>(defaultInputValue || '');
+  const [inputValue, setInputValue] = useState<string>('');
   const inputClass = classNames(style.input, { [className as string]: !!className });
   const id = useMemo(() => rest.id || `text_input_${input.name}`, [rest.id]);
 
@@ -16,6 +16,10 @@ const TextInput = ({ className, label, defaultInputValue, meta, input, ...rest }
 
     input.onChange(e);
   };
+
+  useEffect(() => {
+    setInputValue(defaultInputValue || '');
+  }, [defaultInputValue]);
 
   return (
     <div className={inputClass}>

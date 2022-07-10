@@ -8,7 +8,7 @@ import { MovieContextProps } from 'types/movies';
 import { SEARCH_PATH } from 'pages/app-router/constants';
 import { createSearchParams, useNavigate, useSearchParams } from 'react-router-dom';
 import { homeTabs } from './constants';
-import { useSelectedTabFromSearchParams } from 'hooks';
+import { useSearchQueryFromSearchParams, useSelectedTabFromSearchParams } from 'hooks';
 
 export const MovieContext = React.createContext({} as MovieContextProps);
 
@@ -17,6 +17,7 @@ const Home = () => {
   const navigate = useNavigate();
   const [searchParams] = useSearchParams();
   const selectedTab = useSelectedTabFromSearchParams(searchParams);
+  const searchQuery = useSearchQueryFromSearchParams(searchParams);
 
   const onClickMovie = (id: string) => {
     setMovieId(id);
@@ -28,7 +29,11 @@ const Home = () => {
     navigate({ pathname: SEARCH_PATH });
   };
 
-  const homeHeader = movieId ? <MovieView movieId={movieId} onCloseView={onClickSearch} className={style.movie} /> : <MovieSearchForm />;
+  const homeHeader = movieId ? (
+    <MovieView movieId={movieId} onCloseView={onClickSearch} className={style.movie} />
+  ) : (
+    <MovieSearchForm searchQuery={searchQuery} />
+  );
 
   return (
     <article className={style.home}>

@@ -18,3 +18,16 @@ export const useSelectedTabFromSearchParams = (searchParams: URLSearchParams): s
 
   return selectedTabId;
 };
+
+export const useSearchQueryFromSearchParams = (searchParams: URLSearchParams): string | undefined => {
+  const [searchQuery, setSearchQuery] = useState<string>();
+
+  useEffect(() => {
+    const search = searchParams.get('search');
+    if (search) {
+      setSearchQuery(search);
+    }
+  }, [searchParams]);
+
+  return searchQuery;
+};
