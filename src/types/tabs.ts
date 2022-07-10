@@ -4,6 +4,7 @@ import { CommonProps } from './basic';
 export type TabListProps = CommonProps & {
   tabs: TabItem[];
   defaultTabId?: string;
+  selectedTab?: string;
 };
 
 export type TabItem = {

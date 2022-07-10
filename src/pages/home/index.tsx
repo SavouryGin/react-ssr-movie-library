@@ -6,14 +6,17 @@ import TabList from 'components/tab-list';
 import style from './style.module.scss';
 import { MovieContextProps } from 'types/movies';
 import { SEARCH_PATH } from 'pages/app-router/constants';
-import { createSearchParams, useNavigate } from 'react-router-dom';
+import { createSearchParams, useNavigate, useSearchParams } from 'react-router-dom';
 import { homeTabs } from './constants';
+import { useSelectedTabFromSearchParams } from 'hooks';
 
 export const MovieContext = React.createContext({} as MovieContextProps);
 
 const Home = () => {
   const [movieId, setMovieId] = useState<string | null>(null);
   const navigate = useNavigate();
+  const [searchParams] = useSearchParams();
+  const selectedTab = useSelectedTabFromSearchParams(searchParams);
 
   const onClickMovie = (id: string) => {
     setMovieId(id);
@@ -31,7 +34,7 @@ const Home = () => {
     <article className={style.home}>
       <ErrorBoundary>{homeHeader}</ErrorBoundary>
       <MovieContext.Provider value={{ onClickMovie }}>
-        <TabList tabs={homeTabs} />
+        <TabList tabs={homeTabs} selectedTab={selectedTab} />
       </MovieContext.Provider>
     </article>
   );

@@ -7,18 +7,19 @@ import classNames from 'classnames';
 import style from './style.module.scss';
 import { Guid } from 'guid-typescript';
 import { MoviePanelProps } from 'types/movies';
+import { SEARCH_PATH } from 'pages/app-router/constants';
 import { SelectEntity, SortParams } from 'types/controls';
+import { createSearchParams, useNavigate } from 'react-router-dom';
 import { getIsMoviesLoadingStatus, getMovieItems } from 'store/movies/selectors';
 import { loadMovies } from 'store/movies/thunks';
 import { moviesActions } from 'store/movies/slice';
 import { sortOptions } from './constants';
 import { useAppDispatch, useAppSelector } from 'hooks';
-import { useSearchParams } from 'react-router-dom';
 
 const MoviePanel = ({ className, panelGenre }: MoviePanelProps) => {
   const dispatch = useAppDispatch();
   const [sortOption, setSortOption] = useState<SelectEntity>(sortOptions[0]);
-  const [searchParams, setSearchParams] = useSearchParams();
+  const navigate = useNavigate();
   const movieItems = useAppSelector(getMovieItems);
   const isLoading = useAppSelector(getIsMoviesLoadingStatus);
   const params: SortParams = useMemo(() => {
@@ -28,9 +29,19 @@ const MoviePanel = ({ className, panelGenre }: MoviePanelProps) => {
   useEffect(() => {
     dispatch(loadMovies(params));
     dispatch(moviesActions.setParams(params));
-    setSearchParams(params);
-    console.log(searchParams);
   }, [sortOption, panelGenre]);
+
+  useEffect(() => {
+    if (panelGenre) {
+      navigate({ pathname: SEARCH_PATH, search: `?${createSearchParams({ genre: panelGenre as string })}` });
+    } else {
+      navigate({ pathname: SEARCH_PATH });
+    }
+  }, [panelGenre]);
+
+  const onChangeSortOption = () => {
+    navigate({ pathname: SEARCH_PATH, search: `?${createSearchParams(sortOption?.params as URLSearchParams)}` });
+  };
 
   const panelClass = classNames(style.panel, { [className as string]: !!className });
   const movies = movieItems.map((item) => {
@@ -55,6 +66,7 @@ const MoviePanel = ({ className, panelGenre }: MoviePanelProps) => {
         label='Sort by'
         className={style.sort}
         passOption={takeOption}
+        onChange={onChangeSortOption}
       />
       <p className={style.counter}>
         <strong>{`${movieItems.length}`}</strong> movies found
