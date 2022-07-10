@@ -31,3 +31,16 @@ export const useSearchQueryFromSearchParams = (searchParams: URLSearchParams): s
 
   return searchQuery;
 };
+
+export const useMovieIdFromSearchParams = (searchParams: URLSearchParams): string | undefined => {
+  const [movieId, setMovieId] = useState<string>();
+
+  useEffect(() => {
+    const movie = searchParams.get('movie');
+    if (movie) {
+      setMovieId(movie);
+    }
+  }, [searchParams]);
+
+  return movieId;
+};
