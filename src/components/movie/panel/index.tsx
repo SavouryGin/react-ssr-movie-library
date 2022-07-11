@@ -12,7 +12,6 @@ import { SelectEntity, SortParams } from 'types/controls';
 import { createSearchParams, useNavigate, useSearchParams } from 'react-router-dom';
 import { getIsMoviesLoadingStatus, getMovieItems } from 'store/movies/selectors';
 import { loadMovies } from 'store/movies/thunks';
-import { moviesActions } from 'store/movies/slice';
 import { sortOptions } from './constants';
 import { useAppDispatch, useAppSelector, useSortOptionsFromSearchParams } from 'hooks';
 
@@ -25,7 +24,7 @@ const MoviePanel = ({ className, panelGenre }: MoviePanelProps) => {
 
   const movieItems = useAppSelector(getMovieItems);
   const isLoading = useAppSelector(getIsMoviesLoadingStatus);
-  const params: SortParams = useMemo(() => {
+  const params = useMemo(() => {
     return panelGenre ? { filter: [panelGenre], ...(sortOption.params as SortParams) } : (sortOption.params as SortParams);
   }, [sortOption.value, panelGenre]);
 
@@ -39,7 +38,8 @@ const MoviePanel = ({ className, panelGenre }: MoviePanelProps) => {
   });
 
   useEffect(() => {
-    loadData();
+    dispatch(loadMovies(params));
+    navigate({ pathname: SEARCH_PATH, search: `?${createSearchParams(sortOption?.params)}` });
   }, [sortOption, panelGenre]);
 
   useEffect(() => {
@@ -62,15 +62,6 @@ const MoviePanel = ({ className, panelGenre }: MoviePanelProps) => {
     }
   }, [searchSortOptions]);
 
-  const loadData = () => {
-    dispatch(loadMovies(params));
-    dispatch(moviesActions.setParams(params));
-  };
-
-  const onChangeSortOption = () => {
-    navigate({ pathname: SEARCH_PATH, search: `?${createSearchParams(sortOption?.params)}` });
-  };
-
   const takeOption = (option: SelectEntity) => {
     setSortOption(option);
   };
@@ -85,7 +76,6 @@ const MoviePanel = ({ className, panelGenre }: MoviePanelProps) => {
         label='Sort by'
         className={style.sort}
         passOption={takeOption}
-        onChange={onChangeSortOption}
       />
       <p className={style.counter}>
         <strong>{`${movieItems.length}`}</strong> movies found

@@ -1,4 +1,5 @@
 export enum SortingValues {
+  MostPopular,
   DateAsc,
   DateDesc,
   TitleAsc,
