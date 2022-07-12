@@ -9,19 +9,16 @@ import { Guid } from 'guid-typescript';
 import { MoviePanelProps } from 'types/movies';
 import { SEARCH_PATH } from 'pages/app-router/constants';
 import { SelectEntity, SortParams } from 'types/controls';
-import { createSearchParams, useNavigate, useSearchParams } from 'react-router-dom';
+import { createSearchParams, useLocation } from 'react-router-dom';
 import { getIsMoviesLoadingStatus, getMovieItems } from 'store/movies/selectors';
 import { loadMovies } from 'store/movies/thunks';
 import { sortOptions } from './constants';
 import { useAppDispatch, useAppSelector, useSortOptionsFromSearchParams } from 'hooks';
 
-const MoviePanel = ({ className, panelGenre }: MoviePanelProps) => {
+const MoviePanel = ({ className, panelGenre, navigate }: MoviePanelProps) => {
   const dispatch = useAppDispatch();
-  const navigate = useNavigate();
   const [sortOption, setSortOption] = useState<SelectEntity>(sortOptions[0]);
-  const [searchParams] = useSearchParams();
-  const searchSortOptions = useSortOptionsFromSearchParams(searchParams);
-
+  const searchSortOptions = useSortOptionsFromSearchParams(useLocation().search);
   const movieItems = useAppSelector(getMovieItems);
   const isLoading = useAppSelector(getIsMoviesLoadingStatus);
   const params = useMemo(() => {
@@ -39,11 +36,14 @@ const MoviePanel = ({ className, panelGenre }: MoviePanelProps) => {
 
   useEffect(() => {
     dispatch(loadMovies(params));
-    navigate({ pathname: SEARCH_PATH, search: `?${createSearchParams(sortOption?.params)}` });
-  }, [sortOption, panelGenre]);
+    if (navigate) {
+      navigate({ pathname: SEARCH_PATH, search: `?${createSearchParams(sortOption?.params)}` });
+    }
+  }, [sortOption]);
 
   useEffect(() => {
-    if (panelGenre) {
+    dispatch(loadMovies(params));
+    if (navigate) {
       navigate(
         panelGenre
           ? { pathname: SEARCH_PATH, search: `?${createSearchParams({ genre: panelGenre as string })}` }
@@ -56,8 +56,9 @@ const MoviePanel = ({ className, panelGenre }: MoviePanelProps) => {
     if (searchSortOptions) {
       const option =
         sortOptions.find(
-          (item) => item.params?.sortBy === searchSortOptions.sortBy && item.params?.sortOrder === searchSortOptions.sortOrder,
+          (item) => item.params && item.params.sortBy === searchSortOptions.sortBy && item.params.sortOrder === searchSortOptions.sortOrder,
         ) || sortOptions[0];
+
       setSortOption(option);
     }
   }, [searchSortOptions]);
