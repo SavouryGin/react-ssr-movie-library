@@ -47,7 +47,7 @@ export const moviesSlice = createSlice({
       state.editMovieId = editMovieId;
     },
 
-    setParams: (state, action: PayloadAction<SortParams>) => {
+    setParams: (state, action: PayloadAction<SortParams | undefined>) => {
       state.loadMoviesParams = action.payload;
     },
   },

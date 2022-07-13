@@ -3,6 +3,10 @@ import { SortOrder, SortingValues } from 'enums/params';
 
 export const sortOptions: SelectEntity[] = [
   {
+    option: 'Most popular',
+    value: SortingValues.MostPopular,
+  },
+  {
     option: 'Release (newest)',
     value: SortingValues.DateDesc,
     params: {

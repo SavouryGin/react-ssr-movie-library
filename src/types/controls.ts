@@ -14,6 +14,7 @@ export type InputHandlersProps = {
 export type SelectEntity = {
   option: string;
   value: string | number;
+  params?: SortParams;
   [key: string]: unknown;
 };
 

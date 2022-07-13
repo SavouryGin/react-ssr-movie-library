@@ -1,11 +1,11 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import Tab from './elements/tab';
 import TabContent from './elements/tab-content';
 import classNames from 'classnames';
 import style from './style.module.scss';
 import { TabListProps } from 'types/tabs';
 
-function TabList({ tabs, defaultTabId, ...rest }: TabListProps): React.ReactElement {
+function TabList({ tabs, defaultTabId, selectedTab, ...rest }: TabListProps): React.ReactElement {
   const tabsClass = classNames({ [`${rest.className}`]: !!rest.className });
   const tabIds = tabs.map((item) => item.tabId);
   const defaultId = defaultTabId && tabIds.includes(defaultTabId) ? defaultTabId : tabIds[0];
@@ -18,6 +18,12 @@ function TabList({ tabs, defaultTabId, ...rest }: TabListProps): React.ReactElem
   });
 
   const tabContent = tabs.find((item) => item.tabId === activeTab)?.tabContent;
+
+  useEffect(() => {
+    if (selectedTab && tabIds.includes(selectedTab)) {
+      setActiveTab(selectedTab);
+    }
+  }, [selectedTab]);
 
   return (
     <div className={tabsClass}>

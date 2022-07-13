@@ -7,26 +7,23 @@ import classNames from 'classnames';
 import style from './style.module.scss';
 import { Guid } from 'guid-typescript';
 import { MoviePanelProps } from 'types/movies';
+import { SEARCH_PATH } from 'pages/app-router/constants';
 import { SelectEntity, SortParams } from 'types/controls';
+import { createSearchParams, useLocation } from 'react-router-dom';
 import { getIsMoviesLoadingStatus, getMovieItems } from 'store/movies/selectors';
 import { loadMovies } from 'store/movies/thunks';
-import { moviesActions } from 'store/movies/slice';
 import { sortOptions } from './constants';
-import { useAppDispatch, useAppSelector } from 'hooks';
+import { useAppDispatch, useAppSelector, useSortOptionsFromSearchParams } from 'hooks';
 
-const MoviePanel = ({ className, panelGenre }: MoviePanelProps) => {
+const MoviePanel = ({ className, panelGenre, navigate }: MoviePanelProps) => {
   const dispatch = useAppDispatch();
   const [sortOption, setSortOption] = useState<SelectEntity>(sortOptions[0]);
+  const searchSortOptions = useSortOptionsFromSearchParams(useLocation().search);
   const movieItems = useAppSelector(getMovieItems);
   const isLoading = useAppSelector(getIsMoviesLoadingStatus);
-  const params: SortParams = useMemo(() => {
+  const params = useMemo(() => {
     return panelGenre ? { filter: [panelGenre], ...(sortOption.params as SortParams) } : (sortOption.params as SortParams);
   }, [sortOption.value, panelGenre]);
-
-  useEffect(() => {
-    dispatch(loadMovies(params));
-    dispatch(moviesActions.setParams(params));
-  }, [sortOption, panelGenre]);
 
   const panelClass = classNames(style.panel, { [className as string]: !!className });
   const movies = movieItems.map((item) => {
@@ -36,6 +33,35 @@ const MoviePanel = ({ className, panelGenre }: MoviePanelProps) => {
       </li>
     );
   });
+
+  useEffect(() => {
+    dispatch(loadMovies(params));
+    if (navigate) {
+      navigate({ pathname: SEARCH_PATH, search: `?${createSearchParams(sortOption?.params)}` });
+    }
+  }, [sortOption]);
+
+  useEffect(() => {
+    dispatch(loadMovies(params));
+    if (navigate) {
+      navigate(
+        panelGenre
+          ? { pathname: SEARCH_PATH, search: `?${createSearchParams({ genre: panelGenre as string })}` }
+          : { pathname: SEARCH_PATH },
+      );
+    }
+  }, [panelGenre]);
+
+  useEffect(() => {
+    if (searchSortOptions) {
+      const option =
+        sortOptions.find(
+          (item) => item.params && item.params.sortBy === searchSortOptions.sortBy && item.params.sortOrder === searchSortOptions.sortOrder,
+        ) || sortOptions[0];
+
+      setSortOption(option);
+    }
+  }, [searchSortOptions]);
 
   const takeOption = (option: SelectEntity) => {
     setSortOption(option);
@@ -47,7 +73,7 @@ const MoviePanel = ({ className, panelGenre }: MoviePanelProps) => {
       <Select
         name='sortMovies'
         options={sortOptions}
-        defaultOption={sortOptions[0]}
+        defaultOption={sortOption}
         label='Sort by'
         className={style.sort}
         passOption={takeOption}

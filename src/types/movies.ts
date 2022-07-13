@@ -2,6 +2,7 @@ import { CommonProps } from './basic';
 import { Genre } from 'enums/genre';
 import { IBadRequestError } from './server-entities';
 import { MoviesFlag } from 'enums/movies-flags';
+import { NavigateFunction } from 'react-router';
 import { SortParams } from './controls';
 
 export type MovieItem = {
@@ -23,6 +24,7 @@ export type MovieProps = CommonProps & MovieItem;
 
 export type MoviePanelProps = CommonProps & {
   panelGenre?: Genre;
+  navigate?: NavigateFunction;
 };
 
 export type MovieMenuProps = CommonProps & {
