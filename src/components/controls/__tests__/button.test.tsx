@@ -1,4 +1,4 @@
-import Button from '../index';
+import Button from '../button/index';
 import React from 'react';
 import userEvent from '@testing-library/user-event';
 import { ButtonProps } from 'types/controls';
