@@ -36,7 +36,7 @@ const MovieSearchForm = ({ searchQuery }: { searchQuery?: string }) => {
         initialValues={initialValues}
         render={(formRenderProps) => {
           return (
-            <form className={style.search} onSubmit={formRenderProps.handleSubmit}>
+            <form className={style.search} onSubmit={formRenderProps.handleSubmit} aria-label='search movie form'>
               <Field
                 name='movie'
                 component={TextInput}
