@@ -1,5 +1,5 @@
 import React from 'react';
-import TextInput from '../text-input';
+import TextArea from '../text-area';
 import userEvent from '@testing-library/user-event';
 import { Field } from 'react-final-form';
 import { renderInsideForm } from '__mocks__/test-utils';
@@ -14,12 +14,12 @@ const testProps = {
   minLength: 10,
 };
 
-describe('TextInput component:', () => {
+describe('TextArea component:', () => {
   beforeEach(() => {
-    renderInsideForm(<Field component={TextInput} {...testProps} />);
+    renderInsideForm(<Field component={TextArea} {...testProps} />);
   });
 
-  it('renders the textbox element with default props', () => {
+  it('renders the textarea element with default props', () => {
     const input = screen.getByRole('textbox');
     expect(input).toBeInTheDocument();
     expect(input).toBeEnabled();
@@ -39,7 +39,7 @@ describe('TextInput component:', () => {
     expect(input).toHaveProperty('minLength', testProps.minLength);
   });
 
-  it('displays the passed placeholder for the input', () => {
+  it('displays the passed placeholder for the textarea', () => {
     expect(screen.getByPlaceholderText(testProps.placeholder)).toBeInTheDocument();
   });
 
@@ -48,5 +48,12 @@ describe('TextInput component:', () => {
     userEvent.clear(input);
     userEvent.type(input, 'test text');
     expect(input).toHaveValue('test text');
+  });
+
+  it('gets focus on tab press', () => {
+    const textarea = screen.getByRole('textbox');
+    expect(textarea).not.toHaveFocus();
+    userEvent.tab();
+    expect(textarea).toHaveFocus();
   });
 });

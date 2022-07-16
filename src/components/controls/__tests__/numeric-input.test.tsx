@@ -19,10 +19,11 @@ describe('NumericInput component:', () => {
     renderInsideForm(<Field component={NumericInput} {...testProps} />);
   });
 
-  it('renders the textbox element with default props', () => {
+  it('renders the input element with default props', () => {
     const input = screen.getByRole('textbox');
     expect(input).toBeInTheDocument();
     expect(input).toBeEnabled();
+    expect(input).toHaveProperty('type', 'number');
   });
 
   it('the input has a label', () => {
@@ -39,17 +40,17 @@ describe('NumericInput component:', () => {
     expect(input).toHaveProperty('min', testProps.min.toString());
   });
 
-  it('allows the user to enter numbers', async () => {
+  it('allows the user to enter numbers', () => {
     const input = screen.getByRole('textbox');
-    await userEvent.clear(input);
-    await userEvent.type(input, '3');
+    userEvent.clear(input);
+    userEvent.type(input, '3');
     expect(input).toHaveValue(3);
   });
 
-  it('does not allow user to type common text', async () => {
+  it('does not allow user to type common text', () => {
     const input = screen.getByRole('textbox');
-    await userEvent.clear(input);
-    await userEvent.type(input, 'test');
+    userEvent.clear(input);
+    userEvent.type(input, 'test');
     expect(input).toHaveValue(0);
   });
 });

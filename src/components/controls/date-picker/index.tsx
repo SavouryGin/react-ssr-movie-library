@@ -28,6 +28,7 @@ const DatePicker = ({ className, label, defaultInputValue, meta, input, ...rest 
       <input
         {...rest}
         type='date'
+        role='textbox'
         name={input.name}
         id={id}
         value={inputValue}
@@ -38,7 +39,7 @@ const DatePicker = ({ className, label, defaultInputValue, meta, input, ...rest 
         disabled={rest.isDisabled}
         readOnly={rest.isReadOnly}
       />
-      <Button view={ButtonView.Icon} icon={Icon.Calendar} className={style.button} />
+      <Button view={ButtonView.Icon} icon={Icon.Calendar} className={style.button} title='Toggle calendar' />
       <ErrorLabel message={meta.touched && meta.error} />
     </div>
   );
