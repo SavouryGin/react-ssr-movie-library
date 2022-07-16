@@ -40,3 +40,7 @@ This command will run ESLint through all the .js, .ts, and .tsx (used with React
 #### `npm run test`
 
 This command will run all test suites using the Jest framework.
+
+#### `npm run coverage`
+
+This command will create a test coverage report for all files in the project.
