@@ -3,7 +3,7 @@ import { BrowserRouter } from 'react-router-dom';
 import { Provider } from 'react-redux';
 import { Reducer, configureStore } from '@reduxjs/toolkit';
 import { RenderOptions, RenderResult, render } from '@testing-library/react';
-import { Field, Form } from 'react-final-form';
+import { Form } from 'react-final-form';
 
 export const renderWithRedux = (ui: ReactElement, reducer: Reducer, preloadedState = {}, renderOptions?: RenderOptions): RenderResult => {
   const mockedStore = configureStore({ reducer, preloadedState });

@@ -39,4 +39,10 @@ describe('Select field component:', () => {
     userEvent.tab();
     expect(field).toHaveFocus();
   });
+
+  it('allows the user to select an option', () => {
+    const field = screen.getByRole('combobox');
+    userEvent.selectOptions(field, mockSortOptions[1].option);
+    expect(field).toHaveValue(mockSortOptions[1].value.toString());
+  });
 });
