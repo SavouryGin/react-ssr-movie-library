@@ -57,7 +57,7 @@ const MovieItem = (props: MovieProps) => {
         {isMenuOpened ? (
           <MovieMenu onClose={toggleMenu} editMovie={toggleEditForm} deleteMovie={toggleDeleteConfirmation} />
         ) : (
-          <Button onClick={toggleMenu} icon={Icon.Menu} view={ButtonView.Icon} className={style.button} />
+          <Button onClick={toggleMenu} icon={Icon.Menu} view={ButtonView.Icon} className={style.button} title='Movie menu' />
         )}
         <MovieBody title={title} date={date} genres={genres} imagePath={rest.imagePath} id={id} />
       </div>
