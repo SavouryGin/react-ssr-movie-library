@@ -1,17 +1,8 @@
-import Layout from './index';
+import Layout from 'components/layout/index';
 import React from 'react';
-import { combineReducers } from '@reduxjs/toolkit';
-import { moviesInitialState, moviesSlice } from 'store/movies/slice';
+import { mockedReducer, mockedState } from '__mocks__/redux-mock';
 import { renderWithRedux } from '__mocks__/test-utils';
 import { screen } from '@testing-library/react';
-
-const mockedReducer = combineReducers({
-  movies: moviesSlice.reducer,
-});
-
-const mockedState = {
-  movies: moviesInitialState,
-};
 
 describe('Layout component:', () => {
   beforeEach(() => {

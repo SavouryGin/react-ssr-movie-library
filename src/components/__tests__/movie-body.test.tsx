@@ -1,4 +1,4 @@
-import MovieBody from '../body';
+import MovieBody from 'components/movie/body';
 import React from 'react';
 import { movieList } from '__mocks__/movie-list';
 import { render } from '@testing-library/react';

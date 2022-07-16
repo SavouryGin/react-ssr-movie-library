@@ -1,5 +1,5 @@
 import React from 'react';
-import TextInput from '../text-input';
+import TextInput from 'components/controls/text-input';
 import userEvent from '@testing-library/user-event';
 import { Field } from 'react-final-form';
 import { renderInsideForm } from '__mocks__/test-utils';

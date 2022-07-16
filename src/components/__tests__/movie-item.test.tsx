@@ -1,19 +1,10 @@
-import MovieItem from '../item';
+import MovieItem from 'components/movie/item';
 import React from 'react';
 import userEvent from '@testing-library/user-event';
-import { combineReducers } from '@reduxjs/toolkit';
+import { mockedReducer, mockedState } from '__mocks__/redux-mock';
 import { movieList } from '__mocks__/movie-list';
-import { moviesInitialState, moviesSlice } from 'store/movies/slice';
 import { renderWithRedux } from '__mocks__/test-utils';
 import { screen } from '@testing-library/react';
-
-const mockedReducer = combineReducers({
-  movies: moviesSlice.reducer,
-});
-
-const mockedState = {
-  movies: moviesInitialState,
-};
 
 const testProps = {
   className: 'test-class',

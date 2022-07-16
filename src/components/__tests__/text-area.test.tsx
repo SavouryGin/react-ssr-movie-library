@@ -1,5 +1,5 @@
 import React from 'react';
-import TextArea from '../text-area';
+import TextArea from 'components/controls/text-area';
 import userEvent from '@testing-library/user-event';
 import { Field } from 'react-final-form';
 import { renderInsideForm } from '__mocks__/test-utils';

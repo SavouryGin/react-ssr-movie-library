@@ -1,8 +1,8 @@
-import DatePicker from '../date-picker';
+import DatePicker from 'components/controls/date-picker';
 import React from 'react';
 import userEvent from '@testing-library/user-event';
 import { Field } from 'react-final-form';
-import { MAX_DATE, MIN_DATE } from '../date-picker/constants';
+import { MAX_DATE, MIN_DATE } from 'components/controls/date-picker/constants';
 import { renderInsideForm } from '__mocks__/test-utils';
 import { screen } from '@testing-library/react';
 

@@ -1,0 +1,48 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`MovieView component: matches the snapshot 1`] = `
+<DocumentFragment>
+  <div
+    class="test-class"
+  >
+    <div
+      class=""
+    >
+      <div
+        style="width: 64px; height: 64px;"
+      />
+    </div>
+    <button
+      class="undefined"
+      type="button"
+    >
+      <span
+        class=""
+      />
+    </button>
+    <div
+      class=""
+    >
+      <img
+        alt="Banner for \\"Not Found\\""
+        role="img"
+        src="assets/images/Fallback.jpg"
+      />
+    </div>
+    <h2>
+      Not Found 
+      <span>
+        0
+      </span>
+    </h2>
+    <p />
+    <p>
+      2000 
+      <span>
+        Unknown
+      </span>
+    </p>
+    <p />
+  </div>
+</DocumentFragment>
+`;

@@ -1,4 +1,4 @@
-import Button from '../button/index';
+import Button from 'components/controls/button/index';
 import React from 'react';
 import userEvent from '@testing-library/user-event';
 import { ButtonProps } from 'types/controls';
@@ -30,11 +30,11 @@ describe('Button component:', () => {
     expect(screen.getByText(testProps.text || '')).toBeInTheDocument();
   });
 
-  it('fires the onClick handler', async () => {
+  it('fires the onClick handler', () => {
     const btn = screen.getByRole('button');
-    await userEvent.click(btn);
+    userEvent.click(btn);
     expect(testProps.onClick).toHaveBeenCalledTimes(1);
-    await userEvent.dblClick(btn);
+    userEvent.dblClick(btn);
     expect(testProps.onClick).toHaveBeenCalledTimes(3);
   });
 

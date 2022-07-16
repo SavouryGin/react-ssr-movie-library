@@ -1,4 +1,4 @@
-import CustomMultiSelect from '../multi-select';
+import CustomMultiSelect from 'components/controls/multi-select';
 import React from 'react';
 import userEvent from '@testing-library/user-event';
 import { Field } from 'react-final-form';

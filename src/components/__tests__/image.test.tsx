@@ -1,7 +1,7 @@
-import Image from './index';
+import Image from 'components/image/index';
 import React from 'react';
 import userEvent from '@testing-library/user-event';
-import { FALLBACK_IMAGE_PATH } from './constants';
+import { FALLBACK_IMAGE_PATH } from '../image/constants';
 import { render, screen } from '@testing-library/react';
 
 const testProps = {

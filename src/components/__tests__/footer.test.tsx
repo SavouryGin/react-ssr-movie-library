@@ -1,4 +1,4 @@
-import Footer from './index';
+import Footer from 'components/footer/index';
 import React from 'react';
 import { render, screen } from '@testing-library/react';
 

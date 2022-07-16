@@ -1,18 +1,9 @@
-import Header from './index';
+import Header from 'components/header/index';
 import React from 'react';
 import userEvent from '@testing-library/user-event';
-import { combineReducers } from '@reduxjs/toolkit';
-import { moviesInitialState, moviesSlice } from 'store/movies/slice';
+import { mockedReducer, mockedState } from '__mocks__/redux-mock';
 import { renderWithRedux } from '__mocks__/test-utils';
 import { screen } from '@testing-library/react';
-
-const mockedReducer = combineReducers({
-  movies: moviesSlice.reducer,
-});
-
-const mockedState = {
-  movies: moviesInitialState,
-};
 
 describe('Header component:', () => {
   beforeEach(() => {

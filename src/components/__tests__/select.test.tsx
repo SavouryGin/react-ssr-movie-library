@@ -1,5 +1,5 @@
 import React from 'react';
-import Select from '../select';
+import Select from 'components/controls/select';
 import userEvent from '@testing-library/user-event';
 import { mockSortOptions } from '__mocks__/test-options';
 import { render, screen } from '@testing-library/react';

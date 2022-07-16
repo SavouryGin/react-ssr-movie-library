@@ -1,4 +1,4 @@
-import NumericInput from '../numeric-input';
+import NumericInput from 'components/controls/numeric-input';
 import React from 'react';
 import userEvent from '@testing-library/user-event';
 import { Field } from 'react-final-form';
