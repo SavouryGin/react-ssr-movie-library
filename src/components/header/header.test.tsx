@@ -1,5 +1,6 @@
 import Header from './index';
 import React from 'react';
+import userEvent from '@testing-library/user-event';
 import { combineReducers } from '@reduxjs/toolkit';
 import { moviesInitialState, moviesSlice } from 'store/movies/slice';
 import { renderWithRedux } from '__mocks__/test-utils';
@@ -14,10 +15,8 @@ const mockedState = {
 };
 
 describe('Header component:', () => {
-  it('renders the header element', () => {
+  beforeEach(() => {
     renderWithRedux(<Header />, mockedReducer, mockedState);
-    const header = screen.getByRole('banner');
-    expect(header).toBeInTheDocument();
   });
 
   it('matches the snapshot', () => {
@@ -25,10 +24,19 @@ describe('Header component:', () => {
     expect(asFragment()).toMatchSnapshot();
   });
 
+  it('renders the header element', () => {
+    expect(screen.getByRole('banner')).toBeInTheDocument();
+  });
+
   it('has the Add movie button', () => {
-    renderWithRedux(<Header />, mockedReducer, mockedState);
     const button = screen.getByRole('button');
     expect(button).toBeInTheDocument();
     expect(button).toHaveTextContent('Add movie');
+  });
+
+  it('opens the Add movie form after user clicks on the Add button', () => {
+    expect(screen.queryByRole('form')).not.toBeInTheDocument();
+    userEvent.click(screen.getByTitle('Add movie'));
+    expect(screen.queryByRole('form')).toBeInTheDocument();
   });
 });
