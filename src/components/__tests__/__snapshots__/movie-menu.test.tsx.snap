@@ -14,10 +14,14 @@ exports[`MovieMenu component: matches the snapshot 1`] = `
         class=""
       />
     </button>
-    <li>
+    <li
+      title="Edit this movie"
+    >
       Edit
     </li>
-    <li>
+    <li
+      title="Delete this movie"
+    >
       Delete
     </li>
   </menu>

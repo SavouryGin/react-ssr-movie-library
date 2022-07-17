@@ -10,6 +10,7 @@ exports[`MovieDeleteConfirmation component: matches the snapshot 1`] = `
     </p>
     <button
       class=""
+      title="Confirm movie delete"
       type="button"
     >
       <span
