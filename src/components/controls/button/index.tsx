@@ -16,7 +16,7 @@ const Button = ({ type, text, onClick, className, icon, view = ButtonView.Primar
   const contentClass = classNames(style.content, iconStyle[icon || '']);
 
   return (
-    <button className={buttonClass} type={buttonType} onClick={onClick} title={rest.title} disabled={rest.isDisabled}>
+    <button className={buttonClass} type={buttonType} onClick={onClick} title={rest.title} disabled={rest.isDisabled} {...rest}>
       <span className={contentClass}>{buttonText}</span>
     </button>
   );

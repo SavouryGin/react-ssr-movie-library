@@ -53,7 +53,7 @@ const MovieItem = (props: MovieProps) => {
 
   return (
     <>
-      <div className={movieClass} onMouseLeave={closeMenuOnLeave}>
+      <div className={movieClass} onMouseLeave={closeMenuOnLeave} data-cy='movie-item'>
         {isMenuOpened ? (
           <MovieMenu onClose={toggleMenu} editMovie={toggleEditForm} deleteMovie={toggleDeleteConfirmation} />
         ) : (

@@ -45,7 +45,7 @@ const MovieSearchForm = ({ searchQuery }: { searchQuery?: string }) => {
                 defaultInputValue={initialValues.movie}
               />
               <div className={style.button}>
-                <Button type='submit' text='Submit' isDisabled={formRenderProps.submitting} />
+                <Button type='submit' text='Submit' isDisabled={formRenderProps.submitting} id='search-movie-button' />
               </div>
             </form>
           );

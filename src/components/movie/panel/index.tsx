@@ -68,7 +68,7 @@ const MoviePanel = ({ className, panelGenre, navigate }: MoviePanelProps) => {
   };
 
   return (
-    <div className={panelClass}>
+    <div className={panelClass} data-cy='movie-panel'>
       {isLoading && <Spinner />}
       <Select
         name='sortMovies'

@@ -12,10 +12,10 @@ const MovieMenu = ({ className, onClose, editMovie, deleteMovie }: MovieMenuProp
   return (
     <menu className={menuClass} role='menu'>
       <Button onClick={onClose} icon={Icon.Close} view={ButtonView.Icon} className={style.close} />
-      <li className={style.item} onClick={editMovie}>
+      <li className={style.item} onClick={editMovie} title='Edit this movie'>
         Edit
       </li>
-      <li className={style.item} onClick={deleteMovie}>
+      <li className={style.item} onClick={deleteMovie} title='Delete this movie'>
         Delete
       </li>
     </menu>
