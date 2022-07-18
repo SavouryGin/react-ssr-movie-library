@@ -43,4 +43,15 @@ This command will run all test suites using the Jest framework.
 
 #### `npm run coverage`
 
-This command will create a test coverage report for all files in the project.
+This command will create a unit test coverage report for all files in the project.
+
+#### `npm run cypress`
+
+This command will start the e2e testing process. To run e2e tests:
+
+1. Start the MoviesAPI.ReactJS server wit `npm start`.
+2. Start the React App with `npm run dev`.
+3. In a new terminal start the Cypress App with `npm run cypress`.
+4. In the Cypress App select an option "E2E Testing".
+5. Select the Chrome browser and click "Start E2E Testing in Chrome".
+6. On th tab "Spec" run files `movie.spec.cy.ts` and `search.spec.cy.ts`.

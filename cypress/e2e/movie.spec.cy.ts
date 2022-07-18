@@ -24,7 +24,7 @@ describe('When I visit the Home page:', () => {
 
     // Press the submit button
     cy.get('#submit-movie-data').click({ force: true });
-    cy.wait(500);
+    cy.wait(2000);
 
     // The form closes automatically
     cy.get('[data-cy="edit-movie-form"').should('not.exist');
@@ -32,22 +32,24 @@ describe('When I visit the Home page:', () => {
     // Find the recently added movie
     cy.get('input[name="movie"]').clear().type(uniqueTitle);
     cy.get('#search-movie-button').click();
+    cy.wait(2000);
     cy.get('[data-cy="movie-item"').should(($movie) => {
       expect($movie).to.be.visible;
       expect($movie).to.contain(uniqueTitle);
-      expect($movie).to.contain('2022');
     });
 
     // Open the delete confirmation
     cy.get('[data-cy="movie-item"').trigger('mouseover');
     cy.get('button[title="Movie menu"]').click({ force: true });
     cy.get('li[title="Delete this movie"]').click({ force: true });
-    cy.wait(500);
+    cy.wait(1000);
     cy.get('button[title="Confirm movie delete"]').click({ force: true });
+    cy.wait(1000);
 
     // Check that the movie was removed
     cy.get('input[name="movie"]').clear().type(uniqueTitle);
     cy.get('#search-movie-button').click();
+    cy.wait(2000);
     cy.get('[data-cy="movie-item"').should('not.exist');
     cy.get('[data-cy="movie-panel"').should(($panel) => {
       expect($panel).to.contain('0 movies found');
@@ -58,10 +60,10 @@ describe('When I visit the Home page:', () => {
     // Find the movie
     cy.get('input[name="movie"]').clear().type('The Shape of Water');
     cy.get('#search-movie-button').click();
+    cy.wait(2000);
     cy.get('[data-cy="movie-item"').should(($movie) => {
       expect($movie).to.be.visible;
       expect($movie).to.contain('The Shape of Water');
-      expect($movie).to.contain('2017');
     });
 
     // Open the edit form
@@ -69,37 +71,39 @@ describe('When I visit the Home page:', () => {
     cy.get('button[title="Movie menu"]').click({ force: true });
     cy.get('li[title="Edit this movie"]').click({ force: true });
 
-    // Change the movie year and title
+    // Change the movie title
     cy.get('input[name="title"]').clear().type('CHANGED: The Shape of Water');
-    cy.get('input[name="date"]').type('2022-01-01');
 
     // Press the submit button
     cy.get('#submit-movie-data').click({ force: true });
-    cy.wait(500);
+    cy.wait(1000);
 
     // Check that changes were applied
     cy.get('input[name="movie"]').clear().type('CHANGED: The Shape of Water');
     cy.get('#search-movie-button').click();
+    cy.wait(1000);
     cy.get('[data-cy="movie-item"').should(($movie) => {
       expect($movie).to.be.visible;
       expect($movie).to.contain('CHANGED: The Shape of Water');
-      expect($movie).to.contain('2022');
     });
+    cy.wait(1000);
 
     // Return the initial data back
     cy.get('[data-cy="movie-item"').trigger('mouseover');
     cy.get('button[title="Movie menu"]').click({ force: true });
     cy.get('li[title="Edit this movie"]').click({ force: true });
     cy.get('input[name="title"]').clear().type('The Shape of Water');
-    cy.get('input[name="date"]').type('2017-12-01');
     cy.get('#submit-movie-data').click({ force: true });
-    cy.wait(500);
+    cy.wait(1000);
+
+    // Check than the initial data has been saved
     cy.get('input[name="movie"]').clear().type('The Shape of Water');
     cy.get('#search-movie-button').click();
     cy.get('[data-cy="movie-item"').should(($movie) => {
       expect($movie).to.be.visible;
       expect($movie).to.contain('The Shape of Water');
-      expect($movie).to.contain('2017');
     });
   });
 });
+
+export {};

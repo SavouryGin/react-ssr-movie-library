@@ -17,6 +17,7 @@ describe('When I visit the Home page:', () => {
   it('I should be able to search a movie by typing a query in the search field', () => {
     cy.get('input[name="movie"]').type('The Greatest Showman');
     cy.get('#search-movie-button').click();
+    cy.wait(2000);
     cy.url().should('include', '?search=The+Greatest+Showman');
     cy.get('[data-cy="movie-item"').should(($movie) => {
       expect($movie).to.be.visible;
@@ -29,15 +30,17 @@ describe('When I visit the Home page:', () => {
   it('I should be able to switch between tabs and get new movies by tab genre', () => {
     cy.contains('Animation').click();
     cy.url().should('include', '?genre=Animation');
-    cy.wait(1000);
+    cy.wait(2000);
     cy.get('[data-cy="movie-item"').each(($movie) => {
       expect($movie).to.contain('Animation');
     });
     cy.contains('Comedy').click();
-    cy.wait(1000);
+    cy.wait(2000);
     cy.url().should('include', '?genre=Comedy');
     cy.get('[data-cy="movie-item"').each(($movie) => {
       expect($movie).to.contain('Comedy');
     });
   });
 });
+
+export {};
