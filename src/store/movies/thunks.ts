@@ -11,6 +11,7 @@ import {
   transformGetMoviesResponse,
   transformMovieItemToBaseEntity,
   transformMovieItemToMovieEntity,
+  transformUnknownError,
 } from './helpers';
 
 export const loadMovies = (params?: IGetMoviesParams) => async (dispatch: AppDispatch) => {
@@ -21,7 +22,7 @@ export const loadMovies = (params?: IGetMoviesParams) => async (dispatch: AppDis
     dispatch(actions.setMovies(transformGetMoviesResponse(response)));
     dispatch(actions.setError(null));
   } catch (err: unknown) {
-    dispatch(actions.setError(err as IBadRequestError));
+    dispatch(actions.setError(transformUnknownError(err)));
   } finally {
     dispatch(actions.setUpFlag({ flag: MoviesFlag.MoviesLoading, value: false }));
   }
@@ -35,7 +36,7 @@ export const loadMovieById = (id: string) => async (dispatch: AppDispatch) => {
     dispatch(actions.setMovie(transformGetMovieByIdResponse(response)));
     dispatch(actions.setError(null));
   } catch (err: unknown) {
-    dispatch(actions.setError(err as IBadRequestError));
+    dispatch(actions.setError(transformUnknownError(err)));
   } finally {
     dispatch(actions.setUpFlag({ flag: MoviesFlag.SelectedMovieLoading, value: false }));
   }
@@ -51,7 +52,7 @@ export const createNewMovie = (data: MovieItem) => async (dispatch: AppDispatch)
     dispatch(actions.setError(null));
     dispatch(refreshMoviesList());
   } catch (err: unknown) {
-    dispatch(actions.setError(err as IBadRequestError));
+    dispatch(actions.setError(transformUnknownError(err)));
   } finally {
     dispatch(actions.setUpFlag({ flag: MoviesFlag.EditRequestInProgress, value: false }));
   }
@@ -67,7 +68,7 @@ export const updateMovie = (data: MovieItem) => async (dispatch: AppDispatch) =>
     dispatch(actions.setError(null));
     dispatch(refreshMoviesList());
   } catch (err: unknown) {
-    dispatch(actions.setError(err as IBadRequestError));
+    dispatch(actions.setError(transformUnknownError(err)));
   } finally {
     dispatch(actions.setUpFlag({ flag: MoviesFlag.EditRequestInProgress, value: false }));
   }
@@ -81,7 +82,7 @@ export const deleteMovieById = (id: string) => async (dispatch: AppDispatch) => 
     dispatch(actions.setError(null));
     dispatch(refreshMoviesList());
   } catch (err: unknown) {
-    dispatch(actions.setError(err as IBadRequestError));
+    dispatch(actions.setError(transformUnknownError(err)));
   } finally {
     dispatch(actions.setUpFlag({ flag: MoviesFlag.MoviesLoading, value: false }));
   }
