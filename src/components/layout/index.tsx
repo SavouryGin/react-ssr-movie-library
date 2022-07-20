@@ -6,7 +6,7 @@ import { Outlet } from 'react-router-dom';
 
 const Layout = () => {
   return (
-    <div className={style.layout} data-cy='page-layout'>
+    <div className={style.layout} id='page-layout'>
       <Header className={style.header} />
       <main className={style.main} data-testid='main-container'>
         <Outlet />

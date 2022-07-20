@@ -17,36 +17,39 @@ describe('DatePicker component:', () => {
     renderInsideForm(<Field component={DatePicker} {...testProps} />);
   });
 
-  it('renders the textbox element with default props', () => {
+  it('Should render the textbox element with default props', () => {
     const input = screen.getByRole('textbox');
     expect(input).toBeInTheDocument();
     expect(input).toBeEnabled();
     expect(input).toHaveProperty('type', 'date');
   });
 
-  it('the input has a label', () => {
+  it('Should have a label', () => {
     expect(screen.getByLabelText(testProps.label)).toBeInTheDocument();
   });
 
-  it('receives the passed default value', () => {
+  it('Should receive the passed default value', () => {
     expect(screen.getByRole('textbox')).toHaveValue(testProps.defaultInputValue);
   });
 
-  it('receives the min and max properties', () => {
-    const input = screen.getByRole('textbox');
-    expect(input).toHaveProperty('max', MAX_DATE);
-    expect(input).toHaveProperty('min', MIN_DATE);
+  it('Should receive the min and max properties', () => {
+    expect(screen.getByRole('textbox')).toHaveProperty('max', MAX_DATE);
+    expect(screen.getByRole('textbox')).toHaveProperty('min', MIN_DATE);
   });
 
-  it('displays a toggle calender button', () => {
-    const button = screen.getByTitle('Toggle calendar');
-    expect(button).toBeInTheDocument();
+  it('Should display a toggle calender button', () => {
+    expect(screen.getByTitle('Toggle calendar')).toBeInTheDocument();
   });
 
-  it('allows user to type a year', () => {
+  it('Should allow user to type a year', () => {
+    // arrange
     const input = screen.getByRole('textbox');
+
+    // act
     userEvent.clear(input);
     userEvent.type(input, '2021-04-03');
+
+    // assert
     expect(input).toHaveValue('2021-04-03');
   });
 });

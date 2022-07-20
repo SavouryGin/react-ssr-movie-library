@@ -10,22 +10,22 @@ describe('Header component:', () => {
     renderWithRedux(<Header />, mockedReducer, mockedState);
   });
 
-  it('matches the snapshot', () => {
+  it('Should match the snapshot', () => {
     const { asFragment } = renderWithRedux(<Header />, mockedReducer, mockedState);
     expect(asFragment()).toMatchSnapshot();
   });
 
-  it('renders the header element', () => {
+  it('Should render the header element', () => {
     expect(screen.getByRole('banner')).toBeInTheDocument();
   });
 
-  it('has the Add movie button', () => {
+  it('Should have the Add movie button', () => {
     const button = screen.getByRole('button');
     expect(button).toBeInTheDocument();
     expect(button).toHaveTextContent('Add movie');
   });
 
-  it('opens the Add movie form after user clicks on the Add button', () => {
+  it('Should open the Add movie form after user clicks on the Add button', () => {
     expect(screen.queryByRole('form')).not.toBeInTheDocument();
     userEvent.click(screen.getByTitle('Add movie'));
     expect(screen.queryByRole('form')).toBeInTheDocument();

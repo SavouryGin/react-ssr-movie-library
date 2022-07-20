@@ -19,27 +19,30 @@ describe('Button component:', () => {
     render(<Button {...testProps} />);
   });
 
-  it('renders the button element with the default type', () => {
+  it('Should render the button element with the default type', () => {
     expect(screen.getByRole('button')).toBeInTheDocument();
   });
 
-  it('has the passed type', () => {
+  it('Should have the passed type', () => {
     expect(screen.getByRole('button')).toHaveProperty('type', testProps.type);
   });
 
-  it('has the passed text', () => {
+  it('Should have the passed text', () => {
     expect(screen.getByText(testProps.text || '')).toBeInTheDocument();
   });
 
-  it('fires the onClick handler', () => {
+  it('Should fire the onClick handler', () => {
+    // arrange
     const btn = screen.getByRole('button');
+
+    // act
     userEvent.click(btn);
+
+    // assert
     expect(testProps.onClick).toHaveBeenCalledTimes(1);
-    userEvent.dblClick(btn);
-    expect(testProps.onClick).toHaveBeenCalledTimes(3);
   });
 
-  it('has the title attribute', () => {
+  it('Should have the title attribute', () => {
     expect(screen.getByRole('button')).toHaveProperty('title', testProps.title);
   });
 });

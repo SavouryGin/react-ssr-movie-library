@@ -19,38 +19,49 @@ describe('NumericInput component:', () => {
     renderInsideForm(<Field component={NumericInput} {...testProps} />);
   });
 
-  it('renders the input element with default props', () => {
+  it('Should render the input element with default props', () => {
     const input = screen.getByRole('textbox');
     expect(input).toBeInTheDocument();
     expect(input).toBeEnabled();
     expect(input).toHaveProperty('type', 'number');
   });
 
-  it('the input has a label', () => {
+  it('Should have a label', () => {
     expect(screen.getByLabelText(testProps.label)).toBeInTheDocument();
   });
 
-  it('receives the passed default value', () => {
+  it('Should receive the passed default value', () => {
     expect(screen.getByRole('textbox')).toHaveValue(testProps.defaultInputValue);
   });
 
-  it('receives the max and min properties', () => {
+  it('Should receive the max and min properties', () => {
     const input = screen.getByRole('textbox');
     expect(input).toHaveProperty('max', testProps.max.toString());
     expect(input).toHaveProperty('min', testProps.min.toString());
   });
 
-  it('allows the user to enter numbers', () => {
+  it('Should allow the user to enter numbers', () => {
+    // arrange
     const input = screen.getByRole('textbox');
+    const testInput = 123;
+
+    // act
     userEvent.clear(input);
-    userEvent.type(input, '3');
-    expect(input).toHaveValue(3);
+    userEvent.type(input, testInput.toString());
+
+    // assert
+    expect(input).toHaveValue(testInput);
   });
 
-  it('does not allow user to type common text', () => {
+  it('Should not allow user to type common text', () => {
+    // arrange
     const input = screen.getByRole('textbox');
+
+    // act
     userEvent.clear(input);
     userEvent.type(input, 'test');
+
+    // assert
     expect(input).toHaveValue(0);
   });
 });

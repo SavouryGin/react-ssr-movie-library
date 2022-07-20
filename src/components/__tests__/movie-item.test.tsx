@@ -16,23 +16,23 @@ describe('MovieItem component:', () => {
     renderWithRedux(<MovieItem {...testProps} />, mockedReducer, mockedState);
   });
 
-  it('displays the movie title', () => {
+  it('Should display the movie title', () => {
     expect(screen.getByText('Pulp Fiction')).toBeInTheDocument();
   });
 
-  it('displays the movie image', () => {
+  it('Should display the movie image', () => {
     expect(screen.getByRole('img')).toBeInTheDocument();
   });
 
-  it('displays the movie year', () => {
+  it('Should display the movie year', () => {
     expect(screen.getByText('1994')).toBeInTheDocument();
   });
 
-  it('displays the movie genres', () => {
+  it('Should display the movie genres', () => {
     expect(screen.getByText('Crime, Comedy')).toBeInTheDocument();
   });
 
-  it('opens the movie menu if user clicks on button', () => {
+  it('Should open the movie menu if user clicks on button', () => {
     expect(screen.queryByRole('menu')).not.toBeInTheDocument();
     userEvent.click(screen.getByTitle('Movie menu'));
     expect(screen.queryByRole('menu')).toBeInTheDocument();

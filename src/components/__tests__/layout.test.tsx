@@ -9,20 +9,20 @@ describe('Layout component:', () => {
     renderWithRedux(<Layout />, mockedReducer, mockedState);
   });
 
-  it('matches the snapshot', () => {
+  it('Should match the snapshot', () => {
     const { asFragment } = renderWithRedux(<Layout />, mockedReducer, mockedState);
     expect(asFragment()).toMatchSnapshot();
   });
 
-  it('renders the header component', () => {
+  it('Should render the header component', () => {
     expect(screen.getByRole('banner')).toBeInTheDocument();
   });
 
-  it('renders the footer component', () => {
+  it('Should render the footer component', () => {
     expect(screen.getByRole('contentinfo')).toBeInTheDocument();
   });
 
-  it('renders the main component', () => {
+  it('Should render the main component', () => {
     expect(screen.getByTestId('main-container')).toBeInTheDocument();
   });
 });

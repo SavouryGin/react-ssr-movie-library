@@ -3,18 +3,18 @@ describe('When I visit the Home page:', () => {
     cy.visit('http://localhost:3000/');
   });
 
-  it('I should be redirected to the search movie page with the movie panel', () => {
+  it('Should be redirected to the search movie page with the movie panel', () => {
     cy.url().should('include', '/search');
-    cy.get('[data-cy="page-layout"').find('footer');
-    cy.get('[data-cy="page-layout"').find('header');
-    cy.get('[data-cy="page-layout"').find('article');
+    cy.get('#page-layout').find('footer');
+    cy.get('#page-layout').find('header');
+    cy.get('#page-layout').find('article');
     cy.get('[data-cy="movie-panel"').should('be.visible');
     cy.get('[data-cy="movie-item"').should(($movies) => {
       expect($movies).to.have.length(10);
     });
   });
 
-  it('I should be able to search a movie by typing a query in the search field', () => {
+  it('Should be able to search a movie by typing a query in the search field', () => {
     cy.get('input[name="movie"]').type('The Greatest Showman');
     cy.get('#search-movie-button').click();
     cy.wait(3000);
@@ -27,7 +27,7 @@ describe('When I visit the Home page:', () => {
     });
   });
 
-  it('I should be able to switch between tabs and get new movies by tab genre', () => {
+  it('Should be able to switch between tabs and get new movies by tab genre', () => {
     cy.contains('Animation').click().wait(3000);
     cy.url().should('include', '?genre=Animation');
     cy.get('[data-cy="movie-item"').each(($movie) => {

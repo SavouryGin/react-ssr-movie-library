@@ -42,7 +42,7 @@ const MovieEdit = ({ className }: CommonProps) => {
       validate={validateMovieEditForm}
       initialValues={initialValues}
       render={(formRenderProps) => (
-        <form className={movieEditFormClass} onSubmit={formRenderProps.handleSubmit} key={formKey} role='form' data-cy='edit-movie-form'>
+        <form className={movieEditFormClass} onSubmit={formRenderProps.handleSubmit} key={formKey} role='form' id='edit-movie-form'>
           {isLoading && <Spinner className={style.spinner} />}
           <EditFieldSet initialValues={initialValues} />
           <div className={style.buttons}>

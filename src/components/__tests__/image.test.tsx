@@ -11,18 +11,18 @@ const testProps = {
 };
 
 describe('Image component:', () => {
-  it('renders the image', () => {
+  it('Should render the image', () => {
     render(<Image {...testProps} />);
     const image = screen.getByAltText(testProps.altText);
     expect(image).toBeInTheDocument();
   });
 
-  it('matches the snapshot', () => {
+  it('Should match the snapshot', () => {
     const { asFragment } = render(<Image {...testProps} />);
     expect(asFragment()).toMatchSnapshot();
   });
 
-  it('calls the passed onClickImage handler', () => {
+  it('Should call the passed onClickImage handler', () => {
     render(<Image {...testProps} />);
     const image = screen.getByRole('img');
     userEvent.click(image);

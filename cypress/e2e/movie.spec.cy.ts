@@ -5,7 +5,7 @@ describe('When I visit the Home page:', () => {
     cy.visit('http://localhost:3000/');
   });
 
-  it('I should be able add a new movie and then delete it', () => {
+  it('Should be able add a new movie and then delete it', () => {
     // Open the form
     cy.get('button[title="Add movie"]').click();
 
@@ -26,9 +26,9 @@ describe('When I visit the Home page:', () => {
     cy.get('#submit-movie-data').click({ force: true }).wait(3000);
 
     // The form closes automatically
-    cy.get('[data-cy="edit-movie-form"').should('not.exist');
+    cy.get('#edit-movie-form').should('not.exist');
 
-    // Find the recently added movie
+    // Find the recently added movie and assert
     cy.get('input[name="movie"]').clear().type(uniqueTitle);
     cy.get('#search-movie-button').click().wait(3000);
     cy.get('[data-cy="movie-item"').should(($movie) => {
@@ -51,7 +51,7 @@ describe('When I visit the Home page:', () => {
     });
   });
 
-  it('I should be edit the existing movie', () => {
+  it('Should be edit the existing movie', () => {
     // Find the movie
     cy.get('input[name="movie"]').clear().type('The Shape of Water');
     cy.get('#search-movie-button').click().wait(3000);

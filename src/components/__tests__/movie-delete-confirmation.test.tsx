@@ -9,12 +9,12 @@ const testProps = {
 };
 
 describe('MovieDeleteConfirmation component:', () => {
-  it('matches the snapshot', () => {
+  it('Should matche the snapshot', () => {
     const { asFragment } = render(<MovieDeleteConfirmation {...testProps} />);
     expect(asFragment()).toMatchSnapshot();
   });
 
-  it('calls the onConfirm handler', () => {
+  it('Should call the onConfirm handler', () => {
     render(<MovieDeleteConfirmation {...testProps} />);
     const button = screen.getByText('Confirm');
     userEvent.click(button);

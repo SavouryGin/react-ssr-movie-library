@@ -21,14 +21,24 @@ describe('MovieMenu component:', () => {
   });
 
   it('calls the editMovie handler', () => {
+    // arrange
     const editButton = screen.getByText('Edit');
+
+    // act
     userEvent.click(editButton);
+
+    // assert
     expect(testProps.editMovie).toHaveBeenCalledTimes(1);
   });
 
   it('calls the deleteMovie handler', () => {
+    // arrange
     const deleteButton = screen.getByText('Delete');
+
+    // act
     userEvent.click(deleteButton);
+
+    // assert
     expect(testProps.deleteMovie).toHaveBeenCalledTimes(1);
   });
 

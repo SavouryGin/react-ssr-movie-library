@@ -9,7 +9,7 @@ const Button = ({ type, text, onClick, className, icon, view = ButtonView.Primar
   const buttonText = text;
   const buttonType = type || 'button';
   const buttonClass = classNames(style.button, {
-    [`${className}`]: !!className,
+    [className as string]: !!className,
     [style.secondary]: view === ButtonView.Secondary,
     [style.icon]: view === ButtonView.Icon,
   });
