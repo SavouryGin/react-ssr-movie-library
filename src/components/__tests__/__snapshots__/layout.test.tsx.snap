@@ -1,9 +1,9 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`Layout component: matches the snapshot 1`] = `
+exports[`Layout component: Should match the snapshot 1`] = `
 <DocumentFragment>
   <div
-    data-cy="page-layout"
+    id="page-layout"
   >
     <header
       class=""
