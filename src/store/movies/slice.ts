@@ -4,7 +4,7 @@ import { MoviesFlag } from 'enums/movies-flags';
 import { PayloadAction, createSlice } from '@reduxjs/toolkit';
 import { SortParams } from 'types/controls';
 
-const moviesInitialState: MoviesInitialState = {
+export const moviesInitialState: MoviesInitialState = {
   items: [],
   selectedMovie: null,
   error: null,

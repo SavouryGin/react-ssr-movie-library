@@ -42,7 +42,7 @@ const MovieEdit = ({ className }: CommonProps) => {
       validate={validateMovieEditForm}
       initialValues={initialValues}
       render={(formRenderProps) => (
-        <form className={movieEditFormClass} onSubmit={formRenderProps.handleSubmit} key={formKey}>
+        <form className={movieEditFormClass} onSubmit={formRenderProps.handleSubmit} key={formKey} role='form' id='edit-movie-form'>
           {isLoading && <Spinner className={style.spinner} />}
           <EditFieldSet initialValues={initialValues} />
           <div className={style.buttons}>
@@ -52,8 +52,9 @@ const MovieEdit = ({ className }: CommonProps) => {
               view={ButtonView.Secondary}
               onClick={onReset}
               isDisabled={formRenderProps.submitting || formRenderProps.pristine}
+              id='reset-movie-data'
             />
-            <Button type='submit' text='Submit' isDisabled={formRenderProps.submitting} />
+            <Button type='submit' text='Submit' isDisabled={formRenderProps.submitting} id='submit-movie-data' />
           </div>
           {serverError && <div className={style.error}>{`Something went wrong... ${serverError.message}`}</div>}
         </form>

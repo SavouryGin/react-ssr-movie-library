@@ -10,7 +10,7 @@ const MovieDeleteConfirmation = ({ className, onConfirm }: MovieDeleteConfirmati
   return (
     <div className={confirmClass}>
       <p>Are you sure you want to delete this movie?</p>
-      <Button onClick={onConfirm} text='Confirm' />
+      <Button onClick={onConfirm} text='Confirm' title='Confirm movie delete' />
     </div>
   );
 };

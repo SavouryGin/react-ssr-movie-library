@@ -1,0 +1,197 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Home page: matches the snapshot 1`] = `
+<DocumentFragment>
+  <article>
+    <div>
+      <h2>
+        Find your movie
+      </h2>
+      <form
+        aria-label="search movie form"
+      >
+        <div
+          class=""
+        >
+          <input
+            autocomplete="off"
+            id="text_input_movie"
+            name="movie"
+            placeholder="What do you want to watch?"
+            type="text"
+            value=""
+          />
+        </div>
+        <div>
+          <button
+            class=""
+            id="search-movie-button"
+            type="submit"
+          >
+            <span
+              class=""
+            >
+              Submit
+            </span>
+          </button>
+        </div>
+      </form>
+    </div>
+    <div
+      class=""
+    >
+      <div
+        role="tablist"
+      >
+        <h3
+          aria-selected="true"
+          class="undefined"
+          data-testid="all-movies"
+          id="all-movies"
+          role="tab"
+        >
+          All
+        </h3>
+        <h3
+          aria-selected="false"
+          class=""
+          data-testid="Drama-movies"
+          id="Drama-movies"
+          role="tab"
+        >
+          Drama
+        </h3>
+        <h3
+          aria-selected="false"
+          class=""
+          data-testid="Comedy-movies"
+          id="Comedy-movies"
+          role="tab"
+        >
+          Comedy
+        </h3>
+        <h3
+          aria-selected="false"
+          class=""
+          data-testid="Animation-movies"
+          id="Animation-movies"
+          role="tab"
+        >
+          Animation
+        </h3>
+        <h3
+          aria-selected="false"
+          class=""
+          data-testid="Adventure-movies"
+          id="Adventure-movies"
+          role="tab"
+        >
+          Adventure
+        </h3>
+        <h3
+          aria-selected="false"
+          class=""
+          data-testid="Family-movies"
+          id="Family-movies"
+          role="tab"
+        >
+          Family
+        </h3>
+        <h3
+          aria-selected="false"
+          class=""
+          data-testid="Horror-movies"
+          id="Horror-movies"
+          role="tab"
+        >
+          Horror
+        </h3>
+      </div>
+      <section
+        aria-labelledby="all-movies"
+        role="tabpanel"
+      >
+        <div
+          class=""
+          data-cy="movie-panel"
+        >
+          <div
+            class=""
+          >
+            <div
+              style="width: 64px; height: 64px;"
+            />
+          </div>
+          <div
+            class=""
+          >
+            <label
+              for="select_sortMovies"
+            >
+              Sort by
+            </label>
+            <select
+              id="select_sortMovies"
+              label="Sort by"
+              name="sortMovies"
+            >
+              <option
+                value="0"
+              >
+                Most popular
+              </option>
+              <option
+                value="2"
+              >
+                Release (newest)
+              </option>
+              <option
+                value="1"
+              >
+                Release (oldest)
+              </option>
+              <option
+                value="3"
+              >
+                Title (A - Z)
+              </option>
+              <option
+                value="4"
+              >
+                Title (Z - A)
+              </option>
+              <option
+                value="6"
+              >
+                Rating (highest)
+              </option>
+              <option
+                value="5"
+              >
+                Rating (lowest)
+              </option>
+              <option
+                value="8"
+              >
+                Runtime (longest)
+              </option>
+              <option
+                value="7"
+              >
+                Runtime (shortest)
+              </option>
+            </select>
+          </div>
+          <p>
+            <strong>
+              0
+            </strong>
+             movies found
+          </p>
+          <ul />
+        </div>
+      </section>
+    </div>
+  </article>
+</DocumentFragment>
+`;

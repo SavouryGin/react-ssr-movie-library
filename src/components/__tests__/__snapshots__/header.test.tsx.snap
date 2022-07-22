@@ -1,0 +1,32 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Header component: Should match the snapshot 1`] = `
+<DocumentFragment>
+  <header
+    class=""
+  >
+    <div>
+      <span>
+        <strong
+          class="icon_calendar"
+        >
+          netflix
+        </strong>
+        roulette
+      </span>
+      <button
+        class=""
+        title="Add movie"
+        type="button"
+      >
+        <span
+          class=""
+        >
+          Add movie
+        </span>
+      </button>
+    </div>
+    <div />
+  </header>
+</DocumentFragment>
+`;

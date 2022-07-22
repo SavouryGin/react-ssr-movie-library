@@ -14,5 +14,5 @@ module.exports = {
     '^__mocks__(.*)$': '<rootDir>/src/__mocks__$1',
     '\\.(css|scss)$': '<rootDir>/src/__mocks__/style-mock.js',
   },
-  setupFilesAfterEnv: ['<rootDir>/setup-tests.ts'],
+  setupFilesAfterEnv: ['<rootDir>/src/__mocks__/setup-tests.ts'],
 };

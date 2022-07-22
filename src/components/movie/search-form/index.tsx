@@ -36,7 +36,7 @@ const MovieSearchForm = ({ searchQuery }: { searchQuery?: string }) => {
         initialValues={initialValues}
         render={(formRenderProps) => {
           return (
-            <form className={style.search} onSubmit={formRenderProps.handleSubmit}>
+            <form className={style.search} onSubmit={formRenderProps.handleSubmit} aria-label='search movie form'>
               <Field
                 name='movie'
                 component={TextInput}
@@ -45,7 +45,7 @@ const MovieSearchForm = ({ searchQuery }: { searchQuery?: string }) => {
                 defaultInputValue={initialValues.movie}
               />
               <div className={style.button}>
-                <Button type='submit' text='Submit' isDisabled={formRenderProps.submitting} />
+                <Button type='submit' text='Submit' isDisabled={formRenderProps.submitting} id='search-movie-button' />
               </div>
             </form>
           );

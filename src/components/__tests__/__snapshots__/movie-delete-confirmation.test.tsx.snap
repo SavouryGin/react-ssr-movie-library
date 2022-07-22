@@ -1,0 +1,24 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`MovieDeleteConfirmation component: Should matche the snapshot 1`] = `
+<DocumentFragment>
+  <div
+    class="test-class"
+  >
+    <p>
+      Are you sure you want to delete this movie?
+    </p>
+    <button
+      class=""
+      title="Confirm movie delete"
+      type="button"
+    >
+      <span
+        class=""
+      >
+        Confirm
+      </span>
+    </button>
+  </div>
+</DocumentFragment>
+`;

@@ -1,0 +1,16 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Footer component: Should matche the snapshot 1`] = `
+<DocumentFragment>
+  <footer
+    class="test-classname"
+  >
+    <span>
+      <strong>
+        netflix
+      </strong>
+      roulette
+    </span>
+  </footer>
+</DocumentFragment>
+`;

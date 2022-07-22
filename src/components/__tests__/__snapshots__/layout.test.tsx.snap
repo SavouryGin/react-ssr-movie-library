@@ -1,0 +1,49 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Layout component: Should match the snapshot 1`] = `
+<DocumentFragment>
+  <div
+    id="page-layout"
+  >
+    <header
+      class=""
+    >
+      <div>
+        <span>
+          <strong
+            class="icon_calendar"
+          >
+            netflix
+          </strong>
+          roulette
+        </span>
+        <button
+          class=""
+          title="Add movie"
+          type="button"
+        >
+          <span
+            class=""
+          >
+            Add movie
+          </span>
+        </button>
+      </div>
+      <div />
+    </header>
+    <main
+      data-testid="main-container"
+    />
+    <footer
+      class=""
+    >
+      <span>
+        <strong>
+          netflix
+        </strong>
+        roulette
+      </span>
+    </footer>
+  </div>
+</DocumentFragment>
+`;

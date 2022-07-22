@@ -19,8 +19,8 @@ const CustomMultiSelect = ({ className, label, options, defaultOptions, meta, in
 
   return (
     <div className={selectClass}>
-      {label && <Label inputId={id} labelText={label} />}
-      <MultiSelect options={options} value={selected} onChange={onChange} labelledBy={rest.placeholder || 'Select'} />
+      {label && <Label inputId={id} labelText={label} labelId={id} />}
+      <MultiSelect options={options} value={selected} onChange={onChange} labelledBy={id} />
       <ErrorLabel message={meta.touched && meta.error} />
     </div>
   );

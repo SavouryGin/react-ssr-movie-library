@@ -1,6 +1,6 @@
 import { Genre } from 'enums/genre';
 import { GenreOption, MovieItem } from 'types/movies';
-import { IMovieBaseEntity, IMovieEntity, IMoviesResponse } from 'types/server-entities';
+import { IBadRequestError, IMovieBaseEntity, IMovieEntity, IMoviesResponse } from 'types/server-entities';
 import { MIN_DATE } from 'components/controls/date-picker/constants';
 
 export const transformGetMoviesResponse = (response: IMoviesResponse): MovieItem[] =>
@@ -54,4 +54,10 @@ const mapMovieEntityToMovieItem = (entity: IMovieEntity): MovieItem => ({
   budget: entity.budget,
   revenue: entity.revenue,
   url: entity.poster_path,
+});
+
+export const transformUnknownError = (err: any): IBadRequestError => ({
+  messages: err?.messages || [],
+  message: err?.message || 'Something went wrong',
+  status: err?.status || 500,
 });

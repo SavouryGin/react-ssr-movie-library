@@ -1,0 +1,29 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`MovieMenu component: matches the snapshot 1`] = `
+<DocumentFragment>
+  <menu
+    class="test-class"
+    role="menu"
+  >
+    <button
+      class="undefined"
+      type="button"
+    >
+      <span
+        class=""
+      />
+    </button>
+    <li
+      title="Edit this movie"
+    >
+      Edit
+    </li>
+    <li
+      title="Delete this movie"
+    >
+      Delete
+    </li>
+  </menu>
+</DocumentFragment>
+`;

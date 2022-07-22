@@ -1,0 +1,24 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`MovieBody component: Should match the snapshot 1`] = `
+<DocumentFragment>
+  <div
+    class=""
+  >
+    <img
+      alt="Banner for \\"Pulp Fiction\\""
+      role="img"
+      src="assets/images/Bitmap-1.jpg"
+    />
+  </div>
+  <p>
+    Pulp Fiction
+  </p>
+  <p>
+    1994
+  </p>
+  <p>
+    Crime, Comedy
+  </p>
+</DocumentFragment>
+`;

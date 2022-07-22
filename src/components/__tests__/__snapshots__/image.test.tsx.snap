@@ -1,0 +1,15 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Image component: Should match the snapshot 1`] = `
+<DocumentFragment>
+  <div
+    class=""
+  >
+    <img
+      alt="test alt text"
+      role="img"
+      src="assets/images/Fallback.jpg"
+    />
+  </div>
+</DocumentFragment>
+`;

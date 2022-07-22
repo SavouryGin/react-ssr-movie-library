@@ -11,9 +11,7 @@ import { getEditMovieId, getIsEditMovieOpened } from 'store/movies/selectors';
 import { moviesActions } from 'store/movies/slice';
 import { useAppDispatch, useAppSelector } from 'hooks';
 
-interface HeaderProps extends CommonProps {}
-
-const Header = ({ className }: HeaderProps) => {
+const Header = ({ className }: CommonProps) => {
   const dispatch = useAppDispatch();
   const isEditFormOpened = useAppSelector(getIsEditMovieOpened);
   const editMovieId = useAppSelector(getEditMovieId);

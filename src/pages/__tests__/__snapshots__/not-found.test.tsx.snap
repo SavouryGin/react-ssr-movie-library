@@ -1,0 +1,19 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`NotFoundPage page: matches the snapshot 1`] = `
+<DocumentFragment>
+  <article>
+    <h2>
+      404 Error
+    </h2>
+    <p>
+      Sorry, your page was not found. 
+      <a
+        href="/"
+      >
+        Go Home
+      </a>
+    </p>
+  </article>
+</DocumentFragment>
+`;

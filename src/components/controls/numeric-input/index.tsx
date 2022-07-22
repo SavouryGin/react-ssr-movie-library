@@ -24,6 +24,7 @@ const NumericInput = ({ className, label, defaultInputValue, meta, input, ...res
       <input
         {...rest}
         type='number'
+        role='textbox'
         name={input.name}
         id={id}
         value={inputValue}
