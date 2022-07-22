@@ -34,15 +34,24 @@ describe('Select field component:', () => {
   });
 
   it('gets focus on tab press', () => {
+    // arrange
     const field = screen.getByRole('combobox');
-    expect(field).not.toHaveFocus();
+
+    // act
     userEvent.tab();
+
+    // assert
     expect(field).toHaveFocus();
   });
 
   it('allows the user to select an option', () => {
+    // arrange
     const field = screen.getByRole('combobox');
+
+    // act
     userEvent.selectOptions(field, mockSortOptions[1].option);
+
+    // assert
     expect(field).toHaveValue(mockSortOptions[1].value.toString());
   });
 });

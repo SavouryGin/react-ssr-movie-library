@@ -56,11 +56,12 @@ describe('Tablist component:', () => {
   });
 
   it('the content of the tabpanel changes when user clicks on a new tab', () => {
-    expect(screen.getByRole('tabpanel')).toHaveTextContent('Tab content 1');
+    const panel = screen.getByRole('tabpanel');
+    expect(panel).toHaveTextContent('Tab content 1');
     const tabs = screen.getAllByRole('tab');
     fireEvent.click(tabs[1]);
-    expect(screen.getByRole('tabpanel')).toHaveTextContent('Tab content 2');
+    expect(panel).toHaveTextContent('Tab content 2');
     fireEvent.click(tabs[3]);
-    expect(screen.getByRole('tabpanel')).toHaveTextContent('Tab content 4');
+    expect(panel).toHaveTextContent('Tab content 4');
   });
 });

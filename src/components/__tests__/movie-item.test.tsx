@@ -33,7 +33,6 @@ describe('MovieItem component:', () => {
   });
 
   it('Should open the movie menu if user clicks on button', () => {
-    expect(screen.queryByRole('menu')).not.toBeInTheDocument();
     userEvent.click(screen.getByTitle('Movie menu'));
     expect(screen.queryByRole('menu')).toBeInTheDocument();
   });

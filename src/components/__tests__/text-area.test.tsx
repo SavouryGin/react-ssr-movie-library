@@ -44,16 +44,25 @@ describe('TextArea component:', () => {
   });
 
   it('allows the user to type some text', () => {
+    // arrange
     const input = screen.getByRole('textbox');
+
+    // act
     userEvent.clear(input);
     userEvent.type(input, 'test text');
+
+    // assert
     expect(input).toHaveValue('test text');
   });
 
   it('gets focus on tab press', () => {
+    // arrange
     const textarea = screen.getByRole('textbox');
-    expect(textarea).not.toHaveFocus();
+
+    // act
     userEvent.tab();
+
+    // assert
     expect(textarea).toHaveFocus();
   });
 });

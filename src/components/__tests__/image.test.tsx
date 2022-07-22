@@ -23,9 +23,14 @@ describe('Image component:', () => {
   });
 
   it('Should call the passed onClickImage handler', () => {
+    // arrange
     render(<Image {...testProps} />);
     const image = screen.getByRole('img');
+
+    // act
     userEvent.click(image);
+
+    // assert
     expect(testProps.onClickImage).toHaveBeenCalledTimes(1);
   });
 });

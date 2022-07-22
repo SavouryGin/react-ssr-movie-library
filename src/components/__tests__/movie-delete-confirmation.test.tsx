@@ -15,9 +15,14 @@ describe('MovieDeleteConfirmation component:', () => {
   });
 
   it('Should call the onConfirm handler', () => {
+    // arrange
     render(<MovieDeleteConfirmation {...testProps} />);
     const button = screen.getByText('Confirm');
+
+    // act
     userEvent.click(button);
+
+    // asset
     expect(testProps.onConfirm).toHaveBeenCalledTimes(1);
   });
 });

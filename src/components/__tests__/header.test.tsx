@@ -26,7 +26,6 @@ describe('Header component:', () => {
   });
 
   it('Should open the Add movie form after user clicks on the Add button', () => {
-    expect(screen.queryByRole('form')).not.toBeInTheDocument();
     userEvent.click(screen.getByTitle('Add movie'));
     expect(screen.queryByRole('form')).toBeInTheDocument();
   });

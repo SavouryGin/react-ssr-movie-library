@@ -44,9 +44,14 @@ describe('TextInput component:', () => {
   });
 
   it('allows the user to type some text', () => {
+    // arrange
     const input = screen.getByRole('textbox');
+
+    // act
     userEvent.clear(input);
     userEvent.type(input, 'test text');
+
+    // assert
     expect(input).toHaveValue('test text');
   });
 });

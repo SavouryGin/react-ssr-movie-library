@@ -43,8 +43,13 @@ describe('MovieMenu component:', () => {
   });
 
   it('calls the onClose handler', () => {
+    // arrange
     const closeButton = screen.getByRole('button');
+
+    // act
     userEvent.click(closeButton);
+
+    // assert
     expect(testProps.onClose).toHaveBeenCalledTimes(1);
   });
 });

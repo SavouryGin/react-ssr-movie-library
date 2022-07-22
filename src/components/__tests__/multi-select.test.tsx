@@ -30,7 +30,6 @@ describe('CustomMultiSelect field component:', () => {
 
   it('gets focus on tab press', () => {
     const field = screen.getByLabelText(testProps.label);
-    expect(field).not.toHaveFocus();
     userEvent.tab();
     expect(field).toHaveFocus();
   });
