@@ -1,6 +1,16 @@
+import { moviesResponse } from './mocks';
+
 describe('When I visit the Home page:', () => {
   beforeEach(() => {
     cy.visit('http://localhost:3000/');
+
+    cy.intercept(
+      {
+        method: 'GET',
+        url: 'movies',
+      },
+      moviesResponse,
+    ).as('getMovies');
   });
 
   it('Should be redirected to the search movie page with the movie panel', () => {
