@@ -5,7 +5,7 @@ import { MovieItem } from 'types/movies';
 import { MoviesFlag } from 'enums/movies-flags';
 import { moviesActions as actions } from './slice';
 import { getLoadMoviesParams } from './selectors';
-import { store } from 'store';
+import { store } from 'store/index';
 import {
   transformGetMovieByIdResponse,
   transformGetMoviesResponse,

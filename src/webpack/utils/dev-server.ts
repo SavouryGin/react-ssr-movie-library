@@ -1,4 +1,4 @@
-const defaultPort = 5000;
+const defaultPort = 3000;
 const devServerHost = 'localhost';
 export const devServerUrl = `http://${devServerHost}:${defaultPort}/`;
 
