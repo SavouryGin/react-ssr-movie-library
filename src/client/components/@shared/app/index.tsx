@@ -1,7 +1,7 @@
 import AppRouter from 'pages/app-router';
 import React from 'react';
 import { Provider } from 'react-redux';
-import { store } from 'store';
+import { store } from 'store/index';
 import 'styles/reset.scss';
 
 const App = () => {

@@ -1,17 +1,14 @@
-import App from 'pages/app';
+import App from '@shared/app';
 import React from 'react';
-import { createRoot } from 'react-dom/client';
+import { createRoot, hydrateRoot } from 'react-dom/client';
+import { loadableReady } from '@loadable/component';
 
-// React 18 new root API
-const rootContainer = document.getElementById('root');
-if (!rootContainer) {
-  throw new Error('Failed to find the root element.');
-}
+loadableReady(() => {
+  const container = document.getElementById('root') as HTMLElement;
 
-const root = createRoot(rootContainer);
-
-root.render(
-  <React.StrictMode>
-    <App />
-  </React.StrictMode>,
-);
+  if (IS_SPA) {
+    createRoot(container).render(<App />);
+  } else {
+    hydrateRoot(container, <App />);
+  }
+});

@@ -11,14 +11,23 @@
       "client/*": [
         "src/client/*"
       ],
-      "errors/*": [
-        "src/client/errors/*"
+      "types/*": [
+        "src/client/types/*"
+      ],
+      "enums/*": [
+        "src/client/enums/*"
+      ],
+      "hooks/*": [
+        "src/client/hooks/*"
       ],
       "components/*": [
         "src/client/components/*"
       ],
-      "@shared/*": [
-        "src/client/components/@shared/*"
+      "services/*": [
+        "src/client/services/*"
+      ],
+      "store/*": [
+        "src/client/store/*"
       ],
       "pages/*": [
         "src/client/pages/*"
@@ -29,9 +38,12 @@
       "assets/*": [
         "src/client/assets/*"
       ],
-      "config/*": [
-        "config/*"
-      ]
+      "__mocks__/*": [
+        "src/client/__mocks__/*"
+      ],
+      "@shared/*": [
+        "src/client/components/@shared/*"
+      ],
     },
     "target": "es5",
     "lib": [
@@ -54,6 +66,7 @@
     "isolatedModules": true,
     "jsx": "react-jsx",
     "typeRoots": [
+      "@types",
       "node_modules/@types"
     ],
     "types": [

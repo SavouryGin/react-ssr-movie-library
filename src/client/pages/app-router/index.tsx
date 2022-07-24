@@ -1,19 +1,24 @@
-import Home from 'pages/home';
 import Layout from 'components/layout';
-import NotFoundPage from 'pages/not-found';
-import React from 'react';
+import React, { Suspense } from 'react';
+import loadable from '@loadable/component';
 import { BrowserRouter, Navigate, Route, Routes } from 'react-router-dom';
+import { Loader } from '@shared/loader';
 import { ROOT_PATH, SEARCH_PATH } from './constants';
+
+const HomePage = loadable(() => import('pages/home'));
+const NotFoundPage = loadable(() => import('pages/not-found'));
 
 const AppRouter = () => (
   <BrowserRouter>
-    <Routes>
-      <Route path={ROOT_PATH} element={<Layout />}>
-        <Route path={ROOT_PATH} element={<Navigate to={SEARCH_PATH} replace />} />
-        <Route path={SEARCH_PATH} element={<Home />} />
-        <Route path='*' element={<NotFoundPage />} />
-      </Route>
-    </Routes>
+    <Suspense fallback={<Loader />}>
+      <Routes>
+        <Route path={ROOT_PATH} element={<Layout />}>
+          <Route path={ROOT_PATH} element={<Navigate to={SEARCH_PATH} replace />} />
+          <Route path={SEARCH_PATH} element={<HomePage />} />
+          <Route path='*' element={<NotFoundPage />} />
+        </Route>
+      </Routes>
+    </Suspense>
   </BrowserRouter>
 );
 

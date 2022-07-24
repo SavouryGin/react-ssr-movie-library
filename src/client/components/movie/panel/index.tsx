@@ -13,7 +13,7 @@ import { createSearchParams, useLocation } from 'react-router-dom';
 import { getIsMoviesLoadingStatus, getMovieItems } from 'store/movies/selectors';
 import { loadMovies } from 'store/movies/thunks';
 import { sortOptions } from './constants';
-import { useAppDispatch, useAppSelector, useSortOptionsFromSearchParams } from 'hooks';
+import { useAppDispatch, useAppSelector, useSortOptionsFromSearchParams } from 'hooks/index';
 
 const MoviePanel = ({ className, panelGenre, navigate }: MoviePanelProps) => {
   const dispatch = useAppDispatch();
