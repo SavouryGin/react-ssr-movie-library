@@ -1,1 +1,1 @@
-export const FALLBACK_IMAGE_PATH = 'assets/images/Fallback.jpg';
+export const FALLBACK_IMAGE_PATH = 'client/assets/images/Fallback.jpg';

@@ -7,7 +7,7 @@ import { SEARCH_PATH } from 'pages/app-router/constants';
 import { SearchBy } from 'enums/params';
 import { createSearchParams, useNavigate } from 'react-router-dom';
 import { loadMovies } from 'store/movies/thunks';
-import { useAppDispatch } from 'hooks';
+import { useAppDispatch } from 'hooks/index';
 
 const MovieSearchForm = ({ searchQuery }: { searchQuery?: string }) => {
   const dispatch = useAppDispatch();

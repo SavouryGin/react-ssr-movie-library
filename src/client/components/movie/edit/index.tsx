@@ -12,7 +12,7 @@ import { createNewMovie, updateMovie } from 'store/movies/thunks';
 import { formSubscription, movieDefaultValues } from './constants';
 import { getEditMovieItem, getError, getIsEditRequestInProgress } from 'store/movies/selectors';
 import { moviesActions } from 'store/movies/slice';
-import { useAppDispatch, useAppSelector } from 'hooks';
+import { useAppDispatch, useAppSelector } from 'hooks/index';
 import { validateMovieEditForm } from './validation';
 
 const MovieEdit = ({ className }: CommonProps) => {

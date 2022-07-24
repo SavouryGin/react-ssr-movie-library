@@ -9,7 +9,7 @@ import { CommonProps } from 'types/basic';
 import { Icon } from 'enums/icon';
 import { getEditMovieId, getIsEditMovieOpened } from 'store/movies/selectors';
 import { moviesActions } from 'store/movies/slice';
-import { useAppDispatch, useAppSelector } from 'hooks';
+import { useAppDispatch, useAppSelector } from 'hooks/index';
 
 const Header = ({ className }: CommonProps) => {
   const dispatch = useAppDispatch();

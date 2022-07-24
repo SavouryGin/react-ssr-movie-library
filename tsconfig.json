@@ -1,5 +1,112 @@
+// {
+//   "compilerOptions": {
+//     "baseUrl": ".",
+//     "paths": {
+//       "src/*": [
+//         "src/*"
+//       ],
+//       "server/*": [
+//         "src/server/*"
+//       ],
+//       "client/*": [
+//         "src/client/*"
+//       ],
+//       "types/*": [
+//         "src/client/types/*"
+//       ],
+//       "enums/*": [
+//         "src/client/enums/*"
+//       ],
+//       "hooks/*": [
+//         "src/client/hooks/*"
+//       ],
+//       "components/*": [
+//         "src/client/components/*"
+//       ],
+//       "services/*": [
+//         "src/client/services/*"
+//       ],
+//       "store/*": [
+//         "src/client/store/*"
+//       ],
+//       "styles/*": [
+//         "src/client/styles/*"
+//       ],
+//       "pages/*": [
+//         "src/client/pages/*"
+//       ],
+//       "utils/*": [
+//         "src/client/utils/*"
+//       ],
+//       "assets/*": [
+//         "src/client/assets/*"
+//       ],
+//       "__mocks__/*": [
+//         "src/client/__mocks__/*"
+//       ],
+//       "@shared/*": [
+//         "src/client/components/@shared/*"
+//       ],
+//     },
+//     "module": "commonjs",
+//     "target": "esnext",
+//     "lib": [
+//       "dom",
+//       "dom.iterable",
+//       "esnext"
+//     ],
+//     "outDir": "./dist/",
+//     "sourceMap": true,
+//     "allowJs": true,
+//     "skipLibCheck": true,
+//     "esModuleInterop": true,
+//     "allowSyntheticDefaultImports": true,
+//     "strict": true,
+//     "forceConsistentCasingInFileNames": true,
+//     "noFallthroughCasesInSwitch": true,
+//     "resolveJsonModule": true,
+//     "isolatedModules": true,
+//     "jsx": "react-jsx",
+//     "typeRoots": [
+//       "@types",
+//       "node_modules/@types"
+//     ],
+//     "types": [
+//       "react/next",
+//       "react-dom/next",
+//       "node",
+//       "jest",
+//       "@testing-library/jest-dom"
+//     ]
+//   },
+//   "include": [
+//     "src",
+//     "**/*.ts",
+//     "**/*.tsx",
+//     "webpack"
+//   ],
+//   "exclude": [
+//     "node_modules"
+//   ],
+//   "plugins": [
+//     {
+//       "name": "typescript-plugin-css-modules",
+//     }
+//   ]
+// }
 {
   "compilerOptions": {
+    "strict": true,
+    "skipLibCheck": true,
+    "sourceMap": true,
+    "noImplicitAny": true,
+    "noUncheckedIndexedAccess": true,
+    "noImplicitThis": true,
+    "resolveJsonModule": true,
+    "esModuleInterop": true,
+    "module": "commonjs",
+    "target": "esnext",
+    "jsx": "react-jsx",
     "baseUrl": ".",
     "paths": {
       "src/*": [
@@ -29,6 +136,9 @@
       "store/*": [
         "src/client/store/*"
       ],
+      "styles/*": [
+        "src/client/styles/*"
+      ],
       "pages/*": [
         "src/client/pages/*"
       ],
@@ -45,49 +155,12 @@
         "src/client/components/@shared/*"
       ],
     },
-    "target": "es5",
-    "lib": [
-      "dom",
-      "dom.iterable",
-      "esnext"
-    ],
-    "outDir": "./dist/",
-    "sourceMap": true,
-    "allowJs": true,
-    "skipLibCheck": true,
-    "esModuleInterop": true,
-    "allowSyntheticDefaultImports": true,
-    "strict": true,
-    "forceConsistentCasingInFileNames": true,
-    "noFallthroughCasesInSwitch": true,
-    "module": "esnext",
-    "moduleResolution": "node",
-    "resolveJsonModule": true,
-    "isolatedModules": true,
-    "jsx": "react-jsx",
     "typeRoots": [
       "@types",
       "node_modules/@types"
-    ],
-    "types": [
-      "react/next",
-      "react-dom/next",
-      "node",
-      "jest",
-      "@testing-library/jest-dom"
     ]
   },
-  "include": [
-    "src",
-    "**/*.ts",
-    "**/*.tsx"
-  ],
   "exclude": [
     "node_modules"
-  ],
-  "plugins": [
-    {
-      "name": "typescript-plugin-css-modules",
-    }
   ]
 }
