@@ -1,9 +1,9 @@
 import * as plugins from '../plugins';
 import * as rules from '../rules';
 import { DIST_DIR, ROOT_DIR } from '../env';
-import { devServerConfig } from '../utils/devServer';
+import { devServerConfig } from '../utils/dev-server';
 
-const config = {
+const spaConfig = {
   name: 'spa',
   target: 'web',
   devtool: 'eval-cheap-module-source-map',
@@ -41,4 +41,4 @@ const config = {
   ].filter(Boolean),
 };
 
-export default config;
+export default spaConfig;

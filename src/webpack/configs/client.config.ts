@@ -1,10 +1,10 @@
 import * as plugins from '../plugins';
 import * as rules from '../rules';
 import { DIST_DIR, IS_DEV, ROOT_DIR } from '../env';
-import { devServerUrl } from '../utils/devServer';
+import { devServerUrl } from '../utils/dev-server';
 import type { Configuration } from 'webpack';
 
-const config: Configuration = {
+const clientConfig: Configuration = {
   name: 'client',
   target: 'web',
   devtool: IS_DEV ? 'eval-cheap-module-source-map' : 'source-map',
@@ -37,4 +37,4 @@ const config: Configuration = {
   ),
 };
 
-export default config;
+export default clientConfig;

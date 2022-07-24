@@ -1,6 +1,38 @@
 {
   "compilerOptions": {
-    "baseUrl": "src",
+    "baseUrl": ".",
+    "paths": {
+      "src/*": [
+        "src/*"
+      ],
+      "server/*": [
+        "src/server/*"
+      ],
+      "client/*": [
+        "src/client/*"
+      ],
+      "errors/*": [
+        "src/client/errors/*"
+      ],
+      "components/*": [
+        "src/client/components/*"
+      ],
+      "@shared/*": [
+        "src/client/components/@shared/*"
+      ],
+      "pages/*": [
+        "src/client/pages/*"
+      ],
+      "utils/*": [
+        "src/client/utils/*"
+      ],
+      "assets/*": [
+        "src/client/assets/*"
+      ],
+      "config/*": [
+        "config/*"
+      ]
+    },
     "target": "es5",
     "lib": [
       "dom",

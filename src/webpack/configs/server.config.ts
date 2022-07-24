@@ -4,7 +4,7 @@ import nodeExternals from 'webpack-node-externals';
 import { DIST_DIR, IS_DEV, ROOT_DIR } from '../env';
 import type { Configuration } from 'webpack';
 
-const config: Configuration = {
+const serverConfig: Configuration = {
   name: 'server',
   target: 'node',
   devtool: IS_DEV ? false : 'source-map',
@@ -37,4 +37,4 @@ const config: Configuration = {
   externals: [nodeExternals()],
 };
 
-export default config;
+export default serverConfig;
