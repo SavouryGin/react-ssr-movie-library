@@ -7,7 +7,7 @@ import classNames from 'classnames';
 import style from './style.module.scss';
 import { Guid } from 'guid-typescript';
 import { MoviePanelProps } from 'types/movies';
-import { SEARCH_PATH } from 'pages/app-router/constants';
+import { SEARCH_PATH } from '@shared/app/constants';
 import { SelectEntity, SortParams } from 'types/controls';
 import { createSearchParams, useLocation } from 'react-router-dom';
 import { getIsMoviesLoadingStatus, getMovieItems } from 'store/movies/selectors';
@@ -17,13 +17,13 @@ import { useAppDispatch, useAppSelector, useSortOptionsFromSearchParams } from '
 
 const MoviePanel = ({ className, panelGenre, navigate }: MoviePanelProps) => {
   const dispatch = useAppDispatch();
-  const [sortOption, setSortOption] = useState<SelectEntity>(sortOptions[0]);
+  const [sortOption, setSortOption] = useState<SelectEntity | undefined>(sortOptions[0]);
   const searchSortOptions = useSortOptionsFromSearchParams(useLocation().search);
   const movieItems = useAppSelector(getMovieItems);
   const isLoading = useAppSelector(getIsMoviesLoadingStatus);
   const params = useMemo(() => {
-    return panelGenre ? { filter: [panelGenre], ...(sortOption.params as SortParams) } : (sortOption.params as SortParams);
-  }, [sortOption.value, panelGenre]);
+    return panelGenre ? { filter: [panelGenre], ...(sortOption?.params as SortParams) } : (sortOption?.params as SortParams);
+  }, [sortOption?.value, panelGenre]);
 
   const panelClass = classNames(style.panel, { [className as string]: !!className });
   const movies = movieItems.map((item) => {

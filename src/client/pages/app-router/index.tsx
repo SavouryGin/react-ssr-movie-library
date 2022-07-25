@@ -3,7 +3,7 @@ import React, { Suspense } from 'react';
 import loadable from '@loadable/component';
 import { BrowserRouter, Navigate, Route, Routes } from 'react-router-dom';
 import { Loader } from '@shared/loader';
-import { ROOT_PATH, SEARCH_PATH } from './constants';
+import { ROOT_PATH, SEARCH_PATH } from '@shared/app/constants';
 
 const HomePage = loadable(() => import('pages/home'));
 const NotFoundPage = loadable(() => import('pages/not-found'));

@@ -3,7 +3,7 @@ import React, { useEffect } from 'react';
 import TextInput from 'components/controls/text-input';
 import style from './style.module.scss';
 import { Field, Form } from 'react-final-form';
-import { SEARCH_PATH } from 'pages/app-router/constants';
+import { SEARCH_PATH } from '@shared/app/constants';
 import { SearchBy } from 'enums/params';
 import { createSearchParams, useNavigate } from 'react-router-dom';
 import { loadMovies } from 'store/movies/thunks';
