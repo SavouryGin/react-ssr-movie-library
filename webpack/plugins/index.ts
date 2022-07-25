@@ -4,5 +4,6 @@ export * from './mini-css-extract.plugin';
 export * from './limit-plugin';
 export * from './loadable-plugin';
 export * from './hmr-plugin';
-export * from './refresh.plugin';
-export * from './paths.plugin';
+export * from './refresh-plugin';
+export * from './paths-plugin';
+export * from './copy-plugin';

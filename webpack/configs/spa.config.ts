@@ -38,6 +38,7 @@ const spaConfig = {
     plugins.hmr,
     plugins.htmlWebpackPlugin,
     plugins.definePlugin({ spa: true }),
+    plugins.copyPlugin,
   ].filter(Boolean),
 };
 
