@@ -37,8 +37,8 @@ const spaConfig = {
     plugins.refreshPlugin,
     plugins.hmr,
     plugins.htmlWebpackPlugin,
-    plugins.definePlugin({ spa: true }),
     plugins.copyPlugin,
+    plugins.definePlugin({ spa: true }),
   ].filter(Boolean),
 };
 

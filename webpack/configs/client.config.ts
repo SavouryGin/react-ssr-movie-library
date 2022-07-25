@@ -32,9 +32,14 @@ const clientConfig: Configuration = {
     extensions: ['*', '.js', '.jsx', '.json', '.ts', '.tsx', '.scss'],
     plugins: [plugins.tsPaths],
   },
-  plugins: [plugins.loadablePlugin, plugins.miniCssExtractPlugin, plugins.refreshPlugin, plugins.hmr, plugins.definePlugin()].filter(
-    Boolean,
-  ),
+  plugins: [
+    plugins.loadablePlugin,
+    plugins.miniCssExtractPlugin,
+    plugins.refreshPlugin,
+    plugins.hmr,
+    plugins.copyPlugin,
+    plugins.definePlugin(),
+  ].filter(Boolean),
 };
 
 export default clientConfig;

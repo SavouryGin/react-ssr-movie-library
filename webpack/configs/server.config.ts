@@ -33,7 +33,7 @@ const serverConfig: Configuration = {
     extensions: ['*', '.js', '.jsx', '.json', '.ts', '.tsx', '.scss'],
     plugins: [plugins.tsPaths],
   },
-  plugins: [plugins.miniCssExtractPlugin, plugins.limitPlugin, plugins.definePlugin({ server: true })],
+  plugins: [plugins.miniCssExtractPlugin, plugins.limitPlugin, plugins.definePlugin({ server: true }), plugins.copyPlugin],
   externals: [nodeExternals()],
 };
 

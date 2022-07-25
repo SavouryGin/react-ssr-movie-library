@@ -1,6 +1,6 @@
 import CopyWebpackPlugin from 'copy-webpack-plugin';
 import path, { join } from 'path';
-import { SRC_DIR } from 'webpack/env';
+import { SRC_DIR } from '../env';
 
 export const copyPlugin = new CopyWebpackPlugin({
   patterns: [

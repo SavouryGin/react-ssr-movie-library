@@ -26,7 +26,7 @@ const expressConfig: Configuration = {
     extensions: ['*', '.js', '.jsx', '.json', '.ts', '.tsx'],
     plugins: [plugins.tsPaths],
   },
-  plugins: [plugins.limitPlugin, plugins.definePlugin({ server: true })],
+  plugins: [plugins.limitPlugin, plugins.definePlugin({ server: true }), plugins.copyPlugin],
   externals: [nodeExternals(), /app.server.js/],
 };
 
