@@ -13,6 +13,7 @@ module.exports = {
     '^store(.*)$': '<rootDir>/src/client/store$1',
     '^services(.*)$': '<rootDir>/src/client/services$1',
     '^__mocks__(.*)$': '<rootDir>/src/client/__mocks__$1',
+    '@shared(.*)$': '<rootDir>/src/client/components/@shared$1',
     '\\.(css|scss)$': '<rootDir>/src/client/__mocks__/style-mock.js',
   },
   setupFilesAfterEnv: ['<rootDir>/src/client/__mocks__/setup-tests.ts'],
