@@ -1,5 +1,5 @@
-import App from '@shared/app';
 import React from 'react';
+import { App } from '@shared/app';
 import { BrowserRouter } from 'react-router-dom';
 import { createRoot, hydrateRoot } from 'react-dom/client';
 import { loadableReady } from '@loadable/component';

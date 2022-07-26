@@ -7,5 +7,5 @@ app.use(hot());
 app.use(router);
 
 app.listen(3000, () => {
-  console.log('App is started on localhost:3000');
+  console.log('Application is started on localhost:3000');
 });

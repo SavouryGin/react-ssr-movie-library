@@ -11,7 +11,7 @@ import 'styles/reset.scss';
 const HomePage = loadable(() => import('pages/home'));
 const NotFoundPage = loadable(() => import('pages/not-found'));
 
-const App = () => {
+export const App = () => {
   return (
     <Provider store={store}>
       <Suspense fallback={<Loader />}>
@@ -26,5 +26,3 @@ const App = () => {
     </Provider>
   );
 };
-
-export default App;

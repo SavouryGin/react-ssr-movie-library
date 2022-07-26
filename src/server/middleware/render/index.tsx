@@ -2,7 +2,7 @@ import React from 'react';
 import { ChunkExtractor } from '@loadable/server';
 import { NextFunction, Request, Response } from 'express';
 import { StaticRouter } from 'react-router-dom/server';
-import { getApp, getHtml, getStats } from './render-helpers';
+import { getApp, getHtml, getStats } from './render.util';
 import { renderToString } from 'react-dom/server';
 
 export const render = (req: Request, res: Response, next: NextFunction) => {
