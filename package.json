@@ -4,7 +4,7 @@
   "description": "Educational project within the framework of the EPAM React GMP course",
   "main": "index.ts",
   "scripts": {
-    "spa": "cross-env NODE_ENV=development webpack serve --config webpack/configs/spa.config.ts",
+    "spa:start": "cross-env NODE_ENV=development webpack serve --config webpack/configs/spa.config.ts",
     "dev": "cross-env NODE_ENV=development run-p dev:*",
     "dev:build": "webpack --config webpack/configs/express.config.ts",
     "dev:serve": "nodemon dist/express.js",

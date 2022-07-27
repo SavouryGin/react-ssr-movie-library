@@ -10,7 +10,7 @@ import { MovieContextProps } from 'types/movies';
 import { SEARCH_PATH } from '@shared/app/constants';
 import { TabItem } from 'types/tabs';
 import { createSearchParams, useLocation, useNavigate } from 'react-router-dom';
-import { useMovieIdFromSearchParams, useSearchQueryFromSearchParams, useSelectedTabFromSearchParams } from 'hooks/index';
+import { useMovieIdFromSearchParams, useSearchQueryFromSearchParams, useSelectedTabFromSearchParams } from 'hooks/search';
 
 export const MovieContext = React.createContext({} as MovieContextProps);
 

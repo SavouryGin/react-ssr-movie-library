@@ -25,7 +25,7 @@ Educational project within the framework of the EPAM React GMP course
 
 This command starts the project in **SSR** (server side rendering) mode. Open [localhost](http://localhost:3000) to view it in the browser.
 
-#### `npm run spa`
+#### `npm run spa:start`
 
 This command starts the project in **SPA** (single page application) mode. Open [localhost](http://localhost:3000) to view it in the browser.
 

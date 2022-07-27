@@ -12,7 +12,7 @@ import { defaultMovie } from '__mocks__/movie-list';
 import { getDuration } from './helpers';
 import { getIsSelectedMovieLoading, getSelectedMovie } from 'store/movies/selectors';
 import { loadMovieById } from 'store/movies/thunks';
-import { useAppDispatch, useAppSelector } from 'hooks/index';
+import { useAppDispatch, useAppSelector } from 'hooks/common';
 
 const MovieView = ({ className, movieId, onCloseView }: MovieViewProps) => {
   const dispatch = useAppDispatch();

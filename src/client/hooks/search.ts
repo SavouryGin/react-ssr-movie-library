@@ -1,13 +1,7 @@
-import { AppDispatch, RootState } from 'types/basic';
 import { AvailableQuery } from 'enums/available-query';
 import { SortOrder } from 'enums/params';
 import { SortParams } from 'types/controls';
-import { TypedUseSelectorHook, useDispatch, useSelector } from 'react-redux';
 import { useEffect, useState } from 'react';
-
-export const useAppDispatch = () => useDispatch<AppDispatch>();
-
-export const useAppSelector: TypedUseSelectorHook<RootState> = useSelector;
 
 export const useQuery = (searchString: string) => new URLSearchParams(searchString);
 

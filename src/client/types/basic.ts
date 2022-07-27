@@ -1,4 +1,4 @@
-import { store } from 'store/index';
+import store from 'client/store';
 
 export type CommonProps = {
   className?: string;

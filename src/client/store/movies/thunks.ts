@@ -1,11 +1,11 @@
 import service from 'services/movies-service';
+import store from 'client/store';
 import { AppDispatch } from 'types/basic';
 import { IBadRequestError, IGetMoviesParams, IMovieEntity, IMoviesResponse } from 'types/server-entities';
 import { MovieItem } from 'types/movies';
 import { MoviesFlag } from 'enums/movies-flags';
 import { moviesActions as actions } from './slice';
 import { getLoadMoviesParams } from './selectors';
-import { store } from 'store/index';
 import {
   transformGetMovieByIdResponse,
   transformGetMoviesResponse,

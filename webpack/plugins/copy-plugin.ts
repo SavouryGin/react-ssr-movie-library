@@ -1,12 +1,12 @@
 import CopyWebpackPlugin from 'copy-webpack-plugin';
 import path, { join } from 'path';
-import { SRC_DIR } from '../env';
+import { ASSETS_DIR } from '../env';
 
 export const copyPlugin = new CopyWebpackPlugin({
   patterns: [
-    { from: join(SRC_DIR, 'client/assets/icons/favicon.ico') },
+    { from: join(ASSETS_DIR, 'icons/favicon.ico') },
     {
-      from: join(SRC_DIR, 'client/assets/images'),
+      from: join(ASSETS_DIR, 'images'),
       to: path.resolve(__dirname, '../../dist/assets/images'),
       toType: 'dir',
     },

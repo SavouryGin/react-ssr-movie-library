@@ -7,8 +7,8 @@ import { render } from '../render';
 export const hot = () => {
   const compiler = webpack(webpackConfigs);
   const publicPath = webpackConfigs[0]?.output?.publicPath;
+  const devCompilation = devMiddleware(compiler, { publicPath, serverSideRender: true });
+  const hotCompilation = hotMiddleware(compiler);
 
-  return [IS_DEV && devMiddleware(compiler, { publicPath, serverSideRender: true }), IS_DEV && hotMiddleware(compiler), render].filter(
-    Boolean,
-  );
+  return [IS_DEV && devCompilation, IS_DEV && hotCompilation, render].filter(Boolean);
 };

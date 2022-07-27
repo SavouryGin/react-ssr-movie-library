@@ -11,7 +11,7 @@ import { Icon } from 'enums/icon';
 import { MovieProps } from 'types/movies';
 import { deleteMovieById } from 'store/movies/thunks';
 import { moviesActions } from 'store/movies/slice';
-import { useAppDispatch } from 'hooks/index';
+import { useAppDispatch } from 'hooks/common';
 
 const MovieItem = (props: MovieProps) => {
   const { className, title, genres, date, id, ...rest } = props;
