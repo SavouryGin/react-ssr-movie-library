@@ -1,0 +1,20 @@
+$Base-font: 'Montserrat', sans-serif;
+$Italic-font: 'Montserrat italic', sans-serif;
+
+@font-face {
+  font-family: 'Montserrat';
+  src: url('/src/client/assets/fonts/montserrat/Montserrat-VariableFont_wght.ttf') format('truetype');
+  font-style: normal;
+  font-weight: normal;
+  font-display: swap;
+  text-rendering: optimizeLegibility;
+}
+
+@font-face {
+  font-family: 'Montserrat italic';
+  src: url('/src/client/assets/fonts/montserrat/Montserrat-Italic-VariableFont_wght.ttf') format('truetype');
+  font-style: normal;
+  font-weight: normal;
+  font-display: swap;
+  text-rendering: optimizeLegibility;
+}

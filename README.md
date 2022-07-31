@@ -23,15 +23,15 @@ Educational project within the framework of the EPAM React GMP course
 
 #### `npm run dev`
 
-This command will use the webpack-dev-server to create a dev server and will watch for your code changes and be recompiled every time you make a change. Open [localhost](http://localhost:9000) to view it in the browser.
+This command starts the project in **SSR** (server side rendering) mode. Open [localhost](http://localhost:3000) to view it in the browser.
 
-#### `npm run prod`
+#### `npm run spa:start`
 
-This command will build a production version of the code, generate a single bundle file, and insert it into the html file generated.
+This command starts the project in **SPA** (single page application) mode. Open [localhost](http://localhost:3000) to view it in the browser.
 
 #### `npm run start`
 
-This command will run the serve package which will use the dist folder to create a static page.
+This command builds the project for the **production** mode.
 
 #### `npm run lint`
 
