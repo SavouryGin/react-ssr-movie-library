@@ -1,6 +1,6 @@
-# ReactJS Global Mentoring Program [2022Q2 RU]
+# ReactJS SSR Movie Library
 
-Educational project within the framework of the EPAM React GMP course
+The project implemented a SPA application for creating, viewing and editing movie reviews. Implemented support for server rendering and custom webpack settings for building the application in various mods.
 
 ### Name templates
 
